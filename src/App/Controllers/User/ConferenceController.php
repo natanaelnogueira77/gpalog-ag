@@ -136,6 +136,11 @@ class ConferenceController extends TemplateController
                     $this->redirect('user.conference.singleInput', ['conference_id' => $dbConference->id]);
                 }
 
+                if(!Pallet::hasAllocationForAll($dbPallets)) {
+                    $this->session->setFlash('error', _('Não há posições suficientes para alocar todos os pallets!'));
+                    $this->redirect('user.conference.singleInput', ['conference_id' => $dbConference->id]);
+                }
+
                 if(!Pallet::allocateMany($dbPallets) || !$dbConference->setAsFinished()->save()) {
                     $this->session->setFlash('error', _('Lamentamos, mas ocorreu um erro na requisição!'));
                     $this->redirect('user.conference.singleInput', ['conference_id' => $dbConference->id]);

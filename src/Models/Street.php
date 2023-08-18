@@ -102,6 +102,10 @@ class Street extends DBModel
         foreach($streets as $street) {
             for($i = $street->start_position; $i <= $street->end_position; $i++) {
                 for($j = 1; $j <= $street->max_height; $j++) {
+                    if($street->max_plts < count($pallets) + count($availablePlaces)) {
+                        continue 3;
+                    }
+
                     if(!is_null($limit) && $limit == 0) {
                         return $availablePlaces;
                     }

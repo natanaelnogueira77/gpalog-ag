@@ -251,6 +251,30 @@ class Pallet extends DBModel
         return isset(self::getStates()[$this->p_status]) ? self::getStates()[$this->p_status] : null;
     }
 
+    public static function hasAllocationForAll(array $pallets): bool 
+    {
+        $palletsPerHeight = ['1.40' => 0, '2.20' => 0];
+        foreach($pallets as $pallet) {
+            if($pallet->pallet_height == 1.4) {
+                $palletsPerHeight['1.40']++;
+            } elseif($pallet->pallet_height == 2.2) {
+                $palletsPerHeight['2.20']++;
+            }
+        }
+
+        $availablePlaces = [
+            '1.40' => Street::getAvailablePlacesByHeight(1.40, $palletsPerHeight['1.40']),
+            '2.20' => Street::getAvailablePlacesByHeight(2.20, $palletsPerHeight['2.20'])
+        ];
+
+        if(count($availablePlaces['1.40']) < $palletsPerHeight['1.40'] 
+            || count($availablePlaces['2.20']) < $palletsPerHeight['2.20']) {
+            return false;
+        }
+
+        return true;
+    }
+
     public static function allocateMany(array $pallets): bool 
     {
         $palletsPerHeight = ['1.40' => 0, '2.20' => 0];
