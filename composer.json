@@ -1,0 +1,22 @@
+{
+    "name": "pc/gpalog-ag",
+    "description": "Solução para armazém do GPA Log",
+    "type": "project",
+    "require": {
+        "gtg/php-mvc-core": "^1.0",
+        "google/recaptcha": "^1.3"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Src\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "natanaelnogueira77",
+            "email": "piano.nogueirans@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable"
+}
