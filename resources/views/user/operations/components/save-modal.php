@@ -71,14 +71,26 @@
                     
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="occurrence_number"><?= _('Número de Ocorrência') ?></label>
+                            <label for="occurrence_number">
+                                <?= _('Número de Ocorrência') ?>
+                                <span data-toggle="tooltip" data-placement="top" 
+                                    title='<?= _('Digite o número de ocorrência referente à operação.') ?>'>
+                                    <i class="icofont-question-circle" style="font-size: 1.1rem;"></i>
+                                </span>
+                            </label>
                             <input type="text" name="occurrence_number" placeholder="<?= _('Informe o número de ocorrência...') ?>" 
                             class="form-control" maxlength="20">
                             <div class="invalid-feedback"></div>
                         </div>
 
                         <div class="form-group col-md-6">
-                            <label for="password_number"><?= _('Número de Senha') ?></label>
+                            <label for="password_number">
+                                <?= _('Número de Senha') ?>
+                                <span data-toggle="tooltip" data-placement="top" 
+                                    title='<?= _('Digite o número de senha referente à operação.') ?>'>
+                                    <i class="icofont-question-circle" style="font-size: 1.1rem;"></i>
+                                </span>
+                            </label>
                             <input type="text" name="password_number" placeholder="<?= _('Informe o número de senha...') ?>" 
                             class="form-control" maxlength="20">
                             <div class="invalid-feedback"></div>
@@ -106,7 +118,13 @@
                         </div>
 
                         <div class="form-group col-md-6">
-                            <label for="order_number"><?= _('Número do Pedido/TR') ?></label>
+                            <label for="order_number">
+                                <?= _('Número do Pedido/TR') ?>
+                                <span data-toggle="tooltip" data-placement="top" 
+                                    title='<?= _('Digite o número do pedido referente à operação. Esta será a ordem de serviço.') ?>'>
+                                    <i class="icofont-question-circle" style="font-size: 1.1rem;"></i>
+                                </span>
+                            </label>
                             <input type="text" name="order_number" placeholder="<?= _('Informe o número do pedido...') ?>" 
                                 class="form-control" maxlength="20">
                             <div class="invalid-feedback"></div>
@@ -115,14 +133,26 @@
 
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="invoice_number"><?= _('Nota Fiscal') ?></label>
+                            <label for="invoice_number">
+                                <?= _('Nota Fiscal') ?>
+                                <span data-toggle="tooltip" data-placement="top" 
+                                    title='<?= _('Digite a nota fiscal referente à operação.') ?>'>
+                                    <i class="icofont-question-circle" style="font-size: 1.1rem;"></i>
+                                </span>
+                            </label>
                             <input type="text" name="invoice_number" placeholder="<?= _('Informe o número da nota fiscal...') ?>" 
                                 class="form-control" maxlength="20">
                             <div class="invalid-feedback"></div>
                         </div>
 
                         <div class="form-group col-md-6">
-                            <label for="plate"><?= _('Placa') ?></label>
+                            <label for="plate">
+                                <?= _('Placa') ?>
+                                <span data-toggle="tooltip" data-placement="top" 
+                                    title='<?= _('Digite a placa do veículo referente à operação.') ?>'>
+                                    <i class="icofont-question-circle" style="font-size: 1.1rem;"></i>
+                                </span>
+                            </label>
                             <input type="text" name="plate" placeholder="<?= _('Informe a placa do veículo...') ?>" 
                                 class="form-control" maxlength="20">
                             <div class="invalid-feedback"></div>

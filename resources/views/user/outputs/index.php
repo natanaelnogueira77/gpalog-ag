@@ -24,7 +24,13 @@
     <div class="card-body">
         <form action="<?= $router->route('user.outputs.index') ?>" method="get">
             <div class="form-group">
-                <label><?= _('Ordem de Serviço') ?></label>
+                <label>
+                    <?= _('Ordem de Serviço') ?> 
+                    <span data-toggle="tooltip" data-placement="top" 
+                        title='<?= _('Digite o número da ordem de serviço para ter a relação dos pallets, e clique em "Buscar".') ?>'>
+                        <i class="icofont-question-circle" style="font-size: 1.1rem;"></i>
+                    </span>
+                </label>
                 <div class="input-group">
                     <input type="text" id="order_number" name="order_number" value="<?= $outputForm->order_number ?>" 
                         class="form-control <?= $outputForm->hasError('order_number') ? 'is-invalid' : '' ?>" 

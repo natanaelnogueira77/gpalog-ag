@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2023-08-18 14:03-0300\n"
-"PO-Revision-Date: 2023-08-18 14:20-0300\n"
+"POT-Creation-Date: 2023-08-18 15:31-0300\n"
+"PO-Revision-Date: 2023-08-18 15:40-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt_BR\n"
@@ -184,7 +184,7 @@ msgid "Informações da Conta"
 msgstr "Informações da Conta"
 
 #: resources/views/admin/users/save.php:32 resources/views/user/edit.php:33
-#: resources/views/user/operations/components/save-modal.php:149
+#: resources/views/user/operations/components/save-modal.php:179
 #: resources/views/user/providers/components/save-modal.php:17
 #: src/App/Controllers/Admin/UsersController.php:214
 #: src/App/Controllers/User/ProductsController.php:148
@@ -306,13 +306,13 @@ msgstr "Atualizar Usuário"
 #: resources/views/user/conference/output.php:21
 #: resources/views/user/conference/single-input.php:27
 #: resources/views/user/edit.php:127
-#: resources/views/user/operations/components/save-modal.php:136
-#: resources/views/user/operations/components/save-modal.php:163
+#: resources/views/user/operations/components/save-modal.php:166
+#: resources/views/user/operations/components/save-modal.php:193
 #: resources/views/user/products/components/import-modal.php:30
-#: resources/views/user/products/components/save-modal.php:116
+#: resources/views/user/products/components/save-modal.php:194
 #: resources/views/user/providers/components/import-modal.php:28
 #: resources/views/user/providers/components/save-modal.php:31
-#: resources/views/user/streets/components/save-modal.php:78
+#: resources/views/user/streets/components/save-modal.php:114
 msgid "Voltar"
 msgstr "Voltar"
 
@@ -583,7 +583,7 @@ msgstr "Horário de Entrada"
 #: resources/views/user/conference/components/input-pdf.php:87
 #: resources/views/user/conference/components/output-pdf.php:83
 #: resources/views/user/outputs/components/pdf.php:86
-#: resources/views/user/outputs/index.php:51
+#: resources/views/user/outputs/index.php:57
 #: src/App/Controllers/User/StreetsController.php:127
 msgid "Rua"
 msgstr "Rua"
@@ -591,22 +591,22 @@ msgstr "Rua"
 #: resources/views/user/conference/components/input-pdf.php:91
 #: resources/views/user/conference/components/output-pdf.php:87
 #: resources/views/user/outputs/components/pdf.php:87
-#: resources/views/user/outputs/index.php:52
+#: resources/views/user/outputs/index.php:58
 msgid "Posição"
 msgstr "Posição"
 
 #: resources/views/user/conference/components/input-pdf.php:95
 #: resources/views/user/conference/components/output-pdf.php:91
 #: resources/views/user/outputs/components/pdf.php:88
-#: resources/views/user/outputs/index.php:53
-#: resources/views/user/products/components/save-modal.php:88
+#: resources/views/user/outputs/index.php:59
+#: resources/views/user/products/components/save-modal.php:149
 msgid "Altura"
 msgstr "Altura"
 
 #: resources/views/user/conference/components/input-pdf.php:99
 #: resources/views/user/conference/components/output-pdf.php:95
 #: resources/views/user/conference/output.php:45
-#: resources/views/user/outputs/index.php:27
+#: resources/views/user/outputs/index.php:28
 msgid "Ordem de Serviço"
 msgstr "Ordem de Serviço"
 
@@ -621,7 +621,7 @@ msgstr "Código do Produto"
 #: resources/views/user/conference/single-input.php:82
 #: resources/views/user/conference/single-input.php:143
 #: resources/views/user/outputs/components/pdf.php:90
-#: resources/views/user/products/components/save-modal.php:23
+#: resources/views/user/products/components/save-modal.php:30
 msgid "Nome do Produto"
 msgstr "Nome do Produto"
 
@@ -723,7 +723,7 @@ msgstr "ID"
 
 #: resources/views/user/conference/input.php:20
 #: resources/views/user/conference/single-input.php:60
-#: resources/views/user/operations/components/save-modal.php:125
+#: resources/views/user/operations/components/save-modal.php:150
 #: src/App/Controllers/User/OperationsController.php:145
 msgid "Placa"
 msgstr "Placa"
@@ -756,7 +756,7 @@ msgstr "Saída | %s"
 
 #: resources/views/user/conference/output.php:12
 #: resources/views/user/conference/single-input.php:18
-#: resources/views/user/outputs/index.php:33
+#: resources/views/user/outputs/index.php:39
 msgid "Buscar"
 msgstr "Buscar"
 
@@ -787,7 +787,7 @@ msgstr "Confirmar"
 
 #: resources/views/user/conference/single-input.php:86
 #: resources/views/user/conference/single-input.php:147
-#: resources/views/user/products/components/save-modal.php:38
+#: resources/views/user/products/components/save-modal.php:57
 msgid "Nome do Fornecedor"
 msgstr "Nome do Fornecedor"
 
@@ -809,7 +809,7 @@ msgstr "Qtde. Plts Fechados"
 #: resources/views/user/conference/single-input.php:106
 #: resources/views/user/conference/single-input.php:190
 #: resources/views/user/outputs/components/pdf.php:92
-#: resources/views/user/outputs/index.php:54
+#: resources/views/user/outputs/index.php:60
 msgid "Serviço"
 msgstr "Serviço"
 
@@ -921,75 +921,97 @@ msgstr "Armazenagem"
 msgid "Importado"
 msgstr "Importado"
 
-#: resources/views/user/operations/components/save-modal.php:74
+#: resources/views/user/operations/components/save-modal.php:75
 msgid "Número de Ocorrência"
 msgstr "Número de Ocorrência"
 
-#: resources/views/user/operations/components/save-modal.php:75
+#: resources/views/user/operations/components/save-modal.php:77
+msgid "Digite o número de ocorrência referente à operação."
+msgstr "Digite o número de ocorrência referente à operação."
+
+#: resources/views/user/operations/components/save-modal.php:81
 msgid "Informe o número de ocorrência..."
 msgstr "Informe o número de ocorrência..."
 
-#: resources/views/user/operations/components/save-modal.php:81
+#: resources/views/user/operations/components/save-modal.php:88
 msgid "Número de Senha"
 msgstr "Número de Senha"
 
-#: resources/views/user/operations/components/save-modal.php:82
+#: resources/views/user/operations/components/save-modal.php:90
+msgid "Digite o número de senha referente à operação."
+msgstr "Digite o número de senha referente à operação."
+
+#: resources/views/user/operations/components/save-modal.php:94
 msgid "Informe o número de senha..."
 msgstr "Informe o número de senha..."
 
-#: resources/views/user/operations/components/save-modal.php:98
+#: resources/views/user/operations/components/save-modal.php:110
 msgid "Tem TR?"
 msgstr "Tem TR?"
 
-#: resources/views/user/operations/components/save-modal.php:100
+#: resources/views/user/operations/components/save-modal.php:112
 msgid "Se houver TR, marque a caixa ao lado."
 msgstr "Se houver TR, marque a caixa ao lado."
 
-#: resources/views/user/operations/components/save-modal.php:109
+#: resources/views/user/operations/components/save-modal.php:122
 msgid "Número do Pedido/TR"
 msgstr "Número do Pedido/TR"
 
-#: resources/views/user/operations/components/save-modal.php:110
+#: resources/views/user/operations/components/save-modal.php:124
+msgid ""
+"Digite o número do pedido referente à operação. Esta será a ordem de serviço."
+msgstr ""
+"Digite o número do pedido referente à operação. Esta será a ordem de serviço."
+
+#: resources/views/user/operations/components/save-modal.php:128
 msgid "Informe o número do pedido..."
 msgstr "Informe o número do pedido..."
 
-#: resources/views/user/operations/components/save-modal.php:118
+#: resources/views/user/operations/components/save-modal.php:137
 msgid "Nota Fiscal"
 msgstr "Nota Fiscal"
 
-#: resources/views/user/operations/components/save-modal.php:119
+#: resources/views/user/operations/components/save-modal.php:139
+msgid "Digite a nota fiscal referente à operação."
+msgstr "Digite a nota fiscal referente à operação."
+
+#: resources/views/user/operations/components/save-modal.php:143
 msgid "Informe o número da nota fiscal..."
 msgstr "Informe o número da nota fiscal..."
 
-#: resources/views/user/operations/components/save-modal.php:126
+#: resources/views/user/operations/components/save-modal.php:152
+msgid "Digite a placa do veículo referente à operação."
+msgstr "Digite a placa do veículo referente à operação."
+
+#: resources/views/user/operations/components/save-modal.php:156
 msgid "Informe a placa do veículo..."
 msgstr "Informe a placa do veículo..."
 
-#: resources/views/user/operations/components/save-modal.php:135
-#: resources/views/user/operations/components/save-modal.php:162
-#: resources/views/user/products/components/save-modal.php:115
+#: resources/views/user/operations/components/save-modal.php:165
+#: resources/views/user/operations/components/save-modal.php:192
+#: resources/views/user/products/components/save-modal.php:193
 #: resources/views/user/providers/components/save-modal.php:30
-#: resources/views/user/streets/components/save-modal.php:77
+#: resources/views/user/streets/components/save-modal.php:113
 msgid "Salvar"
 msgstr "Salvar"
 
-#: resources/views/user/operations/components/save-modal.php:142
+#: resources/views/user/operations/components/save-modal.php:172
 #: resources/views/user/providers/index.php:27
 #: resources/views/user/providers/index.php:121
 msgid "Cadastrar Fornecedor"
 msgstr "Cadastrar Fornecedor"
 
-#: resources/views/user/operations/components/save-modal.php:150
+#: resources/views/user/operations/components/save-modal.php:180
 #: resources/views/user/providers/components/save-modal.php:18
 msgid "Digite o nome do fornecedor."
 msgstr "Digite o nome do fornecedor."
 
-#: resources/views/user/operations/components/save-modal.php:155
+#: resources/views/user/operations/components/save-modal.php:185
 #: resources/views/user/providers/components/save-modal.php:23
 msgid "Digite o nome do fornecedor..."
 msgstr "Digite o nome do fornecedor..."
 
-#: resources/views/user/operations/components/save-modal.php:164
+#: resources/views/user/operations/components/save-modal.php:194
 msgid "Fechar"
 msgstr "Fechar"
 
@@ -1053,7 +1075,7 @@ msgid "Horário de Separação"
 msgstr "Horário de Separação"
 
 #: resources/views/user/outputs/components/pdf.php:85
-#: resources/views/user/outputs/index.php:48
+#: resources/views/user/outputs/index.php:54
 msgid "Nº do Pallet"
 msgstr "Nº do Pallet"
 
@@ -1062,7 +1084,7 @@ msgid "OS"
 msgstr "OS"
 
 #: resources/views/user/outputs/components/pdf.php:91
-#: resources/views/user/products/components/save-modal.php:47
+#: resources/views/user/products/components/save-modal.php:72
 msgid "EAN"
 msgstr "EAN"
 
@@ -1087,23 +1109,31 @@ msgstr ""
 msgid "Saídas"
 msgstr "Saídas"
 
-#: resources/views/user/outputs/index.php:31
+#: resources/views/user/outputs/index.php:30
+msgid ""
+"Digite o número da ordem de serviço para ter a relação dos pallets, e clique "
+"em \"Buscar\"."
+msgstr ""
+"Digite o número da ordem de serviço para ter a relação dos pallets, e clique "
+"em \"Buscar\"."
+
+#: resources/views/user/outputs/index.php:37
 msgid "Digite a ordem de serviço..."
 msgstr "Digite a ordem de serviço..."
 
-#: resources/views/user/outputs/index.php:47
+#: resources/views/user/outputs/index.php:53
 msgid "Incluir?"
 msgstr "Incluir?"
 
-#: resources/views/user/outputs/index.php:49
+#: resources/views/user/outputs/index.php:55
 msgid "Produto"
 msgstr "Produto"
 
-#: resources/views/user/outputs/index.php:50
+#: resources/views/user/outputs/index.php:56
 msgid "Código EAN"
 msgstr "Código EAN"
 
-#: resources/views/user/outputs/index.php:80
+#: resources/views/user/outputs/index.php:86
 msgid "Gerar Lista de Separação"
 msgstr "Gerar Lista de Separação"
 
@@ -1142,97 +1172,149 @@ msgstr "Importar"
 msgid "Complete os campos abaixo para criar/editar um produto."
 msgstr "Complete os campos abaixo para criar/editar um produto."
 
-#: resources/views/user/products/components/save-modal.php:17
+#: resources/views/user/products/components/save-modal.php:18
 msgid "ID do Produto"
 msgstr "ID do Produto"
 
-#: resources/views/user/products/components/save-modal.php:18
+#: resources/views/user/products/components/save-modal.php:20
+msgid "Digite o ID do produto."
+msgstr "Digite o ID do produto."
+
+#: resources/views/user/products/components/save-modal.php:24
 msgid "Informe o ID do produto..."
 msgstr "Informe o ID do produto..."
 
-#: resources/views/user/products/components/save-modal.php:24
+#: resources/views/user/products/components/save-modal.php:32
+msgid "Digite o nome do produto."
+msgstr "Digite o nome do produto."
+
+#: resources/views/user/products/components/save-modal.php:36
 msgid "Informe o nome do produto..."
 msgstr "Informe o nome do produto..."
 
-#: resources/views/user/products/components/save-modal.php:32
+#: resources/views/user/products/components/save-modal.php:45
 msgid "ID do Fornecedor"
 msgstr "ID do Fornecedor"
 
-#: resources/views/user/products/components/save-modal.php:33
+#: resources/views/user/products/components/save-modal.php:47
+msgid "Digite o ID do fornecedor referente ao produto."
+msgstr "Digite o ID do fornecedor referente ao produto."
+
+#: resources/views/user/products/components/save-modal.php:51
 msgid "Informe o ID do fornecedor..."
 msgstr "Informe o ID do fornecedor..."
 
-#: resources/views/user/products/components/save-modal.php:39
+#: resources/views/user/products/components/save-modal.php:59
+msgid "Digite o nome do fornecedor referente ao produto."
+msgstr "Digite o nome do fornecedor referente ao produto."
+
+#: resources/views/user/products/components/save-modal.php:63
 msgid "Informe o nome do fornecedor..."
 msgstr "Informe o nome do fornecedor..."
 
-#: resources/views/user/products/components/save-modal.php:48
+#: resources/views/user/products/components/save-modal.php:74
+msgid "Digite o código EAN do produto."
+msgstr "Digite o código EAN do produto."
+
+#: resources/views/user/products/components/save-modal.php:78
 msgid "Digite o código EAN..."
 msgstr "Digite o código EAN..."
 
-#: resources/views/user/products/components/save-modal.php:53
+#: resources/views/user/products/components/save-modal.php:84
 msgid "Dun14"
 msgstr "Dun14"
 
-#: resources/views/user/products/components/save-modal.php:54
+#: resources/views/user/products/components/save-modal.php:86
+msgid "Digite o código Dun14 do produto."
+msgstr "Digite o código Dun14 do produto."
+
+#: resources/views/user/products/components/save-modal.php:90
 msgid "Digite o código Dun14..."
 msgstr "Digite o código Dun14..."
 
-#: resources/views/user/products/components/save-modal.php:59
+#: resources/views/user/products/components/save-modal.php:96
 msgid "PLU"
 msgstr "PLU"
 
-#: resources/views/user/products/components/save-modal.php:60
+#: resources/views/user/products/components/save-modal.php:98
+msgid "Digite o código PLU do produto."
+msgstr "Digite o código PLU do produto."
+
+#: resources/views/user/products/components/save-modal.php:102
 msgid "Digite o código PLU..."
 msgstr "Digite o código PLU..."
 
-#: resources/views/user/products/components/save-modal.php:65
+#: resources/views/user/products/components/save-modal.php:107
 msgid "Medidas"
 msgstr "Medidas"
 
-#: resources/views/user/products/components/save-modal.php:68
+#: resources/views/user/products/components/save-modal.php:111
 msgid "Emb Fb"
 msgstr "Emb Fb"
 
-#: resources/views/user/products/components/save-modal.php:69
+#: resources/views/user/products/components/save-modal.php:113
+msgid "Digite o número de embalagem do produto."
+msgstr "Digite o número de embalagem do produto."
+
+#: resources/views/user/products/components/save-modal.php:117
 msgid "Digite o Emb Fb..."
 msgstr "Digite o Emb Fb..."
 
-#: resources/views/user/products/components/save-modal.php:74
+#: resources/views/user/products/components/save-modal.php:123
 msgid "Comprimento"
 msgstr "Comprimento"
 
-#: resources/views/user/products/components/save-modal.php:75
+#: resources/views/user/products/components/save-modal.php:125
+msgid "Digite o comprimento do produto, em centímetros."
+msgstr "Digite o comprimento do produto, em centímetros."
+
+#: resources/views/user/products/components/save-modal.php:129
 msgid "Digite o comprimento..."
 msgstr "Digite o comprimento..."
 
-#: resources/views/user/products/components/save-modal.php:80
+#: resources/views/user/products/components/save-modal.php:135
 msgid "Largura"
 msgstr "Largura"
 
-#: resources/views/user/products/components/save-modal.php:81
+#: resources/views/user/products/components/save-modal.php:137
+msgid "Digite a largura do produto, em centímetros."
+msgstr "Digite a largura do produto, em centímetros."
+
+#: resources/views/user/products/components/save-modal.php:141
 msgid "Digite a largura..."
 msgstr "Digite a largura..."
 
-#: resources/views/user/products/components/save-modal.php:89
+#: resources/views/user/products/components/save-modal.php:151
+msgid "Digite a altura do produto, em centímetros."
+msgstr "Digite a altura do produto, em centímetros."
+
+#: resources/views/user/products/components/save-modal.php:155
 msgid "Digite a altura..."
 msgstr "Digite a altura..."
 
-#: resources/views/user/products/components/save-modal.php:94
+#: resources/views/user/products/components/save-modal.php:161
 #: src/App/Controllers/User/ProductsController.php:152
 msgid "Base"
 msgstr "Base"
 
-#: resources/views/user/products/components/save-modal.php:95
+#: resources/views/user/products/components/save-modal.php:163
+msgid "Digite a base do produto."
+msgstr "Digite a base do produto."
+
+#: resources/views/user/products/components/save-modal.php:167
 msgid "Digite a base..."
 msgstr "Digite a base..."
 
-#: resources/views/user/products/components/save-modal.php:100
+#: resources/views/user/products/components/save-modal.php:173
 #: src/App/Controllers/User/ProductsController.php:153
 msgid "Peso"
 msgstr "Peso"
 
-#: resources/views/user/products/components/save-modal.php:102
+#: resources/views/user/products/components/save-modal.php:175
+msgid "Digite o peso do produto, em quilos."
+msgstr "Digite o peso do produto, em quilos."
+
+#: resources/views/user/products/components/save-modal.php:180
 msgid "Digite o peso..."
 msgstr "Digite o peso..."
 
@@ -1368,67 +1450,91 @@ msgstr "Total Para Armazenagem: %s"
 msgid "Complete os campos abaixo para criar/editar uma rua."
 msgstr "Complete os campos abaixo para criar/editar uma rua."
 
-#: resources/views/user/streets/components/save-modal.php:17
+#: resources/views/user/streets/components/save-modal.php:18
 msgid "Número da Rua"
 msgstr "Número da Rua"
 
-#: resources/views/user/streets/components/save-modal.php:18
+#: resources/views/user/streets/components/save-modal.php:20
+msgid "Digite o número da rua."
+msgstr "Digite o número da rua."
+
+#: resources/views/user/streets/components/save-modal.php:24
 msgid "Informe o número da rua..."
 msgstr "Informe o número da rua..."
 
-#: resources/views/user/streets/components/save-modal.php:24
+#: resources/views/user/streets/components/save-modal.php:31
 msgid "Posição Inicial"
 msgstr "Posição Inicial"
 
-#: resources/views/user/streets/components/save-modal.php:25
+#: resources/views/user/streets/components/save-modal.php:33
+msgid "Digite a primeira posição da rua."
+msgstr "Digite a primeira posição da rua."
+
+#: resources/views/user/streets/components/save-modal.php:37
 msgid "Informe a posição inicial..."
 msgstr "Informe a posição inicial..."
 
-#: resources/views/user/streets/components/save-modal.php:31
+#: resources/views/user/streets/components/save-modal.php:44
 msgid "Posição Final"
 msgstr "Posição Final"
 
-#: resources/views/user/streets/components/save-modal.php:32
+#: resources/views/user/streets/components/save-modal.php:46
+msgid "Digite a última posição da rua."
+msgstr "Digite a última posição da rua."
+
+#: resources/views/user/streets/components/save-modal.php:50
 msgid "Informe a posição final..."
 msgstr "Informe a posição final..."
 
-#: resources/views/user/streets/components/save-modal.php:40
+#: resources/views/user/streets/components/save-modal.php:59
 #: src/App/Controllers/User/StreetsController.php:130
 msgid "Altura Máxima"
 msgstr "Altura Máxima"
 
-#: resources/views/user/streets/components/save-modal.php:41
+#: resources/views/user/streets/components/save-modal.php:61
+msgid "Digite a altura máxima da rua."
+msgstr "Digite a altura máxima da rua."
+
+#: resources/views/user/streets/components/save-modal.php:65
 msgid "Informe a altura máxima..."
 msgstr "Informe a altura máxima..."
 
-#: resources/views/user/streets/components/save-modal.php:47
+#: resources/views/user/streets/components/save-modal.php:72
 #: src/App/Controllers/User/StreetsController.php:131
 msgid "Perfil"
 msgstr "Perfil"
 
-#: resources/views/user/streets/components/save-modal.php:48
+#: resources/views/user/streets/components/save-modal.php:74
+msgid "Digite o perfil da rua, em metros."
+msgstr "Digite o perfil da rua, em metros."
+
+#: resources/views/user/streets/components/save-modal.php:78
 msgid "Informe o perfil da rua..."
 msgstr "Informe o perfil da rua..."
 
-#: resources/views/user/streets/components/save-modal.php:54
+#: resources/views/user/streets/components/save-modal.php:85
 #: src/App/Controllers/User/StreetsController.php:132
 msgid "Capacidade Máxima"
 msgstr "Capacidade Máxima"
 
-#: resources/views/user/streets/components/save-modal.php:55
+#: resources/views/user/streets/components/save-modal.php:87
+msgid "Digite a capacidade máxima de pallets para essa rua."
+msgstr "Digite a capacidade máxima de pallets para essa rua."
+
+#: resources/views/user/streets/components/save-modal.php:91
 msgid "Informe a capacidade máxima da rua..."
 msgstr "Informe a capacidade máxima da rua..."
 
-#: resources/views/user/streets/components/save-modal.php:63
+#: resources/views/user/streets/components/save-modal.php:99
 #: src/App/Controllers/User/StreetsController.php:133
 msgid "Observações"
 msgstr "Observações"
 
-#: resources/views/user/streets/components/save-modal.php:65
+#: resources/views/user/streets/components/save-modal.php:101
 msgid "É opcional, uma observação da rua."
 msgstr "É opcional, uma observação da rua."
 
-#: resources/views/user/streets/components/save-modal.php:70
+#: resources/views/user/streets/components/save-modal.php:106
 msgid "Descreva as observações da rua..."
 msgstr "Descreva as observações da rua..."
 

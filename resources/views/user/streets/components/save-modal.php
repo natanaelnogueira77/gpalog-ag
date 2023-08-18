@@ -14,21 +14,39 @@
                 <form id="save-street">
                     <div class="form-row">
                         <div class="form-group col-md-4">
-                            <label for="street_number"><?= _('Número da Rua') ?></label>
+                            <label for="street_number">
+                                <?= _('Número da Rua') ?> 
+                                <span data-toggle="tooltip" data-placement="top" 
+                                    title='<?= _('Digite o número da rua.') ?>'>
+                                    <i class="icofont-question-circle" style="font-size: 1.1rem;"></i>
+                                </span>
+                            </label>
                             <input type="number" name="street_number" placeholder="<?= _('Informe o número da rua...') ?>" 
                                 class="form-control" min="0">
                             <div class="invalid-feedback"></div>
                         </div>
 
                         <div class="form-group col-md-4">
-                            <label for="start_position"><?= _('Posição Inicial') ?></label>
+                            <label for="start_position">
+                                <?= _('Posição Inicial') ?>
+                                <span data-toggle="tooltip" data-placement="top" 
+                                    title='<?= _('Digite a primeira posição da rua.') ?>'>
+                                    <i class="icofont-question-circle" style="font-size: 1.1rem;"></i>
+                                </span>
+                            </label>
                             <input type="number" name="start_position" placeholder="<?= _('Informe a posição inicial...') ?>" 
                                 class="form-control" min="0">
                             <div class="invalid-feedback"></div>
                         </div>
 
                         <div class="form-group col-md-4">
-                            <label for="end_position"><?= _('Posição Final') ?></label>
+                            <label for="end_position">
+                                <?= _('Posição Final') ?> 
+                                <span data-toggle="tooltip" data-placement="top" 
+                                    title='<?= _('Digite a última posição da rua.') ?>'>
+                                    <i class="icofont-question-circle" style="font-size: 1.1rem;"></i>
+                                </span>
+                            </label>
                             <input type="number" name="end_position" placeholder="<?= _('Informe a posição final...') ?>" 
                                 class="form-control" min="0">
                             <div class="invalid-feedback"></div>
@@ -37,21 +55,39 @@
 
                     <div class="form-row">
                         <div class="form-group col-md-4">
-                            <label for="max_height"><?= _('Altura Máxima') ?></label>
+                            <label for="max_height">
+                                <?= _('Altura Máxima') ?> 
+                                <span data-toggle="tooltip" data-placement="top" 
+                                    title='<?= _('Digite a altura máxima da rua.') ?>'>
+                                    <i class="icofont-question-circle" style="font-size: 1.1rem;"></i>
+                                </span>
+                            </label>
                             <input type="number" name="max_height" placeholder="<?= _('Informe a altura máxima...') ?>" 
                                 class="form-control" min="0">
                             <div class="invalid-feedback"></div>
                         </div>
 
                         <div class="form-group col-md-4">
-                            <label for="profile"><?= _('Perfil') ?></label>
+                            <label for="profile">
+                                <?= _('Perfil') ?> 
+                                <span data-toggle="tooltip" data-placement="top" 
+                                    title='<?= _('Digite o perfil da rua, em metros.') ?>'>
+                                    <i class="icofont-question-circle" style="font-size: 1.1rem;"></i>
+                                </span>
+                            </label>
                             <input type="number" name="profile" placeholder="<?= _('Informe o perfil da rua...') ?>" 
                                 class="form-control" step="0.01" min="0">
                             <div class="invalid-feedback"></div>
                         </div>
                         
                         <div class="form-group col-md-4">
-                            <label for="max_plts"><?= _('Capacidade Máxima') ?></label>
+                            <label for="max_plts">
+                                <?= _('Capacidade Máxima') ?> 
+                                <span data-toggle="tooltip" data-placement="top" 
+                                    title='<?= _('Digite a capacidade máxima de pallets para essa rua.') ?>'>
+                                    <i class="icofont-question-circle" style="font-size: 1.1rem;"></i>
+                                </span>
+                            </label>
                             <input type="number" name="max_plts" placeholder="<?= _('Informe a capacidade máxima da rua...') ?>" 
                                 class="form-control" min="0">
                             <div class="invalid-feedback"></div>
