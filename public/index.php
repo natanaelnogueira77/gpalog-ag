@@ -91,6 +91,7 @@ $app->router->put('/{operation_id}', 'OperationsController:update', 'user.operat
 $app->router->delete('/{operation_id}', 'OperationsController:delete', 'user.operations.delete');
 $app->router->post('/{operation_id}/create-conference', 'OperationsController:createConference', 'user.operations.createConference');
 $app->router->get('/list', 'OperationsController:list', 'user.operations.list');
+$app->router->get('/export', 'OperationsController:export', 'user.operations.export');
 
 $app->router->group('u/ruas', \Src\App\Middlewares\ADMUserMiddleware::class);
 $app->router->get('/', 'StreetsController:index', 'user.streets.index');
@@ -99,6 +100,7 @@ $app->router->get('/{street_id}', 'StreetsController:show', 'user.streets.show')
 $app->router->put('/{street_id}', 'StreetsController:update', 'user.streets.update');
 $app->router->delete('/{street_id}', 'StreetsController:delete', 'user.streets.delete');
 $app->router->get('/list', 'StreetsController:list', 'user.streets.list');
+$app->router->get('/export', 'StreetsController:export', 'user.streets.export');
 
 $app->router->group('u/produtos', \Src\App\Middlewares\ADMUserMiddleware::class);
 $app->router->get('/', 'ProductsController:index', 'user.products.index');
@@ -108,6 +110,7 @@ $app->router->put('/{product_id}', 'ProductsController:update', 'user.products.u
 $app->router->delete('/{product_id}', 'ProductsController:delete', 'user.products.delete');
 $app->router->get('/list', 'ProductsController:list', 'user.products.list');
 $app->router->post('/import', 'ProductsController:import', 'user.products.import');
+$app->router->get('/export', 'ProductsController:export', 'user.products.export');
 
 $app->router->group('u/fornecedores', \Src\App\Middlewares\ADMUserMiddleware::class);
 $app->router->get('/', 'ProvidersController:index', 'user.providers.index');
@@ -117,23 +120,31 @@ $app->router->put('/{provider_id}', 'ProvidersController:update', 'user.provider
 $app->router->delete('/{provider_id}', 'ProvidersController:delete', 'user.providers.delete');
 $app->router->get('/list', 'ProvidersController:list', 'user.providers.list');
 $app->router->post('/import', 'ProvidersController:import', 'user.providers.import');
+$app->router->get('/export', 'ProvidersController:export', 'user.providers.export');
 
 $app->router->group('u/armazenagem', \Src\App\Middlewares\ADMUserMiddleware::class);
 $app->router->get('/', 'StorageController:index', 'user.storage.index');
+$app->router->get('/export', 'StorageController:export', 'user.storage.export');
 
 $app->router->group('u/saidas', \Src\App\Middlewares\ADMUserMiddleware::class);
 $app->router->get('/', 'OutputsController:index', 'user.outputs.index');
 $app->router->post('/{operation_id}', 'OutputsController:store', 'user.outputs.store');
 $app->router->get('/{operation_id}/saidas/{output_id}', 'OutputsController:getPDF', 'user.outputs.getPDF');
+$app->router->get('/export', 'OutputsController:export', 'user.outputs.export');
+
+$app->router->group('u/historico-entrada-saida', \Src\App\Middlewares\ADMUserMiddleware::class);
+$app->router->get('/', 'InputOutputHistoryController:index', 'user.inputOutputHistory.index');
+$app->router->get('/{conference_id}/input-pdf', 'InputOutputHistoryController:getInputPDF', 'user.inputOutputHistory.getInputPDF');
+$app->router->get('/{conference_id}/output-pdf', 'InputOutputHistoryController:getOutputPDF', 'user.inputOutputHistory.getOutputPDF');
+$app->router->get('/list', 'InputOutputHistoryController:list', 'user.inputOutputHistory.list');
+$app->router->get('/export', 'InputOutputHistoryController:export', 'user.inputOutputHistory.export');
 
 $app->router->group('u/conferencia', \Src\App\Middlewares\OperatorMiddleware::class);
 $app->router->get('/', 'ConferenceController:index', 'user.conference.index');
 $app->router->get('/entrada', 'ConferenceController:input', 'user.conference.input');
 $app->router->get('/entrada/{conference_id}', 'ConferenceController:singleInput', 'user.conference.singleInput');
 $app->router->post('/entrada/{conference_id}', 'ConferenceController:singleInput', 'user.conference.singleInput');
-$app->router->get('/entrada/{conference_id}/pdf', 'ConferenceController:getInputPDF', 'user.conference.getInputPDF');
 $app->router->get('/saida', 'ConferenceController:output', 'user.conference.output');
 $app->router->post('/saida', 'ConferenceController:output', 'user.conference.output');
-$app->router->get('/saida/{pallet_id}/pdf', 'ConferenceController:getOutputPDF', 'user.conference.getOutputPDF');
 
 $app->run();

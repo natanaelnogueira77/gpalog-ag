@@ -19,6 +19,16 @@
             <i class="header-icon icofont-logout icon-gradient bg-info"> </i>
             <?= _('Saídas') ?>
         </div>
+
+        <div class="btn-actions-pane-right">
+            <div role="group" class="btn-group-sm btn-group">
+                <a class="btn btn-lg btn-outline-success" href="<?= $router->route('user.outputs.export') ?>"
+                    target="_blank">
+                    <i class="icofont-file-excel"></i>
+                    <?= _('Exportar Excel') ?>
+                </a>
+            </div>
+        </div>
     </div>
 
     <div class="card-body">
@@ -50,7 +60,9 @@
             <div class="table-responsive-lg">
                 <table class="align-middle mb-0 table table-borderless table-striped table-hover">
                     <thead>
-                        <th class="align-middle"><?= _('Incluir?') ?></th>
+                        <th class="align-middle">
+                            <input type="checkbox" id="include-all" class="form-control">
+                        </th>
                         <th class="align-middle"><?= _('Nº do Pallet') ?></th>
                         <th class="align-middle"><?= _('Produto') ?></th>
                         <th class="align-middle"><?= _('Código EAN') ?></th>
@@ -95,6 +107,16 @@
 
         <?php if($dbPallets): ?>
         const pallets_list = $("#pallets-list");
+        const include_all = $("#include-all");
+
+        include_all.change(function () {
+            if($(this).is(":checked")) {
+                $("[name='pallets[]']").prop('checked', true);
+            } else {
+                $("[name='pallets[]']").prop('checked', false);
+            }
+        });
+
         app.form(pallets_list, function (response) {
             if(response.pdf) window.open(response.pdf, '_blank').focus();
             window.location.reload();

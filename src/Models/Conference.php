@@ -2,6 +2,7 @@
 
 namespace Src\Models;
 
+use DateTime;
 use GTG\MVC\DB\DBModel;
 use Src\Models\ConferenceInput;
 use Src\Models\Operation;
@@ -148,6 +149,11 @@ class Conference extends DBModel
         return self::withBelongsTo($objects, Operation::class, 'ope_id', 'operation', 'id', $filters, $columns);
     }
 
+    public static function withPallets(array $objects, array $filters = [], string $columns = '*'): array
+    {
+        return self::withBelongsTo($objects, Pallet::class, 'con_id', 'pallets', 'id', $filters, $columns);
+    }
+
     public static function withStartUser(array $objects, array $filters = [], string $columns = '*'): array
     {
         return self::withBelongsTo($objects, User::class, 'start_usu_id', 'startUser', 'id', $filters, $columns);
@@ -215,6 +221,16 @@ class Conference extends DBModel
         }
 
         return $dbPallets;
+    }
+
+    public function getStartDateTime(): ?DateTime 
+    {
+        return $this->date_start ? new DateTime($this->date_start) : null;
+    }
+
+    public function getEndDateTime(): ?DateTime 
+    {
+        return $this->date_end ? new DateTime($this->date_end) : null;
     }
 
     public function setAsWaiting(): self 

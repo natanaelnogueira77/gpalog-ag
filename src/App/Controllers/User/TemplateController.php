@@ -82,6 +82,13 @@ class TemplateController extends Controller
                 'icon' => 'metismenu-icon pe-7s-next-2', 
                 'url' => $this->getRoute('user.outputs.index'), 
                 'desc' => _('Saídas')
+            ],
+            [
+                'type' => 'item', 
+                'level' => 1, 
+                'icon' => 'metismenu-icon pe-7s-date', 
+                'url' => $this->getRoute('user.inputOutputHistory.index'), 
+                'desc' => _('Histórico de Entrada e Saída')
             ]
         ];
 

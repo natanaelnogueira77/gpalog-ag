@@ -33,7 +33,7 @@
 </form>
 <?php if($dbConferenceInputs): ?>
 <form id="save-conference" action="<?= $router->route('user.conference.singleInput', ['conference_id' => $dbConference->id]) ?>" 
-    method="post" target="_blank">
+    method="post">
     <input type="hidden" name="finish_conference">
 </form>
 <?php endif; ?>
@@ -83,32 +83,12 @@ if($dbConferenceInputs && !$conferenceInputForm->hasStarted()):
                 <td><?= $dbConferenceInput->product->name ?></td>
             </tr>
             <tr>
-                <td><?= _('Nome do Fornecedor') ?></td>
-                <td><?= $dbConferenceInput->product->prov_name ?></td>
-            </tr>
-            <tr>
-                <td><?= _('Embalagem') ?></td>
-                <td><?= $dbConferenceInput->product->emb_fb ?></td>
-            </tr>
-            <tr>
                 <td><?= _('Qtde. CX Físico') ?></td>
                 <td><?= $dbConferenceInput->physic_boxes_amount ?></td>
             </tr>
             <tr>
-                <td><?= _('Qtde. Unidade') ?></td>
-                <td><?= $dbConferenceInput->physic_boxes_amount * $dbConferenceInput->product->emb_fb ?></td>
-            </tr>
-            <tr>
-                <td><?= _('Qtde. Plts Fechados') ?></td>
-                <td><?= $dbConferenceInput->closed_plts_amount ?></td>
-            </tr>
-            <tr>
-                <td><?= _('Serviço') ?></td>
-                <td><?= $serviceTypes[$dbConferenceInput->service_type] ?></td>
-            </tr>
-            <tr>
-                <td><?= _('Altura Plt') ?></td>
-                <td><?= $dbConferenceInput->pallet_height ?></td>
+                <td><?= _('Código EAN') ?></td>
+                <td><?= $dbConferenceInput->physic_boxes_amount * $dbConferenceInput->product->ean ?></td>
             </tr>
         </tbody>
     </table>

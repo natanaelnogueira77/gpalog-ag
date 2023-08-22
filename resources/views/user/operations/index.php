@@ -26,6 +26,12 @@
                     data-action="<?= $router->route('user.operations.store') ?>" data-method="post">
                     <?= _('Dar Entrada') ?>
                 </button>
+
+                <a class="btn btn-lg btn-outline-success" href="<?= $router->route('user.operations.export') ?>"
+                    target="_blank">
+                    <i class="icofont-file-excel"></i>
+                    <?= _('Exportar Excel') ?>
+                </a>
             </div>
         </div>
     </div>

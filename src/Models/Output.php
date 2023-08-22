@@ -73,6 +73,11 @@ class Output extends DBModel
         return self::withBelongsTo($objects, Operation::class, 'ope_id', 'operation', 'id', $filters, $columns);
     }
 
+    public static function withPallets(array $objects, array $filters = [], string $columns = '*'): array
+    {
+        return self::withBelongsTo($objects, Pallet::class, 'sai_id', 'pallets', 'id', $filters, $columns);
+    }
+
     public static function withUser(array $objects, array $filters = [], string $columns = '*'): array
     {
         return self::withBelongsTo($objects, User::class, 'usu_id', 'user', 'id', $filters, $columns);

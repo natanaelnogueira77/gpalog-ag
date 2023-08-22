@@ -2,6 +2,7 @@
 
 namespace Src\App\Controllers\User;
 
+use GTG\MVC\Components\ExcelGenerator;
 use Src\App\Controllers\User\TemplateController;
 use Src\Models\Product;
 
@@ -242,5 +243,40 @@ class ProductsController extends TemplateController
                 $this->redirect('user.products.index');
             }
         }
+    }
+
+    public function export(array $data): void 
+    {
+        $data = array_merge($data, filter_input_array(INPUT_GET, FILTER_DEFAULT));
+
+        $excelData = [];
+
+        if($dbProducts = (new Product())->get()->fetch(true)) {
+            foreach($dbProducts as $dbProduct) {
+                $excelData[] = [
+                    _('Nome') => $dbProduct->name,
+                    _('ID do Fornecedor') => $dbProduct->prov_id,
+                    _('Nome do Fornecedor') => $dbProduct->prov_name,
+                    _('ID do Produto') => $dbProduct->prod_id,
+                    _('Embalagem') => $dbProduct->emb_fb ?? '---',
+                    _('Código EAN') => $dbProduct->ean ?? '---',
+                    _('Código Dun14') => $dbProduct->dun14 ?? '---',
+                    _('Comprimento') => $dbProduct->p_length ?? '---',
+                    _('Largura') => $dbProduct->p_width ?? '---',
+                    _('Altura') => $dbProduct->p_height ?? '---',
+                    _('Base') => $dbProduct->p_base ?? '---',
+                    _('Peso') => $dbProduct->p_weight ?? '---',
+                    _('PLU') => $dbProduct->plu ?? '---'
+                ];
+            }
+        }
+
+        $excel = (new ExcelGenerator($excelData, _('produtos')));
+        if(!$excel->render()) {
+            $this->session->setFlash('error', _('Lamentamos, mas o excel não pôde ser gerado!'));
+            $this->redirect('user.products.index');
+        }
+
+        $excel->stream();
     }
 }

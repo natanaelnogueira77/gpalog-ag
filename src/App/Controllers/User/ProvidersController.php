@@ -2,6 +2,7 @@
 
 namespace Src\App\Controllers\User;
 
+use GTG\MVC\Components\ExcelGenerator;
 use Src\App\Controllers\User\TemplateController;
 use Src\Models\Provider;
 
@@ -212,5 +213,28 @@ class ProvidersController extends TemplateController
                 $this->redirect('user.providers.index');
             }
         }
+    }
+
+    public function export(array $data): void 
+    {
+        $data = array_merge($data, filter_input_array(INPUT_GET, FILTER_DEFAULT));
+
+        $excelData = [];
+
+        if($dbProviders = (new Provider())->get()->fetch(true)) {
+            foreach($dbProviders as $dbProvider) {
+                $excelData[] = [
+                    _('Nome') => $dbProvider->name
+                ];
+            }
+        }
+
+        $excel = (new ExcelGenerator($excelData, _('fornecedores')));
+        if(!$excel->render()) {
+            $this->session->setFlash('error', _('Lamentamos, mas o excel não pôde ser gerado!'));
+            $this->redirect('user.providers.index');
+        }
+
+        $excel->stream();
     }
 }

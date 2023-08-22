@@ -32,6 +32,12 @@
                     <i class="icofont-file-excel"></i>
                     <?= _('Importar Fornecedores') ?>
                 </button>
+
+                <a class="btn btn-lg btn-outline-success" href="<?= $router->route('user.providers.export') ?>"
+                    target="_blank">
+                    <i class="icofont-file-excel"></i>
+                    <?= _('Exportar Excel') ?>
+                </a>
             </div>
         </div>
     </div>

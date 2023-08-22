@@ -4,7 +4,7 @@
         @page {
             margin: 20px;
         }
-
+        
         div.page-break {
             page-break-after: always;
         }
@@ -50,11 +50,16 @@
         table.table tr:nth-child(even) {
             background-color: #f2f2f2;
         }
+
+        div.barcode {
+            text-align: right;
+        }
     </style>
     <link rel="shortcut icon" href="<?= $shortcutIcon ?>" type="image/png">
-    <title><?= _('Etiqueta de Entrada') ?></title>
+    <title><?= _('Baixar Etiqueta') ?></title>
 </head>
 <body>
+    <?php if($dbPallets): ?>
     <?php for($i = 0; $i < count($dbPallets); $i++): ?>
     <?php if($i != 0): ?>
     <div class="page-break"></div>
@@ -64,7 +69,7 @@
             <img src="<?= $logo ?>" height="60px" class="logo">
         </div>
 
-        <h1 class="title"><?= sprintf(_('Etiqueta de Entrada'), $dbPallets[$i]->code) ?></h1>
+        <h1 class="title"><?= sprintf(_('Baixa de Etiqueta - %s'), $dbPallets[$i]->code) ?></h1>
         <table class="table">
             <thead>
                 <th colspan="2"><?= _('Informações do Pallet') ?></th>
@@ -72,16 +77,16 @@
             
             <tbody>
                 <tr>
-                    <td><?= _('Número do Pallet') ?></td>
-                    <td><?= $dbPallets[$i]->code ?></td>
+                    <td><h2><?= _('Número do Pallet') ?></h2></td>
+                    <td><h1 style="font-size: 48px;"><?= $dbPallets[$i]->code ?></h1></td>
                 </tr>
                 <tr>
-                    <td><?= _('Data de Entrada') ?></td>
-                    <td><?= $dbPallets[$i]->getStorageDateTime()->format('d/m/Y') ?></td>
+                    <td><?= _('Data de Saída') ?></td>
+                    <td><?= $dbPallets[$i]->getReleaseDateTime()->format('d/m/Y') ?></td>
                 </tr>
                 <tr>
-                    <td><?= _('Horário de Entrada') ?></td>
-                    <td><?= $dbPallets[$i]->getStorageDateTime()->format('H:i:s') ?></td>
+                    <td><?= _('Horário de Saída') ?></td>
+                    <td><?= $dbPallets[$i]->getReleaseDateTime()->format('H:i:s') ?></td>
                 </tr>
                 <tr>
                     <td><?= _('Rua') ?></td>
@@ -98,14 +103,6 @@
                 <tr>
                     <td><?= _('Ordem de Serviço') ?></td>
                     <td><?= $dbOperation->order_number ?></td>
-                </tr>
-                <tr>
-                    <td><?= _('Código do Produto') ?></td>
-                    <td><?= $dbPallets[$i]->product->ean ?></td>
-                </tr>
-                <tr>
-                    <td><?= _('Nome do Produto') ?></td>
-                    <td><?= $dbPallets[$i]->product->name ?></td>
                 </tr>
                 <tr>
                     <td><?= _('Embalagem') ?></td>
@@ -127,9 +124,34 @@
                     <td><?= _('Altura do Pallet') ?></td>
                     <td><?= $dbPallets[$i]->pallet_height ?></td>
                 </tr>
+                <tr>
+                    <td><?= _('Código do Produto') ?></td>
+                    <td><?= $dbPallets[$i]->product->ean ?></td>
+                </tr>
+                <tr>
+                    <td><?= _('Nome do Produto') ?></td>
+                    <td><?= $dbPallets[$i]->product->name ?></td>
+                </tr>
+                <tr>
+                    <td><?= _('Placa de Carregamento') ?></td>
+                    <td><?= $dbPallets[$i]->load_plate ?></td>
+                </tr>
+                <tr>
+                    <td><?= _('Doca') ?></td>
+                    <td><?= $dbPallets[$i]->dock ?></td>
+                </tr>
             </tbody>
         </table>
+
+        <div class="barcode">
+            <?= $dbPallets[$i]->getBarcodePNG() ?>
+            <br>
+            <small><?= $dbPallets[$i]->code ?></small>
+        </div>
     </div>
     <?php endfor; ?>
+    <?php else: ?>
+    <h1 style="text-align: center;"><?= _('Não houve nenhuma saída de pallet!') ?></h1>
+    <?php endif; ?>
 </body>
 </html>

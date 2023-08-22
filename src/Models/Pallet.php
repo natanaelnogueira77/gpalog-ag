@@ -4,7 +4,9 @@ namespace Src\Models;
 
 use DateTime;
 use GTG\MVC\DB\DBModel;
+use Src\Components\Barcode;
 use Src\Models\Conference;
+use Src\Models\Pallet;
 use Src\Models\Product;
 use Src\Models\Street;
 use Src\Models\User;
@@ -217,9 +219,9 @@ class Pallet extends DBModel
         return new DateTime($this->created_at);
     }
 
-    public function getReleaseDateTime(): DateTime 
+    public function getReleaseDateTime(): ?DateTime 
     {
-        return new DateTime($this->release_date);
+        return $this->release_date ? new DateTime($this->release_date) : null;
     }
 
     public static function getServiceTypes(): array 
@@ -249,6 +251,11 @@ class Pallet extends DBModel
     public function getStatus(): ?string 
     {
         return isset(self::getStates()[$this->p_status]) ? self::getStates()[$this->p_status] : null;
+    }
+
+    public function getBarcodePNG(): string 
+    {
+        return (new Barcode())->getBarcodePNG($this->code);
     }
 
     public static function hasAllocationForAll(array $pallets): bool 

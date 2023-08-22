@@ -4,7 +4,7 @@
         @page {
             margin: 20px;
         }
-        
+
         div.page-break {
             page-break-after: always;
         }
@@ -50,17 +50,26 @@
         table.table tr:nth-child(even) {
             background-color: #f2f2f2;
         }
+
+        div.barcode {
+            text-align: right;
+        }
     </style>
     <link rel="shortcut icon" href="<?= $shortcutIcon ?>" type="image/png">
-    <title><?= _('Baixar Etiqueta') ?></title>
+    <title><?= _('Etiqueta de Entrada') ?></title>
 </head>
 <body>
+    <?php if($dbPallets): ?>
+    <?php for($i = 0; $i < count($dbPallets); $i++): ?>
+    <?php if($i != 0): ?>
+    <div class="page-break"></div>
+    <?php endif; ?>
     <div style="padding: 1.25rem;">
         <div>
             <img src="<?= $logo ?>" height="60px" class="logo">
         </div>
 
-        <h1 class="title"><?= sprintf(_('Baixa de Etiqueta - %s'), $dbPallet->code) ?></h1>
+        <h1 class="title"><?= sprintf(_('Etiqueta de Entrada'), $dbPallets[$i]->code) ?></h1>
         <table class="table">
             <thead>
                 <th colspan="2"><?= _('Informações do Pallet') ?></th>
@@ -68,71 +77,73 @@
             
             <tbody>
                 <tr>
-                    <td><?= _('Número do Pallet') ?></td>
-                    <td><?= $dbPallet->code ?></td>
+                    <td><h2><?= _('Número do Pallet') ?></h2></td>
+                    <td><h1 style="font-size: 48px;"><?= $dbPallets[$i]->code ?></h1></td>
                 </tr>
                 <tr>
-                    <td><?= _('Data de Saída') ?></td>
-                    <td><?= $dbPallet->getReleaseDateTime()->format('d/m/Y') ?></td>
+                    <td><?= _('Data de Entrada') ?></td>
+                    <td><?= $dbPallets[$i]->getStorageDateTime()->format('d/m/Y') ?></td>
                 </tr>
                 <tr>
-                    <td><?= _('Horário de Saída') ?></td>
-                    <td><?= $dbPallet->getReleaseDateTime()->format('H:i:s') ?></td>
+                    <td><?= _('Horário de Entrada') ?></td>
+                    <td><?= $dbPallets[$i]->getStorageDateTime()->format('H:i:s') ?></td>
                 </tr>
                 <tr>
                     <td><?= _('Rua') ?></td>
-                    <td><?= $dbPallet->street_number ?></td>
+                    <td><?= $dbPallets[$i]->street_number ?></td>
                 </tr>
                 <tr>
                     <td><?= _('Posição') ?></td>
-                    <td><?= $dbPallet->position ?></td>
+                    <td><?= $dbPallets[$i]->position ?></td>
                 </tr>
                 <tr>
                     <td><?= _('Altura') ?></td>
-                    <td><?= $dbPallet->height ?></td>
+                    <td><?= $dbPallets[$i]->height ?></td>
                 </tr>
                 <tr>
                     <td><?= _('Ordem de Serviço') ?></td>
                     <td><?= $dbOperation->order_number ?></td>
                 </tr>
                 <tr>
-                    <td><?= _('Embalagem') ?></td>
-                    <td><?= $dbPallet->package ?></td>
-                </tr>
-                <tr>
-                    <td><?= _('Quantidade de Caixas Físicas') ?></td>
-                    <td><?= $dbPallet->physic_boxes_amount ?></td>
-                </tr>
-                <tr>
-                    <td><?= _('Quantidade de Unidades') ?></td>
-                    <td><?= $dbPallet->units_amount ?></td>
-                </tr>
-                <tr>
-                    <td><?= _('Tipo de Serviço') ?></td>
-                    <td><?= $dbPallet->getServiceType() ?></td>
-                </tr>
-                <tr>
-                    <td><?= _('Altura do Pallet') ?></td>
-                    <td><?= $dbPallet->pallet_height ?></td>
-                </tr>
-                <tr>
                     <td><?= _('Código do Produto') ?></td>
-                    <td><?= $dbPallet->product->ean ?></td>
+                    <td><?= $dbPallets[$i]->product->ean ?></td>
                 </tr>
                 <tr>
                     <td><?= _('Nome do Produto') ?></td>
-                    <td><?= $dbPallet->product->name ?></td>
+                    <td><?= $dbPallets[$i]->product->name ?></td>
                 </tr>
                 <tr>
-                    <td><?= _('Placa de Carregamento') ?></td>
-                    <td><?= $dbPallet->load_plate ?></td>
+                    <td><?= _('Embalagem') ?></td>
+                    <td><?= $dbPallets[$i]->package ?></td>
                 </tr>
                 <tr>
-                    <td><?= _('Doca') ?></td>
-                    <td><?= $dbPallet->dock ?></td>
+                    <td><?= _('Quantidade de Caixas Físicas') ?></td>
+                    <td><?= $dbPallets[$i]->physic_boxes_amount ?></td>
+                </tr>
+                <tr>
+                    <td><?= _('Quantidade de Unidades') ?></td>
+                    <td><?= $dbPallets[$i]->units_amount ?></td>
+                </tr>
+                <tr>
+                    <td><?= _('Tipo de Serviço') ?></td>
+                    <td><?= $dbPallets[$i]->getServiceType() ?></td>
+                </tr>
+                <tr>
+                    <td><?= _('Altura do Pallet') ?></td>
+                    <td><?= $dbPallets[$i]->pallet_height ?></td>
                 </tr>
             </tbody>
         </table>
+
+        <div class="barcode">
+            <?= $dbPallets[$i]->getBarcodePNG() ?>
+            <br>
+            <small><?= $dbPallets[$i]->code ?></small>
+        </div>
     </div>
+    <?php endfor; ?>
+    <?php else: ?>
+    <h1 style="text-align: center;"><?= _('Não houve nenhuma entrada de pallet!') ?></h1>
+    <?php endif; ?>
 </body>
 </html>

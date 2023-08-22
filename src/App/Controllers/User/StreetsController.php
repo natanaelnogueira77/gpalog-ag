@@ -2,6 +2,7 @@
 
 namespace Src\App\Controllers\User;
 
+use GTG\MVC\Components\ExcelGenerator;
 use Src\App\Controllers\User\TemplateController;
 use Src\Models\Street;
 
@@ -87,12 +88,15 @@ class StreetsController extends TemplateController
                 $params = ['street_id' => $street->id];
                 $content[] = [
                     'street_number' => $street->street_number,
-                    'start_position' => $street->start_position,
-                    'end_position' => $street->end_position,
-                    'max_height' => $street->max_height,
-                    'profile' => $street->profile,
-                    'max_plts' => $street->max_plts,
-                    'obs' => $street->obs,
+                    'start_position' => $street->start_position ?? '---',
+                    'end_position' => $street->end_position ?? '---',
+                    'max_height' => $street->max_height ?? '---',
+                    'profile' => $street->profile ?? '---',
+                    'max_plts' => $street->max_plts ?? '---',
+                    'obs' => $street->obs ?? '---',
+                    'is_limitless' => $street->isLimitless() 
+                        ? "<div class=\"badge badge-success\">" . _('Sim') . "</div>"
+                        : "<div class=\"badge badge-secondary\">" . _('Não') . "</div>",
                     'actions' => "
                         <div class=\"dropup d-inline-block\">
                             <button type=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\" 
@@ -130,7 +134,8 @@ class StreetsController extends TemplateController
                         'max_height' => ['text' => _('Altura Máxima'), 'sort' => true],
                         'profile' => ['text' => _('Perfil'), 'sort' => true],
                         'max_plts' => ['text' => _('Capacidade Máxima'), 'sort' => true],
-                        'obs' => ['text' => _('Observações'), 'sort' => true]
+                        'obs' => ['text' => _('Observações'), 'sort' => true],
+                        'is_limitless' => ['text' => _('Bloqueio?'), 'sort' => true]
                     ],
                     'order' => [
                         'selected' => $order,
@@ -160,5 +165,35 @@ class StreetsController extends TemplateController
 
         $this->setMessage('success', sprintf(_('A rua "%s" foi excluída com sucesso.'), $dbStreet->street_number))
             ->APIResponse([], 200);
+    }
+
+    public function export(array $data): void 
+    {
+        $data = array_merge($data, filter_input_array(INPUT_GET, FILTER_DEFAULT));
+
+        $excelData = [];
+
+        if($dbStreets = (new Street())->get()->fetch(true)) {
+            foreach($dbStreets as $dbStreet) {
+                $excelData[] = [
+                    _('Número da Rua') => $dbStreet->street_number ?? '---',
+                    _('Posição Inicial') => $dbStreet->start_position ?? '---',
+                    _('Posição Final') => $dbStreet->end_position ?? '---',
+                    _('Altura Máxima') => $dbStreet->max_height ?? '---',
+                    _('Perfil') => $dbStreet->profile ?? '---',
+                    _('Capacidade Máxima de Pallets') => $dbStreet->max_plts ?? '---',
+                    _('Observações') => $dbStreet->obs ?? '---',
+                    _('Rua de Bloqueio?') => $dbStreet->isLimitless() ? _('Sim') : _('Não')
+                ];
+            }
+        }
+
+        $excel = (new ExcelGenerator($excelData, _('ruas')));
+        if(!$excel->render()) {
+            $this->session->setFlash('error', _('Lamentamos, mas o excel não pôde ser gerado!'));
+            $this->redirect('user.streets.index');
+        }
+
+        $excel->stream();
     }
 }

@@ -119,7 +119,7 @@
 
                         <div class="form-group col-md-6">
                             <label for="order_number">
-                                <?= _('Número do Pedido/TR') ?>
+                                <?= _('Número do Pedido / TR / OS') ?>
                                 <span data-toggle="tooltip" data-placement="top" 
                                     title='<?= _('Digite o número do pedido referente à operação. Esta será a ordem de serviço.') ?>'>
                                     <i class="icofont-question-circle" style="font-size: 1.1rem;"></i>

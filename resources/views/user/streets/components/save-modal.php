@@ -12,6 +12,25 @@
 
             <div class="modal-body">
                 <form id="save-street">
+                    <ul class="list-group mb-2">
+                        <li class="list-group-item">
+                            <div class="widget-content p-0">
+                                <div class="widget-content-wrapper">
+                                    <div class="widget-content-left mr-3">
+                                        <input type="checkbox" id="is_limitless" name="is_limitless">
+                                    </div>
+
+                                    <div class="widget-content-left">
+                                        <div class="widget-heading"><?= _('Tem Limite?') ?></div>
+                                        <div class="widget-subheading">
+                                            <?= _('Se a rua não tiver limite de capacidade (rua de bloqueio), marque a caixa ao lado.') ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="street_number">
@@ -26,7 +45,7 @@
                             <div class="invalid-feedback"></div>
                         </div>
 
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-4" data-condition="has-limit">
                             <label for="start_position">
                                 <?= _('Posição Inicial') ?>
                                 <span data-toggle="tooltip" data-placement="top" 
@@ -39,7 +58,7 @@
                             <div class="invalid-feedback"></div>
                         </div>
 
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-4" data-condition="has-limit">
                             <label for="end_position">
                                 <?= _('Posição Final') ?> 
                                 <span data-toggle="tooltip" data-placement="top" 
@@ -53,7 +72,7 @@
                         </div>
                     </div>
 
-                    <div class="form-row">
+                    <div class="form-row" data-condition="has-limit">
                         <div class="form-group col-md-4">
                             <label for="max_height">
                                 <?= _('Altura Máxima') ?> 

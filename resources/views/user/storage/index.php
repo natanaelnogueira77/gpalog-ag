@@ -19,6 +19,16 @@
             <i class="header-icon icofont-database icon-gradient bg-info"> </i>
             <?= _('Armazenagem') ?>
         </div>
+
+        <div class="btn-actions-pane-right">
+            <div role="group" class="btn-group-sm btn-group">
+                <a class="btn btn-lg btn-outline-success" href="<?= $router->route('user.storage.export') ?>"
+                    target="_blank">
+                    <i class="icofont-file-excel"></i>
+                    <?= _('Exportar Excel') ?>
+                </a>
+            </div>
+        </div>
     </div>
 
     <div class="card-body">
@@ -38,20 +48,26 @@
                             <strong><?= sprintf(_('Rua %s'), $dbStreet->street_number) ?></strong>
                         </td>
                         <?php for($i = 0.02; $i < 0.51; $i += 0.02): ?>
-                        <td class="<?= $dbStreet->allocateds >= $dbStreet->max_plts * $i ? 'bg-danger' : 'bg-success' ?>"></td>
+                        <td class="<?= !$dbStreet->isLimitless() && $dbStreet->allocateds >= $dbStreet->max_plts * $i ? 'bg-danger' : 'bg-success' ?>"></td>
                         <?php endfor; ?>
-                        <td class="text-center align-middle" rowspan="3"><?= $dbStreet->max_plts - $dbStreet->allocateds ?></td>
+                        <td class="text-center align-middle" rowspan="3">
+                            <?= $dbStreet->isLimitless() ? '---' : $dbStreet->max_plts - $dbStreet->allocateds ?>
+                        </td>
                         <td class="text-center align-middle" rowspan="3"><?= $dbStreet->allocateds ?? 0 ?></td>
-                        <td class="text-center align-middle" rowspan="3"><?= $dbStreet->max_plts ?? 0 ?></td>
+                        <td class="text-center align-middle" rowspan="3">
+                            <?= $dbStreet->isLimitless() ? '---' : ($dbStreet->max_plts ?? 0) ?>
+                        </td>
                     </tr>
                     <tr>
                         <td class="text-center align-middle" colspan="25">
-                            <strong><?= sprintf(_('Capacidade Total: %s'), $dbStreet->max_plts) ?></strong>
+                            <strong>
+                                <?= sprintf(_('Capacidade Total: %s'), $dbStreet->isLimitless() ? _('Bloqueio') : $dbStreet->max_plts) ?>
+                            </strong>
                         </td>
                     </tr>
                     <tr>
                         <?php for($i = 0.52; $i < 1.01; $i += 0.02): ?>
-                        <td class="<?= $dbStreet->allocateds >= $dbStreet->max_plts * $i ? 'bg-danger' : 'bg-success' ?>"></td>
+                        <td class="<?= !$dbStreet->isLimitless() && $dbStreet->allocateds >= $dbStreet->max_plts * $i ? 'bg-danger' : 'bg-success' ?>"></td>
                         <?php endfor; ?>
                     </tr>
                     <?php endforeach; ?>

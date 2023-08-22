@@ -2,6 +2,7 @@
 
 namespace Src\App\Controllers\User;
 
+use GTG\MVC\Components\ExcelGenerator;
 use Src\App\Controllers\User\TemplateController;
 use Src\Models\Conference;
 use Src\Models\Provider;
@@ -204,5 +205,43 @@ class OperationsController extends TemplateController
                 $dbOperation->id, $dbConference->id
             )
         )->APIResponse([], 200);
+    }
+
+    public function export(array $data): void 
+    {
+        $data = array_merge($data, filter_input_array(INPUT_GET, FILTER_DEFAULT));
+
+        $excelData = [];
+
+        if($dbOperations = (new Operation())->get()->fetch(true)) {
+            $dbOperations = Operation::withConference($dbOperations);
+            $dbOperations = Operation::withProvider($dbOperations);
+            $dbOperations = Operation::withUser($dbOperations);
+            foreach($dbOperations as $dbOperation) {
+                $excelData[] = [
+                    _('Placa') => $dbOperation->plate,
+                    _('ADM') => $dbOperation->user->name,
+                    _('Fornecedor') => $dbOperation->provider->name,
+                    _('Número de Ocorrência') => $dbOperation->occurrence_number,
+                    _('Número de Senha') => $dbOperation->password_number,
+                    _('Número do Pedido / TR / OS') => $dbOperation->order_number,
+                    _('Nota Fiscal') => $dbOperation->invoice_number,
+                    _('Possui TR?') => $dbOperation->hasTR() ? _('Sim') : _('Não'),
+                    _('Paletização?') => $dbOperation->hasPalletization() ? _('Sim') : _('Não'),
+                    _('Retrabalho?') => $dbOperation->hasRework() ? _('Sim') : _('Não'),
+                    _('Armazenagem?') => $dbOperation->hasStorage() ? _('Sim') : _('Não'),
+                    _('Importado?') => $dbOperation->hasImport() ? _('Sim') : _('Não'),
+                    _('Conferência Liberada?') => $dbOperation->conference ? _('Sim') : _('Não')
+                ];
+            }
+        }
+
+        $excel = (new ExcelGenerator($excelData, _('operacoes')));
+        if(!$excel->render()) {
+            $this->session->setFlash('error', _('Lamentamos, mas o excel não pôde ser gerado!'));
+            $this->redirect('user.visits.index');
+        }
+
+        $excel->stream();
     }
 }

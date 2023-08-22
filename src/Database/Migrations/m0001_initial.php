@@ -110,12 +110,13 @@ class m0001_initial extends Migration
             $table->id();
             $table->integer('usu_id');
             $table->integer('street_number');
-            $table->integer('start_position');
-            $table->integer('end_position');
-            $table->integer('max_height');
-            $table->float('profile', 10, 2);
-            $table->integer('max_plts');
+            $table->integer('start_position')->nullable();
+            $table->integer('end_position')->nullable();
+            $table->integer('max_height')->nullable();
+            $table->float('profile', 10, 2)->nullable();
+            $table->integer('max_plts')->nullable();
             $table->string('obs', 500)->nullable();
+            $table->tinyInteger('is_limitless')->default('FALSE');
             $table->timestamps();
         });
 

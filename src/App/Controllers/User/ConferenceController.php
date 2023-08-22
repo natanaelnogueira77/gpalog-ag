@@ -2,6 +2,7 @@
 
 namespace Src\App\Controllers\User;
 
+use GTG\MVC\Components\ExcelGenerator;
 use GTG\MVC\Components\PDFRender;
 use Src\App\Controllers\User\TemplateController;
 use Src\Models\Conference;
@@ -136,17 +137,12 @@ class ConferenceController extends TemplateController
                     $this->redirect('user.conference.singleInput', ['conference_id' => $dbConference->id]);
                 }
 
-                if(!Pallet::hasAllocationForAll($dbPallets)) {
-                    $this->session->setFlash('error', _('Não há posições suficientes para alocar todos os pallets!'));
-                    $this->redirect('user.conference.singleInput', ['conference_id' => $dbConference->id]);
-                }
-
                 if(!Pallet::allocateMany($dbPallets) || !$dbConference->setAsFinished()->save()) {
                     $this->session->setFlash('error', _('Lamentamos, mas ocorreu um erro na requisição!'));
                     $this->redirect('user.conference.singleInput', ['conference_id' => $dbConference->id]);
                 } else {
                     $this->session->setFlash('success', sprintf(_('A conferência de ID %s foi finalizada com sucesso!'), $dbConference->id));
-                    $this->redirect('user.conference.getInputPDF', ['conference_id' => $dbConference->id]);
+                    $this->redirect('user.conference.input');
                 }
             }
         }
@@ -218,7 +214,10 @@ class ConferenceController extends TemplateController
                 $this->session->setFlash('error', _('Lamentamos, mas ocorreu um erro na requisição!'));
             } else {
                 $this->session->setFlash('success', _('O pallet foi expedido com sucesso!'));
-                $this->redirect('user.conference.getOutputPDF', ['pallet_id' => $dbPallet->id]);
+                $this->redirect('user.conference.output', [
+                    'step' => ConferenceOutputForm::STEP_SERVICE_ORDER, 
+                    'service_order' => $conferenceOutputForm->service_order
+                ]);
             }
         }
 
@@ -230,80 +229,5 @@ class ConferenceController extends TemplateController
             'nextStep' => $nextStep,
             'previousStep' => $previousStep
         ]);
-    }
-
-    public function getInputPDF(array $data): void 
-    {
-        $this->addData();
-
-        if(!$dbConference = (new Conference())->findById(intval($data['conference_id']))) {
-            $this->session->setFlash('error', _('A conferência não foi encontrada!'));
-            $this->redirect('user.conference.index');
-        } elseif(!$dbConference->isFinished()) {
-            $this->session->setFlash('error', _('Esta conferência ainda não foi finalizada!'));
-            $this->redirect('user.conference.index');
-        }
-
-        if($dbPallets = $dbConference->pallets()) {
-            $dbPallets = Pallet::withProduct($dbPallets);
-        }
-
-        $filename = sprintf(_('etiqueta-de-entrada-%s'), $dbConference->id) . '.pdf';
-
-        header('Access-Control-Allow-Origin: *');
-        header('Content-Type: application/pdf');
-        header('Content-Disposition: attachment');
-        header("filename: {$filename}");
-
-        $html = $this->getView('user/conference/components/input-pdf', [
-            'dbPallets' => $dbPallets,
-            'dbOperation' => $dbConference->operation(),
-            'logo' => url((new Config())->getMeta('logo'))
-        ]);
-
-        $PDFRender = new PDFRender();
-        if(!$PDFRender->loadHtml($html)->setPaper('A4', 'portrait')->render()) {
-            $this->session->setFlash('error', _('Lamentamos, mas o PDF não pôde ser gerado!'));
-            $this->redirect('user.conference.index');
-        }
-
-        $dompdf = $PDFRender->getDompdf();
-        $dompdf->stream($filename, ['Attachment' => false]);
-    }
-
-    public function getOutputPDF(array $data): void 
-    {
-        $this->addData();
-
-        if(!$dbPallet = (new Pallet())->findById(intval($data['pallet_id']))) {
-            $this->session->setFlash('error', _('O pallet não foi encontrado!'));
-            $this->redirect('user.conference.index');
-        } elseif(!$dbPallet->isReleased()) {
-            $this->session->setFlash('error', _('Este pallet ainda não foi liberado!'));
-            $this->redirect('user.conference.index');
-        }
-
-        $filename = sprintf(_('etiqueta-%s'), $dbPallet->code) . '.pdf';
-
-        header('Access-Control-Allow-Origin: *');
-        header('Content-Type: application/pdf');
-        header('Content-Disposition: attachment');
-        header("filename: {$filename}");
-
-        $html = $this->getView('user/conference/components/output-pdf', [
-            'dbPallet' => $dbPallet,
-            'dbProduct' => $dbPallet->product(),
-            'dbOperation' => $dbPallet->conference()?->operation(),
-            'logo' => url((new Config())->getMeta('logo'))
-        ]);
-
-        $PDFRender = new PDFRender();
-        if(!$PDFRender->loadHtml($html)->setPaper('A4', 'portrait')->render()) {
-            $this->session->setFlash('error', _('Lamentamos, mas o PDF não pôde ser gerado!'));
-            $this->redirect('user.conference.index');
-        }
-
-        $dompdf = $PDFRender->getDompdf();
-        $dompdf->stream($filename, ['Attachment' => false]);
     }
 }

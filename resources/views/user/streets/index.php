@@ -26,6 +26,12 @@
                     data-action="<?= $router->route('user.streets.store') ?>" data-method="post">
                     <?= _('Cadastrar Rua') ?>
                 </button>
+
+                <a class="btn btn-lg btn-outline-success" href="<?= $router->route('user.streets.export') ?>"
+                    target="_blank">
+                    <i class="icofont-file-excel"></i>
+                    <?= _('Exportar Excel') ?>
+                </a>
             </div>
         </div>
     </div>
@@ -55,6 +61,9 @@
         const save_street_form = $("#save-street");
         const save_street_modal = $("#save-street-modal");
         const create_street_btn = $("#create-street");
+
+        const is_limitless_checkbox = $("#is_limitless");
+        const has_limit_areas = $("[data-condition=has-limit]");
 
         const dataTable = app.table(table, table.data('action'));
         dataTable.defaultParams(app.objectifyForm(filters_form)).filtersForm(filters_form)
@@ -87,6 +96,11 @@
 
                         if(response.content) {
                             app.populateForm(save_street_form, response.content, 'name');
+                            if(response.content.is_limitless) {
+                                has_limit_areas.hide();
+                            } else {
+                                has_limit_areas.show();
+                            }
                         }
 
                         save_street_modal.find("[modal-info=title]").text(
@@ -104,12 +118,21 @@
             var data = $(this).data();
 
             app.cleanForm(save_street_form);
-
+            has_limit_areas.show();
+            
             save_street_form.attr("action", data.action);
             save_street_form.attr("method", data.method);
             
             save_street_modal.find("[modal-info=title]").text(<?php echo json_encode(_('Cadastrar Rua')) ?>);
             save_street_modal.modal("show");
+        });
+
+        is_limitless_checkbox.change(function () {
+            if($(this).is(":checked")) {
+                has_limit_areas.hide('fast');
+            } else {
+                has_limit_areas.show('fast');
+            }
         });
 
         app.form(save_street_form, function (response) {

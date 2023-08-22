@@ -32,6 +32,12 @@
                     <i class="icofont-file-excel"></i>
                     <?= _('Importar Produtos') ?>
                 </button>
+
+                <a class="btn btn-lg btn-outline-success" href="<?= $router->route('user.products.export') ?>"
+                    target="_blank">
+                    <i class="icofont-file-excel"></i>
+                    <?= _('Exportar Excel') ?>
+                </a>
             </div>
         </div>
     </div>

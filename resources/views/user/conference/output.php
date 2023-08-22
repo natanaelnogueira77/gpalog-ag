@@ -37,8 +37,7 @@
 <br>
 
 <form id="save-output" action="<?= $router->route('user.conference.output') ?>" 
-    method="<?= $conferenceOutputForm->hasCompletion() ? 'post' : 'get' ?>" 
-    <?= $conferenceOutputForm->hasCompletion() ? 'target="_blank"' : '' ?>>
+    method="<?= $conferenceOutputForm->hasCompletion() ? 'post' : 'get' ?>">
     <table>
         <tbody>
             <tr>
