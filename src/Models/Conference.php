@@ -151,7 +151,7 @@ class Conference extends DBModel
 
     public static function withPallets(array $objects, array $filters = [], string $columns = '*'): array
     {
-        return self::withBelongsTo($objects, Pallet::class, 'con_id', 'pallets', 'id', $filters, $columns);
+        return self::withHasMany($objects, Pallet::class, 'con_id', 'pallets', 'id', $filters, $columns);
     }
 
     public static function withStartUser(array $objects, array $filters = [], string $columns = '*'): array

@@ -75,7 +75,7 @@ class Output extends DBModel
 
     public static function withPallets(array $objects, array $filters = [], string $columns = '*'): array
     {
-        return self::withBelongsTo($objects, Pallet::class, 'sai_id', 'pallets', 'id', $filters, $columns);
+        return self::withHasMany($objects, Pallet::class, 'sai_id', 'pallets', 'id', $filters, $columns);
     }
 
     public static function withUser(array $objects, array $filters = [], string $columns = '*'): array
