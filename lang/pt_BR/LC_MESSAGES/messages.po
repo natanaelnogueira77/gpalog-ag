@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2023-08-23 10:36-0300\n"
-"PO-Revision-Date: 2023-08-23 10:36-0300\n"
+"POT-Creation-Date: 2023-08-23 11:15-0300\n"
+"PO-Revision-Date: 2023-08-23 11:15-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt_BR\n"
@@ -1546,20 +1546,20 @@ msgstr "Total"
 msgid "Rua %s"
 msgstr "Rua %s"
 
-#: resources/views/user/storage/index.php:64
+#: resources/views/user/storage/index.php:65
 #, php-format
 msgid "Capacidade Total: %s"
 msgstr "Capacidade Total: %s"
 
-#: resources/views/user/storage/index.php:64
+#: resources/views/user/storage/index.php:65
 msgid "Bloqueio"
 msgstr "Bloqueio"
 
-#: resources/views/user/storage/index.php:77
+#: resources/views/user/storage/index.php:79
 msgid "Totais"
 msgstr "Totais"
 
-#: resources/views/user/storage/index.php:79
+#: resources/views/user/storage/index.php:81
 #, php-format
 msgid "Total Para Armazenagem: %s"
 msgstr "Total Para Armazenagem: %s"

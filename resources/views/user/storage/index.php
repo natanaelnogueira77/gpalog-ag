@@ -48,7 +48,8 @@
                             <strong><?= sprintf(_('Rua %s'), $dbStreet->street_number) ?></strong>
                         </td>
                         <?php for($i = 0.02; $i < 0.51; $i += 0.02): ?>
-                        <td class="<?= !$dbStreet->isLimitless() && $dbStreet->allocateds >= $dbStreet->max_plts * $i ? 'bg-danger' : 'bg-success' ?>"></td>
+                        <td class="<?= !$dbStreet->isLimitless() && $dbStreet->allocateds >= floor($dbStreet->max_plts * $i) 
+                            ? 'bg-danger' : 'bg-success' ?>"></td>
                         <?php endfor; ?>
                         <td class="text-center align-middle" rowspan="3">
                             <?= $dbStreet->isLimitless() ? '---' : $dbStreet->max_plts - $dbStreet->allocateds ?>
@@ -67,7 +68,8 @@
                     </tr>
                     <tr>
                         <?php for($i = 0.52; $i < 1.01; $i += 0.02): ?>
-                        <td class="<?= !$dbStreet->isLimitless() && $dbStreet->allocateds >= $dbStreet->max_plts * $i ? 'bg-danger' : 'bg-success' ?>"></td>
+                        <td class="<?= !$dbStreet->isLimitless() && $dbStreet->allocateds >= floor($dbStreet->max_plts * $i) 
+                            ? 'bg-danger' : 'bg-success' ?>"></td>
                         <?php endfor; ?>
                     </tr>
                     <?php endforeach; ?>
