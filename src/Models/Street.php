@@ -110,7 +110,8 @@ class Street extends DBModel
 
     public static function getAvailablePlacesByHeight(float $height, ?int $limit = null): ?array 
     {
-        if(!$streets = (new Street())->get(['raw' => "profile = {$height} OR is_limitless = 1"])->order('is_limitless, street_number')->fetch(true)) {
+        if(!$streets = (new Street())->get(['raw' => "(profile = {$height} OR is_limitless = 1)"])
+            ->order('is_limitless, street_number')->fetch(true)) {
             return null;
         }
 
@@ -131,10 +132,15 @@ class Street extends DBModel
 
         $availablePlaces = [];
         foreach($streets as $street) {
+            if(!isset($pallets[$street->street_number])) {
+                $pallets[$street->street_number] = [];
+            }
+
             if(!$street->isLimitless()) {
                 for($i = $street->start_position; $i <= $street->end_position; $i++) {
                     for($j = 1; $j <= $street->max_height; $j++) {
-                        if($street->max_plts < count($pallets) + count($availablePlaces)) {
+                        if($street->max_plts <= count($pallets[$street->street_number]) 
+                            + count(array_filter($availablePlaces, fn($p) => $p['street_number'] == $street->street_number))) {
                             continue 3;
                         }
     
@@ -164,6 +170,7 @@ class Street extends DBModel
                             ];
                             $limit--;
                         }
+                        $i++;
                     }
 
                     return $availablePlaces;
