@@ -60,7 +60,7 @@
             <img src="<?= $logo ?>" height="60px" class="logo">
         </div>
 
-        <h1 class="title"><?= sprintf(_('Saída de Pallets - OS %s'), $dbOperation->order_number) ?></h1>
+        <h1 class="title"><?= sprintf(_('Saída de Pallets - OC %s'), $dbOperation->order_number) ?></h1>
         <table class="table">
             <thead>
                 <th colspan="8"><?= _('Informações da Saída') ?></th>

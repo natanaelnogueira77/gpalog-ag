@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2023-08-23 11:15-0300\n"
-"PO-Revision-Date: 2023-08-23 11:15-0300\n"
+"POT-Creation-Date: 2023-08-28 10:10-0300\n"
+"PO-Revision-Date: 2023-08-28 10:11-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt_BR\n"
@@ -1030,29 +1030,29 @@ msgstr "Importado"
 
 #: resources/views/user/operations/components/save-modal.php:75
 #: src/App/Controllers/User/OperationsController.php:225
-msgid "Número de Ocorrência"
-msgstr "Número de Ocorrência"
+msgid "Senha de Carregamento"
+msgstr "Senha de Carregamento"
 
 #: resources/views/user/operations/components/save-modal.php:77
-msgid "Digite o número de ocorrência referente à operação."
-msgstr "Digite o número de ocorrência referente à operação."
+msgid "Digite a senha de carregamento referente à operação."
+msgstr "Digite a senha de carregamento referente à operação."
 
 #: resources/views/user/operations/components/save-modal.php:81
-msgid "Informe o número de ocorrência..."
-msgstr "Informe o número de ocorrência..."
+msgid "Informe a senha de carregamento..."
+msgstr "Informe a senha de carregamento..."
 
 #: resources/views/user/operations/components/save-modal.php:88
 #: src/App/Controllers/User/OperationsController.php:226
-msgid "Número de Senha"
-msgstr "Número de Senha"
+msgid "Senha de G.A"
+msgstr "Senha de G.A"
 
 #: resources/views/user/operations/components/save-modal.php:90
-msgid "Digite o número de senha referente à operação."
-msgstr "Digite o número de senha referente à operação."
+msgid "Digite a senha de G.A referente à operação."
+msgstr "Digite a senha de G.A referente à operação."
 
 #: resources/views/user/operations/components/save-modal.php:94
-msgid "Informe o número de senha..."
-msgstr "Informe o número de senha..."
+msgid "Informe a senha de G.A..."
+msgstr "Informe a senha de G.A..."
 
 #: resources/views/user/operations/components/save-modal.php:110
 msgid "Tem TR?"
@@ -1064,8 +1064,8 @@ msgstr "Se houver TR, marque a caixa ao lado."
 
 #: resources/views/user/operations/components/save-modal.php:122
 #: src/App/Controllers/User/OperationsController.php:227
-msgid "Número do Pedido / TR / OS"
-msgstr "Número do Pedido / TR / OS"
+msgid "Número do Pedido / TR / OC"
+msgstr "Número do Pedido / TR / OC"
 
 #: resources/views/user/operations/components/save-modal.php:124
 msgid ""
@@ -1166,8 +1166,8 @@ msgstr "Saída de Pallets"
 
 #: resources/views/user/outputs/components/pdf.php:63
 #, php-format
-msgid "Saída de Pallets - OS %s"
-msgstr "Saída de Pallets - OS %s"
+msgid "Saída de Pallets - OC %s"
+msgstr "Saída de Pallets - OC %s"
 
 #: resources/views/user/outputs/components/pdf.php:66
 msgid "Informações da Saída"
@@ -2739,13 +2739,13 @@ msgid "O número da ocorrência deve conter no máximo %s caractéres!"
 msgstr "O número da ocorrência deve conter no máximo %s caractéres!"
 
 #: src/Models/Operation.php:51
-msgid "O número de senha é obrigatório!"
-msgstr "O número de senha é obrigatório!"
+msgid "A senha de G.A é obrigatória!"
+msgstr "A senha de G.A é obrigatória!"
 
 #: src/Models/Operation.php:52
 #, php-format
-msgid "O número de senha deve conter no máximo %s caractéres!"
-msgstr "O número de senha deve conter no máximo %s caractéres!"
+msgid "A senha de G.A deve conter no máximo %s caractéres!"
+msgstr "A senha de G.A deve conter no máximo %s caractéres!"
 
 #: src/Models/Operation.php:55
 msgid "O número do pedido/TR é obrigatório!"
@@ -2780,8 +2780,8 @@ msgid "Pelo menos um serviço precisa ser escolhido!"
 msgstr "Pelo menos um serviço precisa ser escolhido!"
 
 #: src/Models/Operation.php:75
-msgid "O número de ocorrência informado já está em uso! Tente outro."
-msgstr "O número de ocorrência informado já está em uso! Tente outro."
+msgid "A senha de carregamento informada já está em uso! Tente outra."
+msgstr "A senha de carregamento informada já está em uso! Tente outra."
 
 #: src/Models/Operation.php:82
 msgid "O número do pedido/TR informado já está em uso! Tente outro."
@@ -3057,6 +3057,31 @@ msgstr "O nome no plural deve conter no máximo %s caractéres!"
 #: src/Models/UserType.php:50
 msgid "Você não pode excluir um tipo de usuário vinculado à um usuário!"
 msgstr "Você não pode excluir um tipo de usuário vinculado à um usuário!"
+
+#~ msgid "Número de Ocorrência"
+#~ msgstr "Número de Ocorrência"
+
+#~ msgid "Digite o número de ocorrência referente à operação."
+#~ msgstr "Digite o número de ocorrência referente à operação."
+
+#~ msgid "Informe o número de ocorrência..."
+#~ msgstr "Informe o número de ocorrência..."
+
+#~ msgid "Número de Senha"
+#~ msgstr "Número de Senha"
+
+#~ msgid "Digite o número de senha referente à operação."
+#~ msgstr "Digite o número de senha referente à operação."
+
+#~ msgid "Informe o número de senha..."
+#~ msgstr "Informe o número de senha..."
+
+#~ msgid "O número de senha é obrigatório!"
+#~ msgstr "O número de senha é obrigatório!"
+
+#, php-format
+#~ msgid "O número de senha deve conter no máximo %s caractéres!"
+#~ msgstr "O número de senha deve conter no máximo %s caractéres!"
 
 #, fuzzy
 #~| msgid "Número do Pedido/TR"

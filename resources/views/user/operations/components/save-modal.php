@@ -72,26 +72,26 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="occurrence_number">
-                                <?= _('Número de Ocorrência') ?>
+                                <?= _('Senha de Carregamento') ?>
                                 <span data-toggle="tooltip" data-placement="top" 
-                                    title='<?= _('Digite o número de ocorrência referente à operação.') ?>'>
+                                    title='<?= _('Digite a senha de carregamento referente à operação.') ?>'>
                                     <i class="icofont-question-circle" style="font-size: 1.1rem;"></i>
                                 </span>
                             </label>
-                            <input type="text" name="occurrence_number" placeholder="<?= _('Informe o número de ocorrência...') ?>" 
+                            <input type="text" name="occurrence_number" placeholder="<?= _('Informe a senha de carregamento...') ?>" 
                             class="form-control" maxlength="20">
                             <div class="invalid-feedback"></div>
                         </div>
 
                         <div class="form-group col-md-6">
                             <label for="password_number">
-                                <?= _('Número de Senha') ?>
+                                <?= _('Senha de G.A') ?>
                                 <span data-toggle="tooltip" data-placement="top" 
-                                    title='<?= _('Digite o número de senha referente à operação.') ?>'>
+                                    title='<?= _('Digite a senha de G.A referente à operação.') ?>'>
                                     <i class="icofont-question-circle" style="font-size: 1.1rem;"></i>
                                 </span>
                             </label>
-                            <input type="text" name="password_number" placeholder="<?= _('Informe o número de senha...') ?>" 
+                            <input type="text" name="password_number" placeholder="<?= _('Informe a senha de G.A...') ?>" 
                             class="form-control" maxlength="20">
                             <div class="invalid-feedback"></div>
                         </div>
@@ -119,7 +119,7 @@
 
                         <div class="form-group col-md-6">
                             <label for="order_number">
-                                <?= _('Número do Pedido / TR / OS') ?>
+                                <?= _('Número do Pedido / TR / OC') ?>
                                 <span data-toggle="tooltip" data-placement="top" 
                                     title='<?= _('Digite o número do pedido referente à operação. Esta será a ordem de serviço.') ?>'>
                                     <i class="icofont-question-circle" style="font-size: 1.1rem;"></i>

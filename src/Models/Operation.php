@@ -48,8 +48,8 @@ class Operation extends DBModel
                 [self::RULE_MAX, 'max' => 20, 'message' => sprintf(_('O número da ocorrência deve conter no máximo %s caractéres!'), 20)]
             ],
             'password_number' => [
-                [self::RULE_REQUIRED, 'message' => _('O número de senha é obrigatório!')],
-                [self::RULE_MAX, 'max' => 20, 'message' => sprintf(_('O número de senha deve conter no máximo %s caractéres!'), 20)]
+                [self::RULE_REQUIRED, 'message' => _('A senha de G.A é obrigatória!')],
+                [self::RULE_MAX, 'max' => 20, 'message' => sprintf(_('A senha de G.A deve conter no máximo %s caractéres!'), 20)]
             ],
             'order_number' => [
                 [self::RULE_REQUIRED, 'message' => _('O número do pedido/TR é obrigatório!')],
@@ -72,7 +72,7 @@ class Operation extends DBModel
                     if(!$model->hasError('occurrence_number')) {
                         if((new self())->get(['occurrence_number' => $model->occurrence_number] 
                             + (isset($model->id) ? ['!=' => ['id' => $model->id]] : []))->count()) {
-                            $model->addError('occurrence_number', _('O número de ocorrência informado já está em uso! Tente outro.'));
+                            $model->addError('occurrence_number', _('A senha de carregamento informada já está em uso! Tente outra.'));
                         }
                     }
 

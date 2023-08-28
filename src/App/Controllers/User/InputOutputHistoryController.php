@@ -305,7 +305,7 @@ class InputOutputHistoryController extends TemplateController
                     _('Fornecedor') => $dbConference->product_prov_name ?? '---',
                     _('Quantidade de Caixas Físicas') => $dbConference->p_physic_boxes_amount ?? '---',
                     _('Quantidade de Unidades') => $dbConference->p_units_amount ?? '---',
-                    _('Tipo de Serviço') => Pallet::getServiceTypes()[$dbConference->p_service_type],
+                    _('Tipo de Serviço') => $dbConference->p_service_type ? Pallet::getServiceTypes()[$dbConference->p_service_type] : '---',
                     _('Altura do Pallet') => $dbConference->p_pallet_height ?? '---',
                     _('Número da Rua') => $dbConference->p_street_number ?? '---',
                     _('Posição') => $dbConference->p_position ?? '---',
@@ -320,7 +320,7 @@ class InputOutputHistoryController extends TemplateController
                         : '--:--:--',
                     _('Placa de Carregamento') => $dbConference->load_plate ?? '---',
                     _('Doca') => $dbConference->dock ?? '---',
-                    _('Status') => Pallet::getStates()[$dbConference->p_p_status]
+                    _('Status') => $dbConference->p_p_status ? Pallet::getStates()[$dbConference->p_p_status] : '---'
                 ];
             }
         }
