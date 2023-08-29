@@ -116,13 +116,15 @@ class Street extends DBModel
         }
 
         $pallets = (new Pallet())->get([
-            'p_status' => Pallet::PS_STORED, 
+            'in' => ['p_status' => [Pallet::PS_STORED, Pallet::PS_SEPARATED]], 
             'raw' => "pallet_height = {$height}"
         ], 'street_number, position, height')->fetch(true);
 
         if($pallets) {
             $gPallets = [];
+            $palletsCount = [];
             foreach($pallets as $pallet) {
+                $palletsCount[$pallet->street_number]++;
                 $gPallets[$pallet->street_number][$pallet->position][$pallet->height] = true;
             }
             $pallets = $gPallets;
@@ -139,7 +141,7 @@ class Street extends DBModel
             if(!$street->isLimitless()) {
                 for($i = $street->start_position; $i <= $street->end_position; $i++) {
                     for($j = 1; $j <= $street->max_height; $j++) {
-                        if($street->max_plts <= count($pallets[$street->street_number]) 
+                        if($street->max_plts <= $palletsCount[$street->street_number] 
                             + count(array_filter($availablePlaces, fn($p) => $p['street_number'] == $street->street_number))) {
                             continue 3;
                         }

@@ -7,12 +7,9 @@
 <p><?= _('Entrada') ?></p>
 
 <div>
-    <input form="return" type="submit" value="<?= _('Voltar') ?>">
-    <input form="logout" type="submit" value="<?= _('Sair') ?>">
+    <input type="button" value="<?= _('Voltar') ?>" onclick="window.location.href='<?= $router->route('user.conference.index') ?>'">
+    <input type="button" value="<?= _('Sair') ?>" onclick="window.location.href='<?= $router->route('auth.logout') ?>'">
 </div>
-
-<form id="return" action="<?= $router->route('user.conference.index') ?>" method="get"></form>
-<form id="logout" action="<?= $router->route('auth.logout') ?>" method="get"></form>
 
 <table>
     <thead>
@@ -27,15 +24,14 @@
         if($dbConferences):
             foreach($dbConferences as $dbConference): 
             ?>
-            <form id="form_<?= $dbConference->id ?>" method="get" 
-                action="<?= $router->route('user.conference.singleInput', ['conference_id' => $dbConference->id]) ?>"></form>
             <tr>
                 <td><?= $dbConference->id ?></td>
                 <td><?= $dbConference->plate ?></td>
                 <td><?= $dbConference->provider_name ?></td>
                 <td><?= $dbConference->created_at ?></td>
                 <td>
-                    <input form="form_<?= $dbConference->id ?>" type="submit" value="<?= _('Ir Conf.') ?>">
+                    <input type="submit" value="<?= _('Ir Conf.') ?>" 
+                        onclick="window.location.href='<?= $router->route('user.conference.singleInput', ['conference_id' => $dbConference->id]) ?>'">
                 </td>
             </tr>
             <?php 

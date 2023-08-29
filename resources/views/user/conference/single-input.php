@@ -6,54 +6,6 @@
 
 <p><?= _('Entrada') ?></p>
 
-<div>
-    <?php if(!$conferenceInputForm->hasStarted()): ?>
-    <input form="insert-product" type="submit" value="<?= _('Incluir Produto') ?>">
-    <?php if($dbConferenceInputs): ?>
-    <input form="save-conference" type="submit" value="<?= _('Finalizar Conferência') ?>">
-    <?php endif; ?>
-    <?php else: ?>
-    <?php if(!$conferenceInputForm->hasProduct()): ?>
-    <input form="save-conference" type="hidden" name="search_product">
-    <input form="save-conference" type="submit" value="<?= _('Buscar') ?>">
-    <?php elseif(!$conferenceInputForm->isCompleted()): ?>
-    <input form="save-conference" type="submit" value="<?= _('Enviar') ?>">
-    <?php else: ?>
-    <input form="save-conference" type="hidden" name="is_completed">
-    <input form="save-conference" type="submit" value="<?= _('Confirmar') ?>">
-    <?php endif; ?>
-    <?php endif; ?>
-
-    <input form="return" type="submit" value="<?= _('Voltar') ?>">
-</div>
-
-<?php if(!$conferenceInputForm->hasStarted()): ?>
-<form id="insert-product" action="<?= $router->route('user.conference.singleInput', ['conference_id' => $dbConference->id]) ?>" method="get">
-    <input type="hidden" name="include_product">
-</form>
-<?php if($dbConferenceInputs): ?>
-<form id="save-conference" action="<?= $router->route('user.conference.singleInput', ['conference_id' => $dbConference->id]) ?>" 
-    method="post">
-    <input type="hidden" name="finish_conference">
-</form>
-<?php endif; ?>
-<form id="return" action="<?= $router->route('user.conference.input') ?>" method="get"></form>
-<?php endif; ?>
-
-<?php if(!$conferenceInputForm->hasProduct()): ?>
-<form id="return" action="<?= $router->route('user.conference.singleInput', ['conference_id' => $dbConference->id]) ?>" method="get"></form>
-<?php elseif(!$conferenceInputForm->isCompleted()): ?>
-<form id="return" action="<?= $router->route('user.conference.singleInput', ['conference_id' => $dbConference->id]) ?>" method="get">
-    <input type="hidden" name="include_product">
-</form>
-<?php else: ?>
-<form id="return" action="<?= $router->route('user.conference.singleInput', ['conference_id' => $dbConference->id]) ?>" method="get">
-    <input type="hidden" name="search_product">
-    <input type="hidden" name="barcode" value="<?= $conferenceInputForm->barcode ?>">
-</form>
-<?php endif; ?>
-<br>
-
 <table>
     <thead>
         <th><?= _('ID') ?></th>
@@ -98,9 +50,32 @@ if($dbConferenceInputs && !$conferenceInputForm->hasStarted()):
 endif;    
 ?>
 
-<?php if($conferenceInputForm->hasStarted()): ?>
-<form id="save-conference" method="<?= $conferenceInputForm->hasProduct() ? 'post' : 'get' ?>" 
+<?php if(!$conferenceInputForm->hasStarted()): ?>
+<form action="<?= $router->route('user.conference.singleInput', ['conference_id' => $dbConference->id]) ?>" method="post">
+    <input type="button" value="<?= _('Incluir Produto') ?>" 
+        onclick="window.location.href='<?= $router->route('user.conference.singleInput', ['conference_id' => $dbConference->id, 'include_product' => true]) ?>'">
+<?php if($dbConferenceInputs): ?>
+    <input type="hidden" name="finish_conference">
+    <input type="submit" value="<?= _('Finalizar Conferência') ?>">
+    <?php endif; ?>
+</form>
+<?php else: ?>
+<form method="<?= $conferenceInputForm->hasProduct() ? 'post' : 'get' ?>" 
     action="<?= $router->route('user.conference.create', ['conference_id' => $dbConference->id]) ?>">
+    <div>
+        <?php if(!$conferenceInputForm->hasProduct()): ?>
+        <input type="hidden" name="search_product">
+        <input type="submit" value="<?= _('Buscar') ?>">
+        <?php elseif(!$conferenceInputForm->isCompleted()): ?>
+        <input type="submit" value="<?= _('Enviar') ?>">
+        <?php else: ?>
+        <input type="hidden" name="is_completed">
+        <input type="submit" value="<?= _('Confirmar') ?>">
+        <?php endif; ?>
+
+        <input type="button" value="<?= _('Voltar') ?>" onclick="window.location.href='<?= $return ?>'">
+    </div>
+
     <table>
         <tbody>
             <tr>

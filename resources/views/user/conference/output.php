@@ -5,39 +5,25 @@
 ?>
 
 <p><?= _('Saída') ?></p>
-<div>
-    <input form="save-output" type="hidden" name="step" value="<?= $nextStep ?>">
-    
-    <?php if(!$conferenceOutputForm->hasServiceOrder()): ?>
-    <input form="save-output" type="submit" value="<?= _('Buscar') ?>">
-    <?php elseif(!$conferenceOutputForm->hasPallet()): ?>
-    <input form="save-output" type="submit" value="<?= _('Inserir') ?>">
-    <?php elseif(!$conferenceOutputForm->hasCompletion()): ?>
-    <input form="save-output" type="submit" value="<?= _('Inserir Placa') ?>">
-    <?php else: ?>
-    <input form="save-output" type="submit" value="<?= _('Baixar Etiqueta') ?>">
-    <?php endif; ?>
 
-    <input form="return" type="submit" value="<?= _('Voltar') ?>">
-</div>
-
-<form id="return" action="<?= !$conferenceOutputForm->hasServiceOrder() 
-    ? $router->route('user.conference.index') 
-    : $router->route('user.conference.output') ?>" method="get">
-    <input type="hidden" name="step" value="<?= $previousStep ?>">
-
-    <?php if($conferenceOutputForm->hasPallet()): ?>
-    <input type="hidden" name="service_order" value="<?= $conferenceOutputForm->service_order ?>">
-    <?php endif; ?>
-    
-    <?php if($conferenceOutputForm->hasCompletion()): ?>
-    <input type="hidden" name="pallet_number" value="<?= $conferenceOutputForm->pallet_number ?>">
-    <?php endif; ?>
-</form>
-<br>
-
-<form id="save-output" action="<?= $router->route('user.conference.output') ?>" 
+<form action="<?= $router->route('user.conference.output') ?>" 
     method="<?= $conferenceOutputForm->hasCompletion() ? 'post' : 'get' ?>">
+    <input type="hidden" name="step" value="<?= $nextStep ?>">
+    
+    <div>
+        <?php if(!$conferenceOutputForm->hasServiceOrder()): ?>
+        <input type="submit" value="<?= _('Buscar') ?>">
+        <?php elseif(!$conferenceOutputForm->hasPallet()): ?>
+        <input type="submit" value="<?= _('Inserir') ?>">
+        <?php elseif(!$conferenceOutputForm->hasCompletion()): ?>
+        <input type="submit" value="<?= _('Inserir Placa') ?>">
+        <?php else: ?>
+        <input type="submit" value="<?= _('Baixar Etiqueta') ?>">
+        <?php endif; ?>
+        <input type="button" value="<?= _('Voltar') ?>"
+            onclick="window.location.href='<?= !$conferenceOutputForm->hasServiceOrder() ? $router->route('user.conference.index', ['step' => $previousStep]) : $router->route('user.conference.output', ($conferenceOutputForm->hasPallet() ? ['service_order' => $conferenceOutputForm->service_order] : []) + ($conferenceOutputForm->hasCompletion() ? ['pallet_number' => $conferenceOutputForm->pallet_number] : [])) ?>'">
+    </div>
+
     <table>
         <tbody>
             <tr>

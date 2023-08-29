@@ -147,6 +147,23 @@ class ConferenceController extends TemplateController
             }
         }
 
+        if(!$conferenceInputForm->hasStarted()) {
+            $return = $this->getRoute('user.conference.input');
+        } elseif(!$conferenceInputForm->hasProduct()) {
+            $return = $this->getRoute('user.conference.singleInput', ['conference_id' => $dbConference->id]);
+        } elseif(!$conferenceInputForm->isCompleted()) {
+            $return = $this->getRoute('user.conference.singleInput', [
+                'conference_id' => $dbConference->id,
+                'include_product' => true
+            ]);
+        } else {
+            $return = $this->getRoute('user.conference.singleInput', [
+                'conference_id' => $dbConference->id,
+                'search_product' => true,
+                'barcode' => $conferenceInputForm->barcode
+            ]);
+        }
+
         $dbConference->created_at = $this->getDateTime($dbConference->created_at)->format('d/m/Y');
 
         $this->render('user/conference/single-input', [
@@ -155,7 +172,8 @@ class ConferenceController extends TemplateController
             'dbProduct' => $dbProduct,
             'dbConferenceInputs' => $dbConferenceInputs,
             'conferenceInputForm' => $conferenceInputForm,
-            'serviceTypes' => ConferenceInput::getServiceTypes()
+            'serviceTypes' => ConferenceInput::getServiceTypes(),
+            'return' => $return
         ]);
     }
 

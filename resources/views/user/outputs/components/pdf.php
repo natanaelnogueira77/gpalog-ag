@@ -86,7 +86,7 @@
                 <th style="text-align: center;"><?= _('Rua') ?></th>
                 <th style="text-align: center;"><?= _('Posição') ?></th>
                 <th style="text-align: center;"><?= _('Altura') ?></th>
-                <th style="text-align: center;"><?= _('OS') ?></th>
+                <th style="text-align: center;"><?= _('OC') ?></th>
                 <th style="text-align: center;"><?= _('Nome do Produto') ?></th>
                 <th style="text-align: center;"><?= _('EAN') ?></th>
                 <th style="text-align: center;"><?= _('Serviço') ?></th>
