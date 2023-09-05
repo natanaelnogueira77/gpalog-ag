@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2023-08-29 20:14-0300\n"
-"PO-Revision-Date: 2023-08-29 20:15-0300\n"
+"POT-Creation-Date: 2023-09-05 13:59-0300\n"
+"PO-Revision-Date: 2023-09-05 13:59-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt_BR\n"
@@ -143,7 +143,7 @@ msgstr "Segue abaixo a lista de usuários do sistema"
 
 #: resources/views/admin/users/index.php:26
 #: resources/views/admin/users/save.php:9
-#: resources/views/admin/users/save.php:162
+#: resources/views/admin/users/save.php:144
 #: src/App/Controllers/Admin/TemplateController.php:59
 msgid "Cadastrar Usuário"
 msgstr "Cadastrar Usuário"
@@ -202,19 +202,7 @@ msgstr "Digite o nome e sobrenome."
 msgid "Informe um nome..."
 msgstr "Informe um nome..."
 
-#: resources/views/admin/users/save.php:44 resources/views/user/edit.php:45
-msgid "Apelido"
-msgstr "Apelido"
-
-#: resources/views/admin/users/save.php:45
-msgid "Digite um apelido."
-msgstr "Digite um apelido."
-
-#: resources/views/admin/users/save.php:54 resources/views/user/edit.php:54
-msgid "Informe um apelido..."
-msgstr "Informe um apelido..."
-
-#: resources/views/admin/users/save.php:64
+#: resources/views/admin/users/save.php:44
 #: resources/views/auth/reset-password.php:24
 #: resources/views/components/expired-session.php:47
 #: resources/views/user/edit.php:64
@@ -222,45 +210,45 @@ msgstr "Informe um apelido..."
 msgid "Email"
 msgstr "Email"
 
-#: resources/views/admin/users/save.php:65
+#: resources/views/admin/users/save.php:45
 msgid "Digite um email válido."
 msgstr "Digite um email válido."
 
-#: resources/views/admin/users/save.php:69 resources/views/user/edit.php:69
+#: resources/views/admin/users/save.php:49 resources/views/user/edit.php:69
 msgid "Informe um email..."
 msgstr "Informe um email..."
 
-#: resources/views/admin/users/save.php:76
+#: resources/views/admin/users/save.php:58
 msgid "Nível do Usuário"
 msgstr "Nível do Usuário"
 
-#: resources/views/admin/users/save.php:77
+#: resources/views/admin/users/save.php:59
 msgid "Escolha o nível do usuário."
 msgstr "Escolha o nível do usuário."
 
-#: resources/views/admin/users/save.php:82
+#: resources/views/admin/users/save.php:64
 #: resources/views/user/conference/single-input.php:149
 #: resources/views/user/operations/components/save-modal.php:26
 msgid "Selecionar..."
 msgstr "Selecionar..."
 
-#: resources/views/admin/users/save.php:96
+#: resources/views/admin/users/save.php:78
 msgid "Número de Matrícula"
 msgstr "Número de Matrícula"
 
-#: resources/views/admin/users/save.php:97
+#: resources/views/admin/users/save.php:79
 msgid "O número de matrícula será usado para o operador entrar."
 msgstr "O número de matrícula será usado para o operador entrar."
 
-#: resources/views/admin/users/save.php:102
+#: resources/views/admin/users/save.php:84
 msgid "Informe o número de matrícula..."
 msgstr "Informe o número de matrícula..."
 
-#: resources/views/admin/users/save.php:112 resources/views/user/edit.php:79
+#: resources/views/admin/users/save.php:94 resources/views/user/edit.php:79
 msgid "Deseja alterar a senha?"
 msgstr "Deseja alterar a senha?"
 
-#: resources/views/admin/users/save.php:117 resources/views/user/edit.php:84
+#: resources/views/admin/users/save.php:99 resources/views/user/edit.php:84
 #: src/App/Controllers/User/OperationsController.php:102
 #: src/App/Controllers/User/OperationsController.php:229
 #: src/App/Controllers/User/OperationsController.php:230
@@ -274,7 +262,7 @@ msgstr "Deseja alterar a senha?"
 msgid "Sim"
 msgstr "Sim"
 
-#: resources/views/admin/users/save.php:125 resources/views/user/edit.php:90
+#: resources/views/admin/users/save.php:107 resources/views/user/edit.php:90
 #: src/App/Controllers/User/OperationsController.php:103
 #: src/App/Controllers/User/OperationsController.php:229
 #: src/App/Controllers/User/OperationsController.php:230
@@ -288,38 +276,38 @@ msgstr "Sim"
 msgid "Não"
 msgstr "Não"
 
-#: resources/views/admin/users/save.php:136
+#: resources/views/admin/users/save.php:118
 #: resources/views/auth/operator-login.php:42
 #: resources/views/components/expired-session.php:54
 #: resources/views/user/edit.php:100
 msgid "Senha"
 msgstr "Senha"
 
-#: resources/views/admin/users/save.php:137
+#: resources/views/admin/users/save.php:119
 msgid "Digite a nova senha de acesso à conta."
 msgstr "Digite a nova senha de acesso à conta."
 
-#: resources/views/admin/users/save.php:142 resources/views/user/edit.php:106
+#: resources/views/admin/users/save.php:124 resources/views/user/edit.php:106
 msgid "Digite uma senha..."
 msgstr "Digite uma senha..."
 
-#: resources/views/admin/users/save.php:148 resources/views/user/edit.php:112
+#: resources/views/admin/users/save.php:130 resources/views/user/edit.php:112
 msgid "Confirmar Senha"
 msgstr "Confirmar Senha"
 
-#: resources/views/admin/users/save.php:149
+#: resources/views/admin/users/save.php:131
 msgid "Digite novamente a nova senha de acesso à conta."
 msgstr "Digite novamente a nova senha de acesso à conta."
 
-#: resources/views/admin/users/save.php:154 resources/views/user/edit.php:118
+#: resources/views/admin/users/save.php:136 resources/views/user/edit.php:118
 msgid "Digite novamente a senha..."
 msgstr "Digite novamente a senha..."
 
-#: resources/views/admin/users/save.php:162
+#: resources/views/admin/users/save.php:144
 msgid "Atualizar Usuário"
 msgstr "Atualizar Usuário"
 
-#: resources/views/admin/users/save.php:164
+#: resources/views/admin/users/save.php:146
 #: resources/views/components/expired-session.php:63
 #: resources/views/error/index.php:11
 #: resources/views/user/conference/input.php:10
@@ -599,7 +587,7 @@ msgstr "Saída"
 #: resources/views/user/conference/index.php:11
 #: resources/views/user/conference/input.php:11
 #: src/App/Controllers/Admin/TemplateController.php:162
-#: src/App/Controllers/User/TemplateController.php:145
+#: src/App/Controllers/User/TemplateController.php:138
 #: src/App/Controllers/Web/TemplateController.php:41
 msgid "Sair"
 msgstr "Sair"
@@ -620,7 +608,7 @@ msgstr "ID"
 #: resources/views/user/conference/single-input.php:12
 #: resources/views/user/operations/components/save-modal.php:150
 #: src/App/Controllers/User/InputOutputHistoryController.php:117
-#: src/App/Controllers/User/InputOutputHistoryController.php:278
+#: src/App/Controllers/User/InputOutputHistoryController.php:284
 #: src/App/Controllers/User/OperationsController.php:146
 #: src/App/Controllers/User/OperationsController.php:222
 #: src/App/Controllers/User/OutputsController.php:183
@@ -631,7 +619,7 @@ msgstr "Placa"
 #: resources/views/user/conference/single-input.php:13
 #: resources/views/user/operations/components/save-modal.php:18
 #: src/App/Controllers/User/InputOutputHistoryController.php:118
-#: src/App/Controllers/User/InputOutputHistoryController.php:305
+#: src/App/Controllers/User/InputOutputHistoryController.php:311
 #: src/App/Controllers/User/OperationsController.php:147
 #: src/App/Controllers/User/OperationsController.php:224
 #: src/App/Controllers/User/OutputsController.php:194
@@ -688,7 +676,7 @@ msgstr "Ordem de Serviço"
 #: resources/views/user/conference/output.php:46
 #: resources/views/user/input-output-history/components/input-pdf.php:80
 #: resources/views/user/input-output-history/components/output-pdf.php:80
-#: src/App/Controllers/User/InputOutputHistoryController.php:295
+#: src/App/Controllers/User/InputOutputHistoryController.php:301
 #: src/App/Controllers/User/OutputsController.php:184
 msgid "Número do Pallet"
 msgstr "Número do Pallet"
@@ -710,14 +698,14 @@ msgstr "Nome do Produto"
 
 #: resources/views/user/conference/output.php:70
 #: resources/views/user/input-output-history/components/output-pdf.php:136
-#: src/App/Controllers/User/InputOutputHistoryController.php:321
+#: src/App/Controllers/User/InputOutputHistoryController.php:327
 #: src/App/Controllers/User/OutputsController.php:210
 msgid "Placa de Carregamento"
 msgstr "Placa de Carregamento"
 
 #: resources/views/user/conference/output.php:85
 #: resources/views/user/input-output-history/components/output-pdf.php:140
-#: src/App/Controllers/User/InputOutputHistoryController.php:322
+#: src/App/Controllers/User/InputOutputHistoryController.php:328
 #: src/App/Controllers/User/OutputsController.php:211
 msgid "Doca"
 msgstr "Doca"
@@ -729,7 +717,7 @@ msgstr "Qtde. CX Físico"
 
 #: resources/views/user/conference/single-input.php:42
 #: resources/views/user/outputs/index.php:68
-#: src/App/Controllers/User/InputOutputHistoryController.php:304
+#: src/App/Controllers/User/InputOutputHistoryController.php:310
 #: src/App/Controllers/User/OutputsController.php:193
 #: src/App/Controllers/User/ProductsController.php:262
 msgid "Código EAN"
@@ -756,7 +744,7 @@ msgstr "Nome do Fornecedor"
 #: resources/views/user/conference/single-input.php:106
 #: resources/views/user/input-output-history/components/input-pdf.php:116
 #: resources/views/user/input-output-history/components/output-pdf.php:108
-#: src/App/Controllers/User/InputOutputHistoryController.php:302
+#: src/App/Controllers/User/InputOutputHistoryController.php:308
 #: src/App/Controllers/User/OutputsController.php:191
 #: src/App/Controllers/User/ProductsController.php:261
 msgid "Embalagem"
@@ -805,9 +793,17 @@ msgstr ""
 msgid "Digite o seu nome e sobrenome."
 msgstr "Digite o seu nome e sobrenome."
 
+#: resources/views/user/edit.php:45
+msgid "Apelido"
+msgstr "Apelido"
+
 #: resources/views/user/edit.php:46
 msgid "Digite um apelido seu."
 msgstr "Digite um apelido seu."
+
+#: resources/views/user/edit.php:54
+msgid "Informe um apelido..."
+msgstr "Informe um apelido..."
 
 #: resources/views/user/edit.php:65
 msgid "Digite um email válido seu."
@@ -868,7 +864,7 @@ msgid "Informações do Pallet"
 msgstr "Informações do Pallet"
 
 #: resources/views/user/input-output-history/components/input-pdf.php:84
-#: src/App/Controllers/User/InputOutputHistoryController.php:296
+#: src/App/Controllers/User/InputOutputHistoryController.php:302
 #: src/App/Controllers/User/OutputsController.php:185
 msgid "Data de Entrada"
 msgstr "Data de Entrada"
@@ -889,7 +885,7 @@ msgstr "Rua"
 #: resources/views/user/input-output-history/components/output-pdf.php:96
 #: resources/views/user/outputs/components/pdf.php:87
 #: resources/views/user/outputs/index.php:70
-#: src/App/Controllers/User/InputOutputHistoryController.php:311
+#: src/App/Controllers/User/InputOutputHistoryController.php:317
 #: src/App/Controllers/User/OutputsController.php:200
 msgid "Posição"
 msgstr "Posição"
@@ -899,7 +895,7 @@ msgstr "Posição"
 #: resources/views/user/outputs/components/pdf.php:88
 #: resources/views/user/outputs/index.php:71
 #: resources/views/user/products/components/save-modal.php:149
-#: src/App/Controllers/User/InputOutputHistoryController.php:312
+#: src/App/Controllers/User/InputOutputHistoryController.php:318
 #: src/App/Controllers/User/OutputsController.php:201
 #: src/App/Controllers/User/ProductsController.php:266
 msgid "Altura"
@@ -912,14 +908,14 @@ msgstr "Código do Produto"
 
 #: resources/views/user/input-output-history/components/input-pdf.php:120
 #: resources/views/user/input-output-history/components/output-pdf.php:112
-#: src/App/Controllers/User/InputOutputHistoryController.php:306
+#: src/App/Controllers/User/InputOutputHistoryController.php:312
 #: src/App/Controllers/User/OutputsController.php:195
 msgid "Quantidade de Caixas Físicas"
 msgstr "Quantidade de Caixas Físicas"
 
 #: resources/views/user/input-output-history/components/input-pdf.php:124
 #: resources/views/user/input-output-history/components/output-pdf.php:116
-#: src/App/Controllers/User/InputOutputHistoryController.php:307
+#: src/App/Controllers/User/InputOutputHistoryController.php:313
 #: src/App/Controllers/User/OutputsController.php:196
 msgid "Quantidade de Unidades"
 msgstr "Quantidade de Unidades"
@@ -927,14 +923,14 @@ msgstr "Quantidade de Unidades"
 #: resources/views/user/input-output-history/components/input-pdf.php:128
 #: resources/views/user/input-output-history/components/output-pdf.php:120
 #: resources/views/user/operations/components/save-modal.php:46
-#: src/App/Controllers/User/InputOutputHistoryController.php:308
+#: src/App/Controllers/User/InputOutputHistoryController.php:314
 #: src/App/Controllers/User/OutputsController.php:197
 msgid "Tipo de Serviço"
 msgstr "Tipo de Serviço"
 
 #: resources/views/user/input-output-history/components/input-pdf.php:132
 #: resources/views/user/input-output-history/components/output-pdf.php:124
-#: src/App/Controllers/User/InputOutputHistoryController.php:309
+#: src/App/Controllers/User/InputOutputHistoryController.php:315
 #: src/App/Controllers/User/OutputsController.php:198
 msgid "Altura do Pallet"
 msgstr "Altura do Pallet"
@@ -949,7 +945,7 @@ msgid "Baixa de Etiqueta - %s"
 msgstr "Baixa de Etiqueta - %s"
 
 #: resources/views/user/input-output-history/components/output-pdf.php:84
-#: src/App/Controllers/User/InputOutputHistoryController.php:315
+#: src/App/Controllers/User/InputOutputHistoryController.php:321
 #: src/App/Controllers/User/OutputsController.php:204
 msgid "Data de Saída"
 msgstr "Data de Saída"
@@ -1016,7 +1012,7 @@ msgstr "Retrabalho"
 #: resources/views/user/storage/index.php:9
 #: resources/views/user/storage/index.php:20
 #: src/App/Controllers/Admin/TemplateController.php:94
-#: src/App/Controllers/User/TemplateController.php:77
+#: src/App/Controllers/User/TemplateController.php:70
 #: src/Models/ConferenceInput.php:129 src/Models/Operation.php:162
 #: src/Models/Pallet.php:232
 msgid "Armazenagem"
@@ -1141,7 +1137,7 @@ msgstr "Segue abaixo a lista de operações do sistema"
 
 #: resources/views/user/operations/index.php:20
 #: src/App/Controllers/Admin/TemplateController.php:66
-#: src/App/Controllers/User/TemplateController.php:49
+#: src/App/Controllers/User/TemplateController.php:42
 msgid "Operações"
 msgstr "Operações"
 
@@ -1174,7 +1170,7 @@ msgid "Informações da Saída"
 msgstr "Informações da Saída"
 
 #: resources/views/user/outputs/components/pdf.php:71
-#: src/App/Controllers/User/InputOutputHistoryController.php:313
+#: src/App/Controllers/User/InputOutputHistoryController.php:319
 #: src/App/Controllers/User/OutputsController.php:180
 #: src/App/Controllers/User/OutputsController.php:202
 msgid "ID de Separação"
@@ -1219,7 +1215,7 @@ msgstr ""
 
 #: resources/views/user/outputs/index.php:20
 #: src/App/Controllers/Admin/TemplateController.php:101
-#: src/App/Controllers/User/TemplateController.php:84
+#: src/App/Controllers/User/TemplateController.php:77
 msgid "Saídas"
 msgstr "Saídas"
 
@@ -1232,7 +1228,7 @@ msgstr ""
 "em \"Buscar\"."
 
 #: resources/views/user/outputs/index.php:67
-#: src/App/Controllers/User/InputOutputHistoryController.php:303
+#: src/App/Controllers/User/InputOutputHistoryController.php:309
 #: src/App/Controllers/User/OutputsController.php:192
 msgid "Produto"
 msgstr "Produto"
@@ -1444,7 +1440,7 @@ msgstr "Segue abaixo a lista de produtos do sistema"
 
 #: resources/views/user/products/index.php:20
 #: src/App/Controllers/Admin/TemplateController.php:80
-#: src/App/Controllers/User/TemplateController.php:63
+#: src/App/Controllers/User/TemplateController.php:56
 msgid "Produtos"
 msgstr "Produtos"
 
@@ -1493,7 +1489,7 @@ msgstr "Segue abaixo a lista de fornecedores do sistema"
 
 #: resources/views/user/providers/index.php:20
 #: src/App/Controllers/Admin/TemplateController.php:87
-#: src/App/Controllers/User/TemplateController.php:70
+#: src/App/Controllers/User/TemplateController.php:63
 msgid "Fornecedores"
 msgstr "Fornecedores"
 
@@ -1518,7 +1514,7 @@ msgstr "Veja abaixo como está o armazenamento atualmente"
 #: resources/views/user/storage/index.php:38
 #: resources/views/user/streets/index.php:20
 #: src/App/Controllers/Admin/TemplateController.php:73
-#: src/App/Controllers/User/TemplateController.php:56
+#: src/App/Controllers/User/TemplateController.php:49
 msgid "Ruas"
 msgstr "Ruas"
 
@@ -1581,7 +1577,7 @@ msgstr ""
 "lado."
 
 #: resources/views/user/streets/components/save-modal.php:37
-#: src/App/Controllers/User/InputOutputHistoryController.php:310
+#: src/App/Controllers/User/InputOutputHistoryController.php:316
 #: src/App/Controllers/User/OutputsController.php:199
 #: src/App/Controllers/User/StorageController.php:63
 #: src/App/Controllers/User/StreetsController.php:179
@@ -1711,7 +1707,7 @@ msgstr "Contato | %s"
 
 #: resources/views/web/contact.php:11
 #: src/App/Controllers/Admin/TemplateController.php:125
-#: src/App/Controllers/User/TemplateController.php:108
+#: src/App/Controllers/User/TemplateController.php:101
 #: src/App/Controllers/Web/TemplateController.php:29
 msgid "Contato"
 msgstr "Contato"
@@ -1795,65 +1791,64 @@ msgstr "Painéis"
 
 #: src/App/Controllers/Admin/TemplateController.php:41
 #: src/App/Controllers/Admin/TemplateController.php:158
-#: src/App/Controllers/User/TemplateController.php:42
-#: src/App/Controllers/User/TemplateController.php:141
+#: src/App/Controllers/User/TemplateController.php:134
 #: src/App/Controllers/Web/TemplateController.php:37
 msgid "Painel Principal"
 msgstr "Painel Principal"
 
 #: src/App/Controllers/Admin/TemplateController.php:108
-#: src/App/Controllers/User/TemplateController.php:91
+#: src/App/Controllers/User/TemplateController.php:84
 msgid "Histórico de Entrada e Saída"
 msgstr "Histórico de Entrada e Saída"
 
 #: src/App/Controllers/Admin/TemplateController.php:118
-#: src/App/Controllers/User/TemplateController.php:101
+#: src/App/Controllers/User/TemplateController.php:94
 #: src/App/Controllers/Web/TemplateController.php:23
 msgid "Início"
 msgstr "Início"
 
 #: src/App/Controllers/Admin/TemplateController.php:134
-#: src/App/Controllers/User/TemplateController.php:117
+#: src/App/Controllers/User/TemplateController.php:110
 #: src/App/Controllers/Web/TemplateController.php:57
 msgid "Aguarde, carregando..."
 msgstr "Aguarde, carregando..."
 
 #: src/App/Controllers/Admin/TemplateController.php:149
-#: src/App/Controllers/User/TemplateController.php:132
+#: src/App/Controllers/User/TemplateController.php:125
 #: src/App/Controllers/Web/TemplateController.php:64
 msgid "Linguagens"
 msgstr "Linguagens"
 
 #: src/App/Controllers/Admin/TemplateController.php:152
-#: src/App/Controllers/User/TemplateController.php:135
+#: src/App/Controllers/User/TemplateController.php:128
 #: src/App/Controllers/Web/TemplateController.php:67
 msgid "Português"
 msgstr "Português"
 
 #: src/App/Controllers/Admin/TemplateController.php:153
-#: src/App/Controllers/User/TemplateController.php:136
+#: src/App/Controllers/User/TemplateController.php:129
 #: src/App/Controllers/Web/TemplateController.php:68
 msgid "Inglês"
 msgstr "Inglês"
 
 #: src/App/Controllers/Admin/TemplateController.php:154
-#: src/App/Controllers/User/TemplateController.php:137
+#: src/App/Controllers/User/TemplateController.php:130
 #: src/App/Controllers/Web/TemplateController.php:69
 msgid "Espanhol"
 msgstr "Espanhol"
 
 #: src/App/Controllers/Admin/TemplateController.php:159
-#: src/App/Controllers/User/TemplateController.php:142
+#: src/App/Controllers/User/TemplateController.php:135
 msgid "Editar meus Dados"
 msgstr "Editar meus Dados"
 
 #: src/App/Controllers/Admin/TemplateController.php:160
-#: src/App/Controllers/User/TemplateController.php:143
+#: src/App/Controllers/User/TemplateController.php:136
 msgid "Voltar ao Início"
 msgstr "Voltar ao Início"
 
 #: src/App/Controllers/Admin/TemplateController.php:169
-#: src/App/Controllers/User/TemplateController.php:152
+#: src/App/Controllers/User/TemplateController.php:145
 #, php-format
 msgid "Painel %s"
 msgstr "Painel %s"
@@ -1985,8 +1980,8 @@ msgid "O arquivo foi excluído com sucesso."
 msgstr "O arquivo foi excluído com sucesso."
 
 #: src/App/Controllers/User/ConferenceController.php:60
-#: src/App/Controllers/User/InputOutputHistoryController.php:144
-#: src/App/Controllers/User/InputOutputHistoryController.php:183
+#: src/App/Controllers/User/InputOutputHistoryController.php:147
+#: src/App/Controllers/User/InputOutputHistoryController.php:189
 msgid "A conferência não foi encontrada!"
 msgstr "A conferência não foi encontrada!"
 
@@ -2043,86 +2038,86 @@ msgid "Nº do Pedido"
 msgstr "Nº do Pedido"
 
 #: src/App/Controllers/User/InputOutputHistoryController.php:121
-#: src/App/Controllers/User/InputOutputHistoryController.php:323
+#: src/App/Controllers/User/InputOutputHistoryController.php:329
 #: src/App/Controllers/User/OutputsController.php:212
 msgid "Status"
 msgstr "Status"
 
-#: src/App/Controllers/User/InputOutputHistoryController.php:147
-#: src/App/Controllers/User/InputOutputHistoryController.php:186
+#: src/App/Controllers/User/InputOutputHistoryController.php:150
+#: src/App/Controllers/User/InputOutputHistoryController.php:192
 msgid "Esta conferência ainda não foi finalizada!"
 msgstr "Esta conferência ainda não foi finalizada!"
 
-#: src/App/Controllers/User/InputOutputHistoryController.php:155
+#: src/App/Controllers/User/InputOutputHistoryController.php:158
 #, php-format
 msgid "etiqueta-de-entrada-%s"
 msgstr "etiqueta-de-entrada-%s"
 
-#: src/App/Controllers/User/InputOutputHistoryController.php:170
-#: src/App/Controllers/User/InputOutputHistoryController.php:209
+#: src/App/Controllers/User/InputOutputHistoryController.php:173
+#: src/App/Controllers/User/InputOutputHistoryController.php:215
 #: src/App/Controllers/User/OutputsController.php:120
 msgid "Lamentamos, mas o PDF não pôde ser gerado!"
 msgstr "Lamentamos, mas o PDF não pôde ser gerado!"
 
-#: src/App/Controllers/User/InputOutputHistoryController.php:194
+#: src/App/Controllers/User/InputOutputHistoryController.php:200
 #, php-format
 msgid "etiqueta-de-saida-%s"
 msgstr "etiqueta-de-saida-%s"
 
-#: src/App/Controllers/User/InputOutputHistoryController.php:279
+#: src/App/Controllers/User/InputOutputHistoryController.php:285
 #: src/App/Controllers/User/OperationsController.php:223
 #: src/App/Controllers/User/OutputsController.php:181
 msgid "ADM"
 msgstr "ADM"
 
-#: src/App/Controllers/User/InputOutputHistoryController.php:280
+#: src/App/Controllers/User/InputOutputHistoryController.php:286
 msgid "Operador que Iniciou"
 msgstr "Operador que Iniciou"
 
-#: src/App/Controllers/User/InputOutputHistoryController.php:281
+#: src/App/Controllers/User/InputOutputHistoryController.php:287
 msgid "Data de Início"
 msgstr "Data de Início"
 
-#: src/App/Controllers/User/InputOutputHistoryController.php:284
+#: src/App/Controllers/User/InputOutputHistoryController.php:290
 msgid "Hora de Início"
 msgstr "Hora de Início"
 
-#: src/App/Controllers/User/InputOutputHistoryController.php:287
+#: src/App/Controllers/User/InputOutputHistoryController.php:293
 msgid "Operador que Finalizou"
 msgstr "Operador que Finalizou"
 
-#: src/App/Controllers/User/InputOutputHistoryController.php:288
+#: src/App/Controllers/User/InputOutputHistoryController.php:294
 msgid "Data de Término"
 msgstr "Data de Término"
 
-#: src/App/Controllers/User/InputOutputHistoryController.php:291
+#: src/App/Controllers/User/InputOutputHistoryController.php:297
 msgid "Hora de Término"
 msgstr "Hora de Término"
 
-#: src/App/Controllers/User/InputOutputHistoryController.php:294
+#: src/App/Controllers/User/InputOutputHistoryController.php:300
 msgid "Status da Conferência"
 msgstr "Status da Conferência"
 
-#: src/App/Controllers/User/InputOutputHistoryController.php:299
+#: src/App/Controllers/User/InputOutputHistoryController.php:305
 #: src/App/Controllers/User/OutputsController.php:188
 msgid "Hora de Entrada"
 msgstr "Hora de Entrada"
 
-#: src/App/Controllers/User/InputOutputHistoryController.php:314
+#: src/App/Controllers/User/InputOutputHistoryController.php:320
 #: src/App/Controllers/User/OutputsController.php:203
 msgid "Operador que fez Saída"
 msgstr "Operador que fez Saída"
 
-#: src/App/Controllers/User/InputOutputHistoryController.php:318
+#: src/App/Controllers/User/InputOutputHistoryController.php:324
 #: src/App/Controllers/User/OutputsController.php:207
 msgid "Hora de Saída"
 msgstr "Hora de Saída"
 
-#: src/App/Controllers/User/InputOutputHistoryController.php:328
+#: src/App/Controllers/User/InputOutputHistoryController.php:334
 msgid "historico-conferencias"
 msgstr "historico-conferencias"
 
-#: src/App/Controllers/User/InputOutputHistoryController.php:330
+#: src/App/Controllers/User/InputOutputHistoryController.php:336
 #: src/App/Controllers/User/OperationsController.php:241
 #: src/App/Controllers/User/OutputsController.php:219
 #: src/App/Controllers/User/ProductsController.php:276
@@ -2648,7 +2643,7 @@ msgid "O tema é inválido!"
 msgstr "O tema é inválido!"
 
 #: src/Models/ContactForm.php:19 src/Models/Product.php:30
-#: src/Models/Provider.php:34 src/Models/User.php:52 src/Models/UserForm.php:27
+#: src/Models/Provider.php:34 src/Models/User.php:53 src/Models/UserForm.php:26
 msgid "O nome é obrigatório!"
 msgstr "O nome é obrigatório!"
 
@@ -2659,13 +2654,13 @@ msgstr "O nome precisa ter no máximo %s caractéres!"
 
 #: src/Models/ContactForm.php:23 src/Models/ForgotPasswordForm.php:16
 #: src/Models/LoginForm.php:17 src/Models/SocialUser.php:40
-#: src/Models/User.php:56 src/Models/UserForm.php:31
+#: src/Models/User.php:57 src/Models/UserForm.php:30
 msgid "O email é obrigatório!"
 msgstr "O email é obrigatório!"
 
 #: src/Models/ContactForm.php:24 src/Models/ForgotPasswordForm.php:17
 #: src/Models/LoginForm.php:18 src/Models/SocialUser.php:41
-#: src/Models/User.php:57 src/Models/UserForm.php:32
+#: src/Models/User.php:58 src/Models/UserForm.php:31
 msgid "O email é inválido!"
 msgstr "O email é inválido!"
 
@@ -2706,8 +2701,8 @@ msgstr ""
 "enviar outra."
 
 #: src/Models/LoginForm.php:21 src/Models/OperatorLoginForm.php:20
-#: src/Models/ResetPasswordForm.php:17 src/Models/User.php:61
-#: src/Models/UserForm.php:39
+#: src/Models/ResetPasswordForm.php:17 src/Models/User.php:62
+#: src/Models/UserForm.php:38
 msgid "A senha é obrigatória!"
 msgstr "A senha é obrigatória!"
 
@@ -2770,7 +2765,7 @@ msgid "A placa é obrigatória!"
 msgstr "A placa é obrigatória!"
 
 #: src/Models/Operation.php:64 src/Models/Product.php:31
-#: src/Models/Provider.php:35 src/Models/User.php:53 src/Models/UserForm.php:28
+#: src/Models/Provider.php:35 src/Models/User.php:54 src/Models/UserForm.php:27
 #, php-format
 msgid "O nome deve conter no máximo %s caractéres!"
 msgstr "O nome deve conter no máximo %s caractéres!"
@@ -2911,17 +2906,17 @@ msgstr "O código Dun14 deve conter no máximo %s caractéres!"
 msgid "O código PLU deve conter no máximo %s caractéres!"
 msgstr "O código PLU deve conter no máximo %s caractéres!"
 
-#: src/Models/ResetPasswordForm.php:18 src/Models/User.php:62
-#: src/Models/UserForm.php:40
+#: src/Models/ResetPasswordForm.php:18 src/Models/User.php:63
+#: src/Models/UserForm.php:39
 #, php-format
 msgid "A senha deve conter no mínimo %s caractéres!"
 msgstr "A senha deve conter no mínimo %s caractéres!"
 
-#: src/Models/ResetPasswordForm.php:21 src/Models/UserForm.php:43
+#: src/Models/ResetPasswordForm.php:21 src/Models/UserForm.php:42
 msgid "A confirmação de senha é obrigatória!"
 msgstr "A confirmação de senha é obrigatória!"
 
-#: src/Models/ResetPasswordForm.php:22 src/Models/UserForm.php:44
+#: src/Models/ResetPasswordForm.php:22 src/Models/UserForm.php:43
 msgid "As senhas não correspondem!"
 msgstr "As senhas não correspondem!"
 
@@ -2937,8 +2932,8 @@ msgstr "O nome da rede social é obrigatório!"
 msgid "O nome da rede social é inválido!"
 msgstr "O nome da rede social é inválido!"
 
-#: src/Models/SocialUser.php:52 src/Models/User.php:72
-#: src/Models/UserForm.php:56
+#: src/Models/SocialUser.php:52 src/Models/User.php:73
+#: src/Models/UserForm.php:51
 msgid "O email informado já está em uso! Tente outro."
 msgstr "O email informado já está em uso! Tente outro."
 
@@ -2967,29 +2962,29 @@ msgstr "O perfil é obrigatório!"
 msgid "A capacidade máxima é obrigatória!"
 msgstr "A capacidade máxima é obrigatória!"
 
-#: src/Models/User.php:49 src/Models/UserForm.php:24
+#: src/Models/User.php:50 src/Models/UserForm.php:23
 msgid "O tipo de usuário é obrigatório!"
 msgstr "O tipo de usuário é obrigatório!"
 
-#: src/Models/User.php:58 src/Models/UserForm.php:33
+#: src/Models/User.php:59 src/Models/UserForm.php:32
 #, php-format
 msgid "O email deve conter no máximo %s caractéres!"
 msgstr "O email deve conter no máximo %s caractéres!"
 
-#: src/Models/User.php:65 src/Models/UserForm.php:49
+#: src/Models/User.php:66
 msgid "O apelido é obrigatório!"
 msgstr "O apelido é obrigatório!"
 
-#: src/Models/User.php:66 src/Models/UserForm.php:50
+#: src/Models/User.php:67
 #, php-format
 msgid "O apelido deve conter no máximo %s caractéres!"
 msgstr "O apelido deve conter no máximo %s caractéres!"
 
-#: src/Models/User.php:78 src/Models/UserForm.php:62
+#: src/Models/User.php:79
 msgid "O apelido informado já está em uso! Tente outro."
 msgstr "O apelido informado já está em uso! Tente outro."
 
-#: src/Models/User.php:107
+#: src/Models/User.php:108
 msgid ""
 "Vai por mim, isso vai dar ruim! Você não pode excluir o administrador do "
 "sistema."
@@ -2997,24 +2992,24 @@ msgstr ""
 "Vai por mim, isso vai dar ruim! Você não pode excluir o administrador do "
 "sistema."
 
-#: src/Models/User.php:110
+#: src/Models/User.php:111
 msgid "Você não pode excluir um usuário vinculado à uma rede social!"
 msgstr "Você não pode excluir um usuário vinculado à uma rede social!"
 
-#: src/Models/User.php:113
+#: src/Models/User.php:114
 msgid "Você não pode excluir um usuário com dados armazenados!"
 msgstr "Você não pode excluir um usuário com dados armazenados!"
 
-#: src/Models/UserForm.php:68
+#: src/Models/UserForm.php:57
 msgid "O número de matrícula é obrigatório!"
 msgstr "O número de matrícula é obrigatório!"
 
-#: src/Models/UserForm.php:70
+#: src/Models/UserForm.php:59
 #, php-format
 msgid "O número de matrícula deve conter no máximo %s caractéres!"
 msgstr "O número de matrícula deve conter no máximo %s caractéres!"
 
-#: src/Models/UserForm.php:73 src/Models/UserMeta.php:62
+#: src/Models/UserForm.php:62 src/Models/UserMeta.php:62
 msgid "O número de matrícula informado já está em uso! Tente outro."
 msgstr "O número de matrícula informado já está em uso! Tente outro."
 
@@ -3057,6 +3052,9 @@ msgstr "O nome no plural deve conter no máximo %s caractéres!"
 #: src/Models/UserType.php:50
 msgid "Você não pode excluir um tipo de usuário vinculado à um usuário!"
 msgstr "Você não pode excluir um tipo de usuário vinculado à um usuário!"
+
+#~ msgid "Digite um apelido."
+#~ msgstr "Digite um apelido."
 
 #~ msgid "OS"
 #~ msgstr "OS"

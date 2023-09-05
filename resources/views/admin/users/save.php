@@ -38,27 +38,7 @@
                         class="form-control" value="<?= $dbUser ? $dbUser->name : '' ?>" maxlength="50">
                     <div class="invalid-feedback"></div>
                 </div>
-                
-                <div class="form-group col-md-6">
-                    <label for="slug">
-                        <?= _('Apelido') ?>
-                        <span data-toggle="tooltip" data-placement="top" title="<?= _('Digite um apelido.') ?>">
-                            <i class="icofont-question-circle" style="font-size: 1.1rem;"></i>
-                        </span>
-                    </label>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">@</span>
-                        </div>
 
-                        <input type="text" id="slug" name="slug" placeholder="<?= _('Informe um apelido...') ?>"
-                            class="form-control" value="<?= $dbUser ? $dbUser->slug : '' ?>" maxlength="50">
-                        <div class="invalid-feedback"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="email">
                         <?= _('Email') ?>
@@ -70,7 +50,9 @@
                         class="form-control" value="<?= $dbUser ? $dbUser->email : '' ?>" maxlength="100">
                     <div class="invalid-feedback"></div>
                 </div>
+            </div>
 
+            <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="utip_id">
                         <?= _('Nível do Usuário') ?>

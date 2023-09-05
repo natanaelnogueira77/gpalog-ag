@@ -37,13 +37,6 @@ class TemplateController extends Controller
             [
                 'type' => 'item', 
                 'level' => 1, 
-                'icon' => 'metismenu-icon pe-7s-display2', 
-                'url' => $user->isAdmin() ? $this->getRoute('admin.index') : $this->getRoute('user.index'), 
-                'desc' => _('Painel Principal')
-            ],
-            [
-                'type' => 'item', 
-                'level' => 1, 
                 'icon' => 'metismenu-icon pe-7s-server', 
                 'url' => $this->getRoute('user.operations.index'), 
                 'desc' => _('Operações')

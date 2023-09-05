@@ -2,6 +2,7 @@
 
 namespace Src\Models;
 
+use DateTime;
 use GTG\MVC\DB\UserModel;
 use Src\Models\SocialUser;
 use Src\Models\UserMeta;
@@ -85,7 +86,7 @@ class User extends UserModel
 
     public function save(): bool 
     {
-        $this->slug = is_string($this->slug) ? slugify($this->slug) : null;
+        $this->slug = is_string($this->slug) ? slugify($this->slug) : $this->getSlugByName();
         $this->email = strtolower($this->email);
         $this->token = is_string($this->email) ? md5($this->email) : null;
 
@@ -186,5 +187,10 @@ class User extends UserModel
             'value' => $registrationNumber
         ])->fetch(false);
         return $userMeta ? $userMeta->user() : null;
+    }
+    
+    public function getSlugByName(): ?string 
+    {
+        return is_string($this->name) ? slugify($this->name . (new DateTime())->getTimestamp()) : null;
     }
 }

@@ -139,7 +139,29 @@ class Street extends DBModel
             }
 
             if(!$street->isLimitless()) {
-                for($i = $street->start_position; $i <= $street->end_position; $i++) {
+                for($i = $street->start_position + ($street->start_position % 2 == 0 ? 1 : 0); $i <= $street->end_position; $i += 2) {
+                    for($j = 1; $j <= $street->max_height; $j++) {
+                        if($street->max_plts <= $palletsCount[$street->street_number] 
+                            + count(array_filter($availablePlaces, fn($p) => $p['street_number'] == $street->street_number))) {
+                            continue 3;
+                        }
+    
+                        if(!is_null($limit) && $limit == 0) {
+                            return $availablePlaces;
+                        }
+    
+                        if(!isset($pallets[$street->street_number][$i][$j])) {
+                            $availablePlaces[] = [
+                                'street_number' => $street->street_number,
+                                'position' => $i,
+                                'height' => $j
+                            ];
+                            if(!is_null($limit)) $limit--;
+                        }
+                    }
+                }
+
+                for($i = $street->start_position + ($street->start_position % 2 == 1 ? 1 : 0); $i <= $street->end_position; $i += 2) {
                     for($j = 1; $j <= $street->max_height; $j++) {
                         if($street->max_plts <= $palletsCount[$street->street_number] 
                             + count(array_filter($availablePlaces, fn($p) => $p['street_number'] == $street->street_number))) {

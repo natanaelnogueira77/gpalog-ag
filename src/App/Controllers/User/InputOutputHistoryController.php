@@ -138,6 +138,9 @@ class InputOutputHistoryController extends TemplateController
 
     public function getInputPDF(array $data): void 
     {
+        ini_set('memory_limit', '256M');
+        set_time_limit(300);
+
         $this->addData();
 
         if(!$dbConference = (new Conference())->findById(intval($data['conference_id']))) {
@@ -177,6 +180,9 @@ class InputOutputHistoryController extends TemplateController
 
     public function getOutputPDF(array $data): void 
     {
+        ini_set('memory_limit', '256M');
+        set_time_limit(300);
+        
         $this->addData();
 
         if(!$dbConference = (new Conference())->findById(intval($data['conference_id']))) {

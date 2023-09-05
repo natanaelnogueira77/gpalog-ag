@@ -9,13 +9,12 @@ class UserForm extends Model
 {
     public $id = null;
     public $utip_id = 0;
-    public $name = '';
-    public $email = '';
-    public $password = '';
-    public $password_confirm = '';
-    public $update_password = '';
-    public $registration_number = '';
-    public $slug = '';
+    public $name = null;
+    public $email = null;
+    public $password = null;
+    public $password_confirm = null;
+    public $update_password = null;
+    public $registration_number = null;
 
     public function rules(): array 
     {
@@ -45,21 +44,11 @@ class UserForm extends Model
                 ]
             ] : []
         ) + [
-            'slug' => [
-                [self::RULE_REQUIRED, 'message' => _('O apelido é obrigatório!')],
-                [self::RULE_MAX, 'max' => 100, 'message' => sprintf(_('O apelido deve conter no máximo %s caractéres!'), 100)]
-            ],
             self::RULE_RAW => [
                 function ($model) {
                     if(!$model->hasError('email')) {
                         if((new User())->get(['email' => $model->email] + (isset($model->id) ? ['!=' => ['id' => $model->id]] : []))->count()) {
                             $model->addError('email', _('O email informado já está em uso! Tente outro.'));
-                        }
-                    }
-                    
-                    if(!$model->hasError('slug')) {
-                        if((new User())->get(['slug' => $model->slug] + (isset($model->id) ? ['!=' => ['id' => $model->id]] : []))->count()) {
-                            $this->addError('slug', _('O apelido informado já está em uso! Tente outro.'));
                         }
                     }
 
