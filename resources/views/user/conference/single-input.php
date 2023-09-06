@@ -10,50 +10,28 @@
     <thead>
         <th><?= _('ID') ?></th>
         <th><?= _('Placa') ?></th>
-        <th><?= _('Fornecedor') ?></th>
+        <!-- <th><?php //_('Fornecedor') ?></th> -->
         <th><?= _('Data') ?></th>
     </thead>
     <tbody>
         <tr>
             <td><?= $dbConference->id ?></td>
             <td><?= $dbOperation->plate ?></td>
-            <td><?= $dbOperation->provider->name ?></td>
+            <!-- <td><?php //$dbOperation->provider->name ?></td> -->
             <td><?= $dbConference->created_at ?></td>
         </tr>
     </tbody>
 </table>
 <br>
 
-<?php 
-if($dbConferenceInputs && !$conferenceInputForm->hasStarted()): 
-    foreach($dbConferenceInputs as $dbConferenceInput):
-    ?>
-    <table>
-        <tbody>
-            <tr>
-                <td><?= _('Nome do Produto') ?></td>
-                <td><?= $dbConferenceInput->product->name ?></td>
-            </tr>
-            <tr>
-                <td><?= _('Qtde. CX Físico') ?></td>
-                <td><?= $dbConferenceInput->physic_boxes_amount ?></td>
-            </tr>
-            <tr>
-                <td><?= _('Código EAN') ?></td>
-                <td><?= $dbConferenceInput->physic_boxes_amount * $dbConferenceInput->product->ean ?></td>
-            </tr>
-        </tbody>
-    </table>
-    <br>
-    <?php 
-    endforeach;
-endif;    
-?>
-
 <?php if(!$conferenceInputForm->hasStarted()): ?>
-<form action="<?= $router->route('user.conference.singleInput', ['conference_id' => $dbConference->id]) ?>" method="post">
+<form action="<?= $router->route('user.conference.singleInput', ['conference_id' => $dbConference->id]) ?>" 
+    <?= $dbConferenceInputs ? "onSubmit=\"return confirm('" . _('Você tem certeza que deseja finalizar?') . "');\"" : '' ?> 
+    method="post">
     <input type="button" value="<?= _('Incluir Produto') ?>" 
         onclick="window.location.href='<?= $router->route('user.conference.singleInput', ['conference_id' => $dbConference->id, 'include_product' => true]) ?>'">
+    <input type="button" value="<?= _('Ver Produtos') ?>" 
+        onclick="window.location.href='<?= $router->route('user.conference.inputProducts', ['conference_id' => $dbConference->id]) ?>'">
 <?php if($dbConferenceInputs): ?>
     <input type="hidden" name="finish_conference">
     <input type="submit" value="<?= _('Finalizar Conferência') ?>">
@@ -94,14 +72,16 @@ endif;
                 </td>
             </tr>
             <?php if($conferenceInputForm->hasProduct()): ?>
+            <?php if(!$conferenceInputForm->isCompleted()): ?>
             <tr>
                 <td><?= _('Nome do Produto') ?></td>
                 <td><?= $dbProduct->name ?></td>
             </tr>
-            <tr>
-                <td><?= _('Nome do Fornecedor') ?></td>
-                <td><?= $dbProduct->prov_name ?></td>
-            </tr>
+            <?php endif; ?>
+            <!-- <tr>
+                <td><?php //_('Nome do Fornecedor') ?></td>
+                <td><?php //$dbProduct->prov_name ?></td>
+            </tr> -->
             <tr>
                 <td><?= _('Embalagem') ?></td>
                 <td><?= $dbProduct->emb_fb ?></td>

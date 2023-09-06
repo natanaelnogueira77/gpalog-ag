@@ -144,6 +144,7 @@ $app->router->get('/', 'ConferenceController:index', 'user.conference.index');
 $app->router->get('/entrada', 'ConferenceController:input', 'user.conference.input');
 $app->router->get('/entrada/{conference_id}', 'ConferenceController:singleInput', 'user.conference.singleInput');
 $app->router->post('/entrada/{conference_id}', 'ConferenceController:singleInput', 'user.conference.singleInput');
+$app->router->get('/entrada/{conference_id}/produtos', 'ConferenceController:inputProducts', 'user.conference.inputProducts');
 $app->router->get('/saida', 'ConferenceController:output', 'user.conference.output');
 $app->router->post('/saida', 'ConferenceController:output', 'user.conference.output');
 

@@ -177,6 +177,36 @@ class ConferenceController extends TemplateController
         ]);
     }
 
+    public function inputProducts(array $data): void 
+    {
+        $data = array_merge($data, filter_input_array(INPUT_GET, FILTER_DEFAULT));
+        $this->addData();
+
+        if(!$dbConference = (new Conference())->findById(intval($data['conference_id']))) {
+            $this->session->setFlash('error', _('A conferência não foi encontrada!'));
+            $this->redirect('user.conference.index');
+        } elseif($dbConference->isFinished()) {
+            $this->session->setFlash('error', _('Esta conferência já foi finalizada!'));
+            $this->redirect('user.conference.index');
+        }
+
+        if($dbOperation = $dbConference->operation()) {
+            $dbOperation->provider();
+        }
+
+        if($dbConferenceInputs = $dbConference->conferenceInputs()) {
+            $dbConferenceInputs = ConferenceInput::withProduct($dbConferenceInputs);
+        }
+
+        $dbConference->created_at = $this->getDateTime($dbConference->created_at)->format('d/m/Y');
+
+        $this->render('user/conference/input-products', [
+            'dbConference' => $dbConference,
+            'dbOperation' => $dbOperation,
+            'dbConferenceInputs' => $dbConferenceInputs
+        ]);
+    }
+
     public function output(array $data): void 
     {
         $data = array_merge($data, filter_input_array(INPUT_GET, FILTER_DEFAULT));

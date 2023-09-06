@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2023-09-05 13:59-0300\n"
-"PO-Revision-Date: 2023-09-05 13:59-0300\n"
+"POT-Creation-Date: 2023-09-06 15:08-0300\n"
+"PO-Revision-Date: 2023-09-06 15:09-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt_BR\n"
@@ -227,7 +227,7 @@ msgid "Escolha o nível do usuário."
 msgstr "Escolha o nível do usuário."
 
 #: resources/views/admin/users/save.php:64
-#: resources/views/user/conference/single-input.php:149
+#: resources/views/user/conference/single-input.php:129
 #: resources/views/user/operations/components/save-modal.php:26
 msgid "Selecionar..."
 msgstr "Selecionar..."
@@ -310,9 +310,10 @@ msgstr "Atualizar Usuário"
 #: resources/views/admin/users/save.php:146
 #: resources/views/components/expired-session.php:63
 #: resources/views/error/index.php:11
+#: resources/views/user/conference/input-products.php:27
 #: resources/views/user/conference/input.php:10
 #: resources/views/user/conference/output.php:23
-#: resources/views/user/conference/single-input.php:76
+#: resources/views/user/conference/single-input.php:54
 #: resources/views/user/edit.php:127
 #: resources/views/user/input-output-history/components/export-modal.php:21
 #: resources/views/user/operations/components/save-modal.php:166
@@ -374,7 +375,7 @@ msgid "Redefinir Senha"
 msgstr "Redefinir Senha"
 
 #: resources/views/auth/reset-password.php:35
-#: resources/views/user/conference/single-input.php:70
+#: resources/views/user/conference/single-input.php:48
 #: resources/views/web/contact.php:91
 msgid "Enviar"
 msgstr "Enviar"
@@ -592,18 +593,28 @@ msgstr "Saída"
 msgid "Sair"
 msgstr "Sair"
 
+#: resources/views/user/conference/input-products.php:3
 #: resources/views/user/conference/input.php:3
 #: resources/views/user/conference/single-input.php:3
 #, php-format
 msgid "Entrada | %s"
 msgstr "Entrada | %s"
 
+#: resources/views/user/conference/input-products.php:7
+#: resources/views/user/products/index.php:20
+#: src/App/Controllers/Admin/TemplateController.php:80
+#: src/App/Controllers/User/TemplateController.php:56
+msgid "Produtos"
+msgstr "Produtos"
+
+#: resources/views/user/conference/input-products.php:11
 #: resources/views/user/conference/input.php:16
 #: resources/views/user/conference/single-input.php:11
 #: src/App/Controllers/Admin/UsersController.php:213
 msgid "ID"
 msgstr "ID"
 
+#: resources/views/user/conference/input-products.php:12
 #: resources/views/user/conference/input.php:17
 #: resources/views/user/conference/single-input.php:12
 #: resources/views/user/operations/components/save-modal.php:150
@@ -615,8 +626,36 @@ msgstr "ID"
 msgid "Placa"
 msgstr "Placa"
 
+#: resources/views/user/conference/input-products.php:14
+#: resources/views/user/conference/input.php:19
+#: resources/views/user/conference/single-input.php:14
+msgid "Data"
+msgstr "Data"
+
+#: resources/views/user/conference/input-products.php:34
+#: resources/views/user/conference/output.php:66
+#: resources/views/user/conference/single-input.php:77
+#: resources/views/user/input-output-history/components/input-pdf.php:112
+#: resources/views/user/input-output-history/components/output-pdf.php:132
+#: resources/views/user/outputs/components/pdf.php:90
+#: resources/views/user/products/components/save-modal.php:30
+msgid "Nome do Produto"
+msgstr "Nome do Produto"
+
+#: resources/views/user/conference/input-products.php:38
+#: resources/views/user/conference/single-input.php:90
+msgid "Qtde. CX Físico"
+msgstr "Qtde. CX Físico"
+
+#: resources/views/user/conference/input-products.php:42
+#: resources/views/user/outputs/index.php:68
+#: src/App/Controllers/User/InputOutputHistoryController.php:310
+#: src/App/Controllers/User/OutputsController.php:193
+#: src/App/Controllers/User/ProductsController.php:262
+msgid "Código EAN"
+msgstr "Código EAN"
+
 #: resources/views/user/conference/input.php:18
-#: resources/views/user/conference/single-input.php:13
 #: resources/views/user/operations/components/save-modal.php:18
 #: src/App/Controllers/User/InputOutputHistoryController.php:118
 #: src/App/Controllers/User/InputOutputHistoryController.php:311
@@ -626,11 +665,6 @@ msgstr "Placa"
 #: src/App/Controllers/User/ProductsController.php:148
 msgid "Fornecedor"
 msgstr "Fornecedor"
-
-#: resources/views/user/conference/input.php:19
-#: resources/views/user/conference/single-input.php:14
-msgid "Data"
-msgstr "Data"
 
 #: resources/views/user/conference/input.php:20
 msgid "Ação"
@@ -646,7 +680,7 @@ msgid "Saída | %s"
 msgstr "Saída | %s"
 
 #: resources/views/user/conference/output.php:15
-#: resources/views/user/conference/single-input.php:68
+#: resources/views/user/conference/single-input.php:46
 #: resources/views/user/outputs/index.php:49
 msgid "Buscar"
 msgstr "Buscar"
@@ -682,19 +716,9 @@ msgid "Número do Pallet"
 msgstr "Número do Pallet"
 
 #: resources/views/user/conference/output.php:62
-#: resources/views/user/conference/single-input.php:82
+#: resources/views/user/conference/single-input.php:60
 msgid "Código de Barras"
 msgstr "Código de Barras"
-
-#: resources/views/user/conference/output.php:66
-#: resources/views/user/conference/single-input.php:34
-#: resources/views/user/conference/single-input.php:98
-#: resources/views/user/input-output-history/components/input-pdf.php:112
-#: resources/views/user/input-output-history/components/output-pdf.php:132
-#: resources/views/user/outputs/components/pdf.php:90
-#: resources/views/user/products/components/save-modal.php:30
-msgid "Nome do Produto"
-msgstr "Nome do Produto"
 
 #: resources/views/user/conference/output.php:70
 #: resources/views/user/input-output-history/components/output-pdf.php:136
@@ -710,38 +734,27 @@ msgstr "Placa de Carregamento"
 msgid "Doca"
 msgstr "Doca"
 
-#: resources/views/user/conference/single-input.php:38
-#: resources/views/user/conference/single-input.php:110
-msgid "Qtde. CX Físico"
-msgstr "Qtde. CX Físico"
+#: resources/views/user/conference/single-input.php:29
+msgid "Você tem certeza que deseja finalizar?"
+msgstr "Você tem certeza que deseja finalizar?"
 
-#: resources/views/user/conference/single-input.php:42
-#: resources/views/user/outputs/index.php:68
-#: src/App/Controllers/User/InputOutputHistoryController.php:310
-#: src/App/Controllers/User/OutputsController.php:193
-#: src/App/Controllers/User/ProductsController.php:262
-msgid "Código EAN"
-msgstr "Código EAN"
-
-#: resources/views/user/conference/single-input.php:55
+#: resources/views/user/conference/single-input.php:31
 msgid "Incluir Produto"
 msgstr "Incluir Produto"
 
-#: resources/views/user/conference/single-input.php:59
+#: resources/views/user/conference/single-input.php:33
+msgid "Ver Produtos"
+msgstr "Ver Produtos"
+
+#: resources/views/user/conference/single-input.php:37
 msgid "Finalizar Conferência"
 msgstr "Finalizar Conferência"
 
-#: resources/views/user/conference/single-input.php:73
+#: resources/views/user/conference/single-input.php:51
 msgid "Confirmar"
 msgstr "Confirmar"
 
-#: resources/views/user/conference/single-input.php:102
-#: resources/views/user/products/components/save-modal.php:57
-#: src/App/Controllers/User/ProductsController.php:259
-msgid "Nome do Fornecedor"
-msgstr "Nome do Fornecedor"
-
-#: resources/views/user/conference/single-input.php:106
+#: resources/views/user/conference/single-input.php:86
 #: resources/views/user/input-output-history/components/input-pdf.php:116
 #: resources/views/user/input-output-history/components/output-pdf.php:108
 #: src/App/Controllers/User/InputOutputHistoryController.php:308
@@ -750,21 +763,21 @@ msgstr "Nome do Fornecedor"
 msgid "Embalagem"
 msgstr "Embalagem"
 
-#: resources/views/user/conference/single-input.php:126
+#: resources/views/user/conference/single-input.php:106
 msgid "Qtde. Unidade"
 msgstr "Qtde. Unidade"
 
-#: resources/views/user/conference/single-input.php:130
+#: resources/views/user/conference/single-input.php:110
 msgid "Qtde. Plts Fechados"
 msgstr "Qtde. Plts Fechados"
 
-#: resources/views/user/conference/single-input.php:145
+#: resources/views/user/conference/single-input.php:125
 #: resources/views/user/outputs/components/pdf.php:92
 #: resources/views/user/outputs/index.php:72
 msgid "Serviço"
 msgstr "Serviço"
 
-#: resources/views/user/conference/single-input.php:170
+#: resources/views/user/conference/single-input.php:150
 msgid "Altura Plt"
 msgstr "Altura Plt"
 
@@ -1306,6 +1319,11 @@ msgstr "Digite o ID do fornecedor referente ao produto."
 msgid "Informe o ID do fornecedor..."
 msgstr "Informe o ID do fornecedor..."
 
+#: resources/views/user/products/components/save-modal.php:57
+#: src/App/Controllers/User/ProductsController.php:259
+msgid "Nome do Fornecedor"
+msgstr "Nome do Fornecedor"
+
 #: resources/views/user/products/components/save-modal.php:59
 msgid "Digite o nome do fornecedor referente ao produto."
 msgstr "Digite o nome do fornecedor referente ao produto."
@@ -1437,12 +1455,6 @@ msgstr "Lista de Produtos"
 #: resources/views/user/products/index.php:10
 msgid "Segue abaixo a lista de produtos do sistema"
 msgstr "Segue abaixo a lista de produtos do sistema"
-
-#: resources/views/user/products/index.php:20
-#: src/App/Controllers/Admin/TemplateController.php:80
-#: src/App/Controllers/User/TemplateController.php:56
-msgid "Produtos"
-msgstr "Produtos"
 
 #: resources/views/user/products/index.php:27
 #: resources/views/user/products/index.php:127
@@ -1761,9 +1773,9 @@ msgstr "Lamentamos, mas ocorreu algum erro na requisição!"
 #: src/App/Controllers/Auth/ResetPasswordController.php:69
 #: src/App/Controllers/User/ConferenceController.php:90
 #: src/App/Controllers/User/ConferenceController.php:98
-#: src/App/Controllers/User/ConferenceController.php:192
-#: src/App/Controllers/User/ConferenceController.php:204
-#: src/App/Controllers/User/ConferenceController.php:215
+#: src/App/Controllers/User/ConferenceController.php:222
+#: src/App/Controllers/User/ConferenceController.php:234
+#: src/App/Controllers/User/ConferenceController.php:245
 #: src/App/Controllers/User/EditController.php:22
 #: src/App/Controllers/User/EditController.php:36
 #: src/App/Controllers/User/OperationsController.php:42
@@ -1980,18 +1992,20 @@ msgid "O arquivo foi excluído com sucesso."
 msgstr "O arquivo foi excluído com sucesso."
 
 #: src/App/Controllers/User/ConferenceController.php:60
+#: src/App/Controllers/User/ConferenceController.php:186
 #: src/App/Controllers/User/InputOutputHistoryController.php:147
 #: src/App/Controllers/User/InputOutputHistoryController.php:189
 msgid "A conferência não foi encontrada!"
 msgstr "A conferência não foi encontrada!"
 
 #: src/App/Controllers/User/ConferenceController.php:63
+#: src/App/Controllers/User/ConferenceController.php:189
 msgid "Esta conferência já foi finalizada!"
 msgstr "Esta conferência já foi finalizada!"
 
 #: src/App/Controllers/User/ConferenceController.php:116
 #: src/App/Controllers/User/ConferenceController.php:141
-#: src/App/Controllers/User/ConferenceController.php:232
+#: src/App/Controllers/User/ConferenceController.php:262
 msgid "Lamentamos, mas ocorreu um erro na requisição!"
 msgstr "Lamentamos, mas ocorreu um erro na requisição!"
 
@@ -2011,7 +2025,7 @@ msgstr "Não há pallets para serem armazenados!"
 msgid "A conferência de ID %s foi finalizada com sucesso!"
 msgstr "A conferência de ID %s foi finalizada com sucesso!"
 
-#: src/App/Controllers/User/ConferenceController.php:234
+#: src/App/Controllers/User/ConferenceController.php:264
 msgid "O pallet foi expedido com sucesso!"
 msgstr "O pallet foi expedido com sucesso!"
 
