@@ -6,6 +6,7 @@ use GTG\MVC\Components\ExcelGenerator;
 use Src\App\Controllers\User\TemplateController;
 use Src\Models\Pallet;
 use Src\Models\Street;
+use Src\Utils\ErrorMessages;
 
 class StorageController extends TemplateController 
 {
@@ -76,9 +77,9 @@ class StorageController extends TemplateController
             $excelData[] = ['', '', '', '', '', '', '', $free, $busy, $total];
         }
 
-        $excel = (new ExcelGenerator($excelData, _('armazenagem')));
+        $excel = (new ExcelGenerator($excelData, _('Armazenagem')));
         if(!$excel->render()) {
-            $this->session->setFlash('error', _('Lamentamos, mas o excel não pôde ser gerado!'));
+            $this->session->setFlash('error', ErrorMessages::excel());
             $this->redirect('user.storage.index');
         }
 

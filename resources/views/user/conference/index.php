@@ -1,6 +1,7 @@
 <?php 
     $this->layout("themes/black-screen/_theme", [
-        'title' => sprintf(_('Operação | %s'), $appData['app_name'])
+        'title' => sprintf(_('Operação | %s'), $appData['app_name']),
+        'message' => $message
     ]);
 ?>
 

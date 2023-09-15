@@ -26,10 +26,10 @@
                     <div class="col-xl-2 col-lg-3 col-md-4 col-sm-5">
                         <div class="single-footer-caption mb-50">
                             <div class="footer-tittle">
-                                <h4>Menu</h4>
+                                <h4><?= _('Menu') ?></h4>
                                 <ul>
-                                    <?php foreach($items as $item): ?>   
-                                    <li><a href="<?= $item['url'] ?>"><?= $item['desc'] ?></a></li>
+                                    <?php foreach($items as $menuItem): ?>   
+                                    <li><a href="<?= $menuItem->getURL() ?>"><?= $menuItem->getText() ?></a></li>
                                     <?php endforeach ?>
                                 </ul>
                             </div>
@@ -45,7 +45,8 @@
                     <div class="row d-flex align-items-center">
                         <div class="col-xl-12 ">
                             <div class="footer-copy-right text-center text-white">
-                                Copyright &copy;<script>document.write(new Date().getFullYear());</script> Todos os direitos reservados.
+                                Copyright &copy;<script>document.write(new Date().getFullYear());</script> 
+                                <?= _('Todos os direitos reservados.') ?>
                             </div>
                         </div>
                     </div>
@@ -56,5 +57,5 @@
     </div>
 </footer> 
 <div id="back-top">
-    <a title="Subir" href="#"> <i class="fas fa-level-up-alt"></i></a>
+    <a title="<?= _('Subir') ?>" href="#"> <i class="fas fa-level-up-alt"></i></a>
 </div>

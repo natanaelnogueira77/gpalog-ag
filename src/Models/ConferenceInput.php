@@ -14,10 +14,10 @@ class ConferenceInput extends DBModel
     const ST_STORAGE = 3;
     const ST_IMPORTED = 4;
 
-    public $conference;
-    public $product;
-    public $releaseUser;
-    public $storeUser;
+    public ?Conference $conference = null;
+    public ?Product $product = null;
+    public ?User $releaseUser = null;
+    public ?User $storeUser = null;
 
     public static function tableName(): string 
     {
@@ -31,8 +31,18 @@ class ConferenceInput extends DBModel
 
     public static function attributes(): array 
     {
-        return ['con_id', 'usu_id', 'pro_id', 'package', 'physic_boxes_amount', 'closed_plts_amount', 'units_amount', 
-            'service_type', 'pallet_height', 'barcode'];
+        return [
+            'con_id', 
+            'usu_id', 
+            'pro_id', 
+            'package', 
+            'physic_boxes_amount', 
+            'closed_plts_amount', 
+            'units_amount', 
+            'service_type', 
+            'pallet_height', 
+            'barcode'
+        ];
     }
 
     public function rules(): array 

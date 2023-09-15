@@ -1,6 +1,7 @@
 <?php 
     $this->layout("themes/black-screen/_theme", [
-        'title' => sprintf(_('Entrada | %s'), $appData['app_name'])
+        'title' => sprintf(_('Entrada | %s'), $appData['app_name']),
+        'message' => $message
     ]);
 ?>
 
@@ -14,6 +15,7 @@
 <table>
     <thead>
         <th><?= _('ID') ?></th>
+        <th><?= _('OC') ?></th>
         <th><?= _('Placa') ?></th>
         <th><?= _('Fornecedor') ?></th>
         <th><?= _('Data') ?></th>
@@ -26,6 +28,7 @@
             ?>
             <tr>
                 <td><?= $dbConference->id ?></td>
+                <td><?= $dbConference->operation->order_number ?></td>
                 <td><?= $dbConference->plate ?></td>
                 <td><?= $dbConference->provider_name ?></td>
                 <td><?= $dbConference->created_at ?></td>

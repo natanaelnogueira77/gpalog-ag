@@ -5,6 +5,7 @@ namespace Src\App\Controllers\User;
 use GTG\MVC\Components\ExcelGenerator;
 use Src\App\Controllers\User\TemplateController;
 use Src\Models\Provider;
+use Src\Utils\ErrorMessages;
 
 class ProvidersController extends TemplateController 
 {
@@ -34,8 +35,7 @@ class ProvidersController extends TemplateController
     {
         $dbProvider = new Provider();
         if(!$dbProvider->loadData(['usu_id' => $this->session->getAuth()->id] + $data)->save()) {
-            $this->setMessage('error', _('Erros de validação! Verifique os campos.'))
-                ->setErrors($dbProvider->getFirstErrors())->APIResponse([], 422);
+            $this->setMessage('error', ErrorMessages::form())->setErrors($dbProvider->getFirstErrors())->APIResponse([], 422);
             return;
         }
 
@@ -51,8 +51,7 @@ class ProvidersController extends TemplateController
         }
 
         if(!$dbProvider->loadData($data)->save()) {
-            $this->setMessage('error', _('Erros de validação! Verifique os campos.'))
-                ->setErrors($dbProvider->getFirstErrors())->APIResponse([], 422);
+            $this->setMessage('error', ErrorMessages::form())->setErrors($dbProvider->getFirstErrors())->APIResponse([], 422);
             return;
         }
 
@@ -196,7 +195,7 @@ class ProvidersController extends TemplateController
                 }
 
                 if(!$objects = Provider::insertMany($dbProviders)) {
-                    $this->session->setFlash('error', _('Lamentamos, mas ocorreu algum erro na requisição!'));
+                    $this->session->setFlash('error', ErrorMessages::requisition());
                     $this->redirect('user.providers.index');
                 } elseif($errors = Provider::getErrorsFromMany($objects)) {
                     $message = '';
@@ -229,9 +228,9 @@ class ProvidersController extends TemplateController
             }
         }
 
-        $excel = (new ExcelGenerator($excelData, _('fornecedores')));
+        $excel = (new ExcelGenerator($excelData, _('Fornecedores')));
         if(!$excel->render()) {
-            $this->session->setFlash('error', _('Lamentamos, mas o excel não pôde ser gerado!'));
+            $this->session->setFlash('error', ErrorMessages::excel());
             $this->redirect('user.providers.index');
         }
 

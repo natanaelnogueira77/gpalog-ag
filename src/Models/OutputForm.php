@@ -7,7 +7,7 @@ use Src\Models\Operation;
 
 class OutputForm extends Model 
 {
-    public $order_number = null;
+    public ?string $order_number = null;
 
     public function rules(): array 
     {

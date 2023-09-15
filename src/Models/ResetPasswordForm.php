@@ -7,8 +7,8 @@ use Src\Models\User;
 
 class ResetPasswordForm extends Model 
 {
-    public $password = '';
-    public $password_confirm = '';
+    public ?string $password = null;
+    public ?string $password_confirm = null;
 
     public function rules(): array 
     {

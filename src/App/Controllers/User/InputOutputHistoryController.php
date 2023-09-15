@@ -12,6 +12,7 @@ use Src\Models\Pallet;
 use Src\Models\Product;
 use Src\Models\Provider;
 use Src\Models\User;
+use Src\Utils\ErrorMessages;
 
 class InputOutputHistoryController extends TemplateController 
 {
@@ -155,7 +156,7 @@ class InputOutputHistoryController extends TemplateController
             $dbPallets = Pallet::withProduct($dbPallets);
         }
 
-        $filename = sprintf(_('etiqueta-de-entrada-%s'), $dbConference->id) . '.pdf';
+        $filename = sprintf(_('Etiqueta de Entrada - %s'), $dbConference->id) . '.pdf';
 
         header('Access-Control-Allow-Origin: *');
         header('Content-Type: application/pdf');
@@ -165,12 +166,12 @@ class InputOutputHistoryController extends TemplateController
         $html = $this->getView('user/input-output-history/components/input-pdf', [
             'dbPallets' => $dbPallets,
             'dbOperation' => $dbConference->operation(),
-            'logo' => url((new Config())->getMeta('logo'))
+            'logo' => url((new Config())->getMeta(Config::KEY_LOGO))
         ]);
 
         $PDFRender = new PDFRender();
         if(!$PDFRender->loadHtml($html)->setPaper('A4', 'portrait')->render()) {
-            $this->session->setFlash('error', _('Lamentamos, mas o PDF não pôde ser gerado!'));
+            $this->session->setFlash('error', ErrorMessages::pdf());
             $this->redirect('user.conference.index');
         }
 
@@ -197,7 +198,7 @@ class InputOutputHistoryController extends TemplateController
             $dbPallets = Pallet::withProduct($dbPallets);
         }
 
-        $filename = sprintf(_('etiqueta-de-saida-%s'), $dbConference->code) . '.pdf';
+        $filename = sprintf(_('Etiqueta de Saída - %s'), $dbConference->code) . '.pdf';
 
         header('Access-Control-Allow-Origin: *');
         header('Content-Type: application/pdf');
@@ -207,12 +208,12 @@ class InputOutputHistoryController extends TemplateController
         $html = $this->getView('user/input-output-history/components/output-pdf', [
             'dbPallets' => $dbPallets,
             'dbOperation' => $dbConference->operation(),
-            'logo' => url((new Config())->getMeta('logo'))
+            'logo' => url((new Config())->getMeta(Config::KEY_LOGO))
         ]);
 
         $PDFRender = new PDFRender();
         if(!$PDFRender->loadHtml($html)->setPaper('A4', 'portrait')->render()) {
-            $this->session->setFlash('error', _('Lamentamos, mas o PDF não pôde ser gerado!'));
+            $this->session->setFlash('error', ErrorMessages::pdf());
             $this->redirect('user.conference.index');
         }
 
@@ -235,7 +236,7 @@ class InputOutputHistoryController extends TemplateController
         $tnUser = User::tableName();
 
         if($data['order_number']) {
-            $filters["{$tnOperation}.order_number"] = $data['order_number'];
+            $filters["t2.order_number"] = $data['order_number'];
         }
 
         $dbConferences = (new Conference())->join("{$tnOperation} t2", [
@@ -324,16 +325,16 @@ class InputOutputHistoryController extends TemplateController
                     _('Hora de Saída') => $dbConference->p_release_date 
                         ? $this->getDateTime($dbConference->p_release_date)->format('H:i:s') 
                         : '--:--:--',
-                    _('Placa de Carregamento') => $dbConference->load_plate ?? '---',
-                    _('Doca') => $dbConference->dock ?? '---',
+                    _('Placa de Carregamento') => $dbConference->p_load_plate ?? '---',
+                    _('Doca') => $dbConference->p_dock ?? '---',
                     _('Status') => $dbConference->p_p_status ? Pallet::getStates()[$dbConference->p_p_status] : '---'
                 ];
             }
         }
 
-        $excel = (new ExcelGenerator($excelData, _('historico-conferencias')));
+        $excel = (new ExcelGenerator($excelData, _('Histórico de Conferências')));
         if(!$excel->render()) {
-            $this->session->setFlash('error', _('Lamentamos, mas o excel não pôde ser gerado!'));
+            $this->session->setFlash('error', ErrorMessages::excel());
             $this->redirect('user.inputOutputHistory.index');
         }
 

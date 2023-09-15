@@ -6,6 +6,7 @@ use DateTime;
 use GTG\MVC\DB\DBModel;
 use Src\Components\Barcode;
 use Src\Models\Conference;
+use Src\Models\Output;
 use Src\Models\Pallet;
 use Src\Models\Product;
 use Src\Models\Street;
@@ -22,11 +23,11 @@ class Pallet extends DBModel
     const PS_SEPARATED = 2;
     const PS_RELEASED = 3;
 
-    public $conference;
-    public $output;
-    public $product;
-    public $releaseUser;
-    public $storeUser;
+    public ?Conference $conference = null;
+    public ?Output $output = null;
+    public ?Product $product = null;
+    public ?User $releaseUser = null;
+    public ?User $storeUser = null;
 
     public static function tableName(): string 
     {
@@ -40,8 +41,26 @@ class Pallet extends DBModel
 
     public static function attributes(): array 
     {
-        return ['con_id', 'pro_id', 'store_usu_id', 'package', 'physic_boxes_amount', 'units_amount', 'service_type', 'pallet_height', 
-            'street_number', 'position', 'height', 'code', 'sai_id', 'release_usu_id', 'release_date', 'load_plate', 'dock', 'p_status'];
+        return [
+            'con_id', 
+            'pro_id', 
+            'store_usu_id', 
+            'package', 
+            'physic_boxes_amount', 
+            'units_amount', 
+            'service_type', 
+            'pallet_height', 
+            'street_number', 
+            'position', 
+            'height', 
+            'code', 
+            'sai_id', 
+            'release_usu_id', 
+            'release_date', 
+            'load_plate', 
+            'dock', 
+            'p_status'
+        ];
     }
 
     public function rules(): array 

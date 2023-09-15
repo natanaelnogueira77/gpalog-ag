@@ -15,12 +15,12 @@ class Conference extends DBModel
     const CS_STARTED = 2;
     const CS_FINISHED = 3;
 
-    public $ADMUser;
-    public $conferenceInputs = [];
-    public $endUser;
-    public $operation;
-    public $pallets = [];
-    public $startUser;
+    public ?User $ADMUser = null;
+    public ?array $conferenceInputs = null;
+    public ?User $endUser = null;
+    public ?Operation $operation = null;
+    public ?array $pallets = null;
+    public ?User $startUser = null;
 
     public static function tableName(): string 
     {
@@ -34,7 +34,15 @@ class Conference extends DBModel
 
     public static function attributes(): array 
     {
-        return ['ope_id', 'adm_usu_id', 'start_usu_id', 'date_start', 'end_usu_id', 'date_end', 'c_status'];
+        return [
+            'ope_id', 
+            'adm_usu_id', 
+            'start_usu_id', 
+            'date_start', 
+            'end_usu_id', 
+            'date_end', 
+            'c_status'
+        ];
     }
 
     public function rules(): array 

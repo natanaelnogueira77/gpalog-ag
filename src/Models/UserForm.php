@@ -7,14 +7,14 @@ use Src\Models\User;
 
 class UserForm extends Model 
 {
-    public $id = null;
-    public $utip_id = 0;
-    public $name = null;
-    public $email = null;
-    public $password = null;
-    public $password_confirm = null;
-    public $update_password = null;
-    public $registration_number = null;
+    public ?int $id = null;
+    public ?int $utip_id = null;
+    public ?string $name = null;
+    public ?string $email = null;
+    public ?string $password = null;
+    public ?string $password_confirm = null;
+    public bool $update_password = false;
+    public ?string $registration_number = null;
 
     public function rules(): array 
     {

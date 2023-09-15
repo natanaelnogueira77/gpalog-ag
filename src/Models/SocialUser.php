@@ -7,7 +7,7 @@ use Src\Models\User;
 
 class SocialUser extends DBModel 
 {
-    public $user;
+    public ?User $user = null;
 
     public static function tableName(): string 
     {
@@ -21,7 +21,12 @@ class SocialUser extends DBModel
 
     public static function attributes(): array 
     {
-        return ['usu_id', 'social_id', 'email', 'social'];
+        return [
+            'usu_id', 
+            'social_id', 
+            'email', 
+            'social'
+        ];
     }
 
     public function rules(): array 
@@ -42,14 +47,14 @@ class SocialUser extends DBModel
                 [self::RULE_MAX, 'max' => 100, 'message' => sprintf(_('O email precisa ter no máximo %s caractéres!'), 100)]
             ],
             self::RULE_RAW => [
-                function ($object) {
-                    if(!$object->hasError('social') && !in_array($object->social, self::getSocialNames())) {
-                        $object->addError('social', _('O nome da rede social é inválido!'));
+                function ($model) {
+                    if(!$model->hasError('social') && !in_array($model->social, self::getSocialNames())) {
+                        $model->addError('social', _('O nome da rede social é inválido!'));
                     }
             
-                    if(!$object->hasError('email')) {
-                        if((new self())->get(['email' => $object->email] + (isset($object->id) ? ['!=' => ['id' => $object->id]] : []))->count()) {
-                            $object->addError('email', _('O email informado já está em uso! Tente outro.'));
+                    if(!$model->hasError('email')) {
+                        if((new self())->get(['email' => $model->email] + (isset($model->id) ? ['!=' => ['id' => $model->id]] : []))->count()) {
+                            $model->addError('email', _('O email informado já está em uso! Tente outro.'));
                         }
                     }
                 }

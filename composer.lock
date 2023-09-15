@@ -224,16 +224,16 @@
         },
         {
             "name": "gtg/php-mvc-core",
-            "version": "v1.0.8",
+            "version": "v1.0.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/natanaelnogueira77/gtg-mvc-core.git",
-                "reference": "43741a2705dc8e948b776b27737a627ecf624f6e"
+                "reference": "1fd7ab52011c48e55c48ccadb765de410700df19"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/natanaelnogueira77/gtg-mvc-core/zipball/43741a2705dc8e948b776b27737a627ecf624f6e",
-                "reference": "43741a2705dc8e948b776b27737a627ecf624f6e",
+                "url": "https://api.github.com/repos/natanaelnogueira77/gtg-mvc-core/zipball/1fd7ab52011c48e55c48ccadb765de410700df19",
+                "reference": "1fd7ab52011c48e55c48ccadb765de410700df19",
                 "shasum": ""
             },
             "require": {
@@ -263,9 +263,9 @@
             ],
             "support": {
                 "issues": "https://github.com/natanaelnogueira77/gtg-mvc-core/issues",
-                "source": "https://github.com/natanaelnogueira77/gtg-mvc-core/tree/v1.0.8"
+                "source": "https://github.com/natanaelnogueira77/gtg-mvc-core/tree/v1.0.9"
             },
-            "time": "2023-07-18T13:35:51+00:00"
+            "time": "2023-09-12T23:26:18+00:00"
         },
         {
             "name": "league/plates",

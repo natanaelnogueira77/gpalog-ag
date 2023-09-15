@@ -7,6 +7,7 @@ use Src\App\Controllers\User\TemplateController;
 use Src\Models\Conference;
 use Src\Models\Provider;
 use Src\Models\Operation;
+use Src\Utils\ErrorMessages;
 
 class OperationsController extends TemplateController 
 {
@@ -39,8 +40,7 @@ class OperationsController extends TemplateController
     {
         $dbOperation = new Operation();
         if(!$dbOperation->loadData(['usu_id' => $this->session->getAuth()->id] + $data)->save()) {
-            $this->setMessage('error', _('Erros de validação! Verifique os campos.'))
-                ->setErrors($dbOperation->getFirstErrors())->APIResponse([], 422);
+            $this->setMessage('error', ErrorMessages::form())->setErrors($dbOperation->getFirstErrors())->APIResponse([], 422);
             return;
         }
 
@@ -56,8 +56,7 @@ class OperationsController extends TemplateController
         }
 
         if(!$dbOperation->loadData($data)->save()) {
-            $this->setMessage('error', _('Erros de validação! Verifique os campos.'))
-                ->setErrors($dbOperation->getFirstErrors())->APIResponse([], 422);
+            $this->setMessage('error', ErrorMessages::form())->setErrors($dbOperation->getFirstErrors())->APIResponse([], 422);
             return;
         }
 
@@ -194,7 +193,7 @@ class OperationsController extends TemplateController
             'adm_usu_id' => $this->session->getAuth()->id
         ]);
         if(!$dbConference->setAsWaiting()->save()) {
-            $this->setMessage('error', _('Lamentamos, mas ocorreu algum erro na requisição!'))->APIResponse([], 500);
+            $this->setMessage('error', ErrorMessages::requisition())->APIResponse([], 500);
             return;
         }
 
@@ -236,9 +235,9 @@ class OperationsController extends TemplateController
             }
         }
 
-        $excel = (new ExcelGenerator($excelData, _('operacoes')));
+        $excel = (new ExcelGenerator($excelData, _('Operações')));
         if(!$excel->render()) {
-            $this->session->setFlash('error', _('Lamentamos, mas o excel não pôde ser gerado!'));
+            $this->session->setFlash('error', ErrorMessages::excel());
             $this->redirect('user.visits.index');
         }
 

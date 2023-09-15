@@ -13,16 +13,16 @@ class ConferenceOutputForm extends Model
     const STEP_COMPLETION = 3;
     const STEP_EXPEDITION = 4;
 
-    public $service_order = null;
-    public $pallet_number = null;
-    public $load_plate = null;
-    public $dock = null;
-    public $step = 0;
-    private $operation = null;
-    private $pallet = null;
-    private $has_service_order = false;
-    private $has_pallet = false;
-    private $has_completion = false;
+    public ?string $service_order = null;
+    public ?string $pallet_number = null;
+    public ?string $load_plate = null;
+    public ?string $dock = null;
+    public int $step = 0;
+    private ?Operation $operation = null;
+    private ?Pallet $pallet = null;
+    private bool $has_service_order = false;
+    private bool $has_pallet = false;
+    private bool $has_completion = false;
 
     public function rules(): array 
     {

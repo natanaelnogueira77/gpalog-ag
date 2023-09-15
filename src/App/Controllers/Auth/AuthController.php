@@ -12,11 +12,19 @@ class AuthController extends Controller
 {
     public function index(array $data): void 
     {
-        $configMetas = (new Config())->getGroupedMetas(['logo', 'logo_icon', 'login_img']);
+        $configMetas = (new Config())->getGroupedMetas([
+            Config::KEY_LOGO, 
+            Config::KEY_LOGO_ICON, 
+            Config::KEY_LOGIN_IMG
+        ]);
 
         $loginForm = new LoginForm();
         if($this->request->isPost()) {
-            if($user = $loginForm->loadData($data)->login()) {
+            $loginForm->loadData([
+                'email' => $data['email'],
+                'password' => $data['password']
+            ]);
+            if($user = $loginForm->login()) {
                 $this->session->setAuth($user);
                 $this->session->setFlash('success', sprintf(_("Seja bem-vindo(a), %s!"), $user->name));
                 if(isset($data['redirect'])) {
@@ -24,10 +32,6 @@ class AuthController extends Controller
                 } else {
                     if($user->isAdmin()) {
                         $this->redirect('admin.index');
-                    } elseif($user->isADMUser()) {
-                        $this->redirect('user.operations.index');
-                    } elseif($user->isOperator()) {
-                        $this->redirect('user.conference.index');
                     } else {
                         $this->redirect('user.index');
                     }
@@ -38,9 +42,9 @@ class AuthController extends Controller
         }
 
         $this->render('auth/login', [
-            'background' => $configMetas && $configMetas['login_img'] ? url($configMetas['login_img']) : null,
-            'logo' => $configMetas && $configMetas['logo'] ? url($configMetas['logo']) : null,
-            'shortcutIcon' => $configMetas && $configMetas['logo_icon'] ? url($configMetas['logo_icon']) : null,
+            'background' => $configMetas && $configMetas[Config::KEY_LOGIN_IMG] ? url($configMetas[Config::KEY_LOGIN_IMG]) : null,
+            'logo' => $configMetas && $configMetas[Config::KEY_LOGO] ? url($configMetas[Config::KEY_LOGO]) : null,
+            'shortcutIcon' => $configMetas && $configMetas[Config::KEY_LOGO_ICON] ? url($configMetas[Config::KEY_LOGO_ICON]) : null,
             'redirect' => $_GET['redirect'],
             'loginForm' => $loginForm
         ]);
@@ -48,8 +52,11 @@ class AuthController extends Controller
 
     public function check(array $data): void 
     {
-        $loginForm = new LoginForm();
-        if($user = $loginForm->loadData($data)->login()) {
+        $loginForm = (new LoginForm())->loadData([
+            'email' => $data['email'],
+            'password' => $data['password']
+        ]);
+        if($user = $loginForm->login()) {
             $this->session->setAuth($user);
             $this->APIResponse([], 200);
         } else {

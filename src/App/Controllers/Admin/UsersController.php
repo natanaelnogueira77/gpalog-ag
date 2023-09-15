@@ -9,6 +9,7 @@ use Src\Models\User;
 use Src\Models\UserForm;
 use Src\Models\UserMeta;
 use Src\Models\UserType;
+use Src\Utils\ErrorMessages;
 
 class UsersController extends TemplateController 
 {
@@ -30,22 +31,27 @@ class UsersController extends TemplateController
 
     public function store(array $data): void 
     {
-        $userForm = new UserForm();
-        if(!$userForm->loadData($data)->validate()) {
-            $this->setMessage('error', _('Erros de validação! Verifique os campos.'))
-                ->setErrors($userForm->getFirstErrors())->APIResponse([], 422);
+        $userForm = (new UserForm())->loadData([
+            'utip_id' => intval($data['utip_id']),
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => $data['password'],
+            'password_confirm' => $data['password_confirm'],
+            'registration_number' => $data['registration_number']
+        ]);
+        if(!$userForm->validate()) {
+            $this->setMessage('error', ErrorMessages::form())->setErrors($userForm->getFirstErrors())->APIResponse([], 422);
             return;
         }
 
         $dbUser = new User();
         if(!$dbUser->loadData($data)->save()) {
-            $this->setMessage('error', _('Erros de validação! Verifique os campos.'))
-                ->setErrors($dbUser->getFirstErrors())->APIResponse([], 422);
+            $this->setMessage('error', ErrorMessages::form())->setErrors($dbUser->getFirstErrors())->APIResponse([], 422);
             return;
         }
 
         if($dbUser->isOperator()) {
-            $dbUser->saveMeta(UserMeta::REGISTRATION_NUMBER_KEY, $data[UserMeta::REGISTRATION_NUMBER_KEY]);
+            $dbUser->saveMeta(UserMeta::KEY_REGISTRATION_NUMBER, $data[UserMeta::KEY_REGISTRATION_NUMBER]);
         }
 
         $email = new Email();
@@ -54,7 +60,7 @@ class UsersController extends TemplateController
             $this->getView('emails/user-register', [
                 'user' => $dbUser,
                 'password' => $data['password'],
-                'logo' => url((new Config())->getMeta('logo'))
+                'logo' => url((new Config())->getMeta(Config::KEY_LOGO))
             ]), 
             $dbUser->name, 
             $dbUser->email
@@ -85,7 +91,7 @@ class UsersController extends TemplateController
 
         $this->render('admin/users/save', [
             'dbUser' => $dbUser,
-            'userMetas' => $dbUser->getGroupedMetas([UserMeta::REGISTRATION_NUMBER_KEY]),
+            'userMetas' => $dbUser->getGroupedMetas([UserMeta::KEY_REGISTRATION_NUMBER]),
             'userTypes' => (new UserType())->get()->fetch(true)
         ]);
     }
@@ -97,10 +103,18 @@ class UsersController extends TemplateController
             return;
         }
 
-        $userForm = new UserForm();
-        if(!$userForm->loadData(['id' => $dbUser->id] + $data)->validate()) {
-            $this->setMessage('error', _('Erros de validação! Verifique os campos.'))
-                ->setErrors($userForm->getFirstErrors())->APIResponse([], 422);
+        $userForm = (new UserForm())->loadData([
+            'id' => $dbUser->id,
+            'utip_id' => intval($data['utip_id']),
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => $data['password'],
+            'password_confirm' => $data['password_confirm'],
+            'update_password' => $data['update_password'] ? true : false,
+            'registration_number' => $data['registration_number']
+        ]);
+        if(!$userForm->validate()) {
+            $this->setMessage('error', ErrorMessages::form())->setErrors($userForm->getFirstErrors())->APIResponse([], 422);
             return;
         }
 
@@ -113,13 +127,12 @@ class UsersController extends TemplateController
         ]);
 
         if(!$dbUser->save()) {
-            $this->setMessage('error', _('Erros de validação! Verifique os campos.'))
-                ->setErrors($dbUser->getFirstErrors())->APIResponse([], 422);
+            $this->setMessage('error', ErrorMessages::form())->setErrors($dbUser->getFirstErrors())->APIResponse([], 422);
             return;
         }
 
         if($dbUser->isOperator()) {
-            $dbUser->saveMeta(UserMeta::REGISTRATION_NUMBER_KEY, $data[UserMeta::REGISTRATION_NUMBER_KEY]);
+            $dbUser->saveMeta(UserMeta::KEY_REGISTRATION_NUMBER, $data[UserMeta::KEY_REGISTRATION_NUMBER]);
         }
 
         $this->setMessage('success', sprintf(_('Os dados do usuário "%s" foram alterados com sucesso!'), $dbUser->name))

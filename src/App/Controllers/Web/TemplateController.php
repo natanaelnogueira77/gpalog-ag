@@ -4,51 +4,23 @@ namespace Src\App\Controllers\Web;
 
 use GTG\MVC\Controller;
 use Src\Models\Config;
+use Src\Data\MenuData;
 
 class TemplateController extends Controller 
 {
     public function addData(): void 
     {
+        $configMetas = (new Config())->getGroupedMetas([
+            Config::KEY_LOGO, 
+            Config::KEY_LOGO_ICON, 
+            Config::KEY_STYLE
+        ]);
+
+        $logo = url($configMetas[Config::KEY_LOGO] ?? '');
+        $logoIcon = url($configMetas[Config::KEY_LOGO_ICON] ?? '');
+
         $user = $this->session->getAuth();
-        $configMetas = (new Config())->getGroupedMetas(['logo', 'logo_icon', 'style']);
-
-        $logo = $configMetas && $configMetas['logo'] ? url($configMetas['logo']) : '';
-        $logoIcon = $configMetas && $configMetas['logo_icon'] ? url($configMetas['logo_icon']) : '';
-
-        $headerMenu = [
-            [
-                'type' => 'item', 
-                'level' => 1, 
-                'url' => $this->getRoute('auth.index'), 
-                'desc' => _('Início')
-            ],
-            [
-                'type' => 'item', 
-                'level' => 1,
-                'url' => $this->getRoute('contact.index'), 
-                'desc' => _('Contato')
-            ]
-        ];
-
-        if($user) {
-            $rightItems = [
-                [
-                    'url' => $this->getRoute('user.index'), 
-                    'desc' => _('Painel Principal')
-                ],
-                [
-                    'url' => $this->getRoute('auth.logout'), 
-                    'desc' => _('Sair')
-                ]
-            ];
-        } else {
-            $rightItems = [
-                [
-                    'url' => $this->getRoute('auth.index'), 
-                    'desc' => _('Entrar')
-                ]
-            ];
-        }
+        $headerMenu = MenuData::getHeaderMenuItems($this->router, $user);
 
         $this->addViewData([
             'user' => $user,
@@ -59,14 +31,12 @@ class TemplateController extends Controller
             'header' => [
                 'menu' => $headerMenu,
                 'right' => [
-                    'items' => $rightItems,
+                    'items' => MenuData::getRightMenuItems($this->router, $user),
                     'languages' => [
                         'heading' => _('Linguagens'),
                         'curr_img' => url("public/imgs/flags/{$this->session->getLanguage()[1]}.png"),
                         'items' => [
-                            ['url' => $this->getRoute('language.index', ['lang' => 'pt']), 'desc' => _('Português')],
-                            ['url' => $this->getRoute('language.index', ['lang' => 'en']), 'desc' => _('Inglês')],
-                            ['url' => $this->getRoute('language.index', ['lang' => 'es']), 'desc' => _('Espanhol')]
+                            ['url' => $this->getRoute('language.index', ['lang' => 'pt']), 'desc' => _('Português')]
                         ]
                     ]
                 ]

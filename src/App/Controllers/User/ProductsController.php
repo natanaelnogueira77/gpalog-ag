@@ -5,6 +5,7 @@ namespace Src\App\Controllers\User;
 use GTG\MVC\Components\ExcelGenerator;
 use Src\App\Controllers\User\TemplateController;
 use Src\Models\Product;
+use Src\Utils\ErrorMessages;
 
 class ProductsController extends TemplateController 
 {
@@ -34,8 +35,7 @@ class ProductsController extends TemplateController
     {
         $dbProduct = new Product();
         if(!$dbProduct->loadData($data)->save()) {
-            $this->setMessage('error', _('Erros de validação! Verifique os campos.'))
-                ->setErrors($dbProduct->getFirstErrors())->APIResponse([], 422);
+            $this->setMessage('error', ErrorMessages::form())->setErrors($dbProduct->getFirstErrors())->APIResponse([], 422);
             return;
         }
 
@@ -51,8 +51,7 @@ class ProductsController extends TemplateController
         }
 
         if(!$dbProduct->loadData($data)->save()) {
-            $this->setMessage('error', _('Erros de validação! Verifique os campos.'))
-                ->setErrors($dbProduct->getFirstErrors())->APIResponse([], 422);
+            $this->setMessage('error', ErrorMessages::form())->setErrors($dbProduct->getFirstErrors())->APIResponse([], 422);
             return;
         }
 
@@ -226,7 +225,7 @@ class ProductsController extends TemplateController
                 }
 
                 if(!$objects = Product::insertMany($dbProducts)) {
-                    $this->session->setFlash('error', _('Lamentamos, mas ocorreu algum erro na requisição!'));
+                    $this->session->setFlash('error', ErrorMessages::requisition());
                     $this->redirect('user.products.index');
                 } elseif($errors = Product::getErrorsFromMany($objects)) {
                     $message = '';
@@ -271,9 +270,9 @@ class ProductsController extends TemplateController
             }
         }
 
-        $excel = (new ExcelGenerator($excelData, _('produtos')));
+        $excel = (new ExcelGenerator($excelData, _('Produtos')));
         if(!$excel->render()) {
-            $this->session->setFlash('error', _('Lamentamos, mas o excel não pôde ser gerado!'));
+            $this->session->setFlash('error', ErrorMessages::excel());
             $this->redirect('user.products.index');
         }
 

@@ -5,6 +5,7 @@ namespace Src\App\Controllers\User;
 use Src\App\Controllers\User\TemplateController;
 use Src\Models\User;
 use Src\Models\UserForm;
+use Src\Utils\ErrorMessages;
 
 class EditController extends TemplateController 
 {
@@ -17,10 +18,17 @@ class EditController extends TemplateController
     public function update(array $data): void 
     {
         $user = $this->session->getAuth();
-        $userForm = new UserForm();
-        if(!$userForm->loadData(['id' => $user->id, 'utip_id' => $user->utip_id] + $data)->validate()) {
-            $this->setMessage('error', _('Erros de validação! Verifique os campos.'))
-                ->setErrors($userForm->getFirstErrors())->APIResponse([], 422);
+        $userForm = (new UserForm())->loadData([
+            'id' => $user->id,
+            'utip_id' => intval($user->utip_id),
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => $data['password'],
+            'password_confirm' => $data['password_confirm'],
+            'update_password' => $data['update_password'] ? true : false
+        ]);
+        if(!$userForm->validate()) {
+            $this->setMessage('error', ErrorMessages::form())->setErrors($userForm->getFirstErrors())->APIResponse([], 422);
             return;
         }
 
@@ -33,8 +41,7 @@ class EditController extends TemplateController
         ]);
 
         if(!$dbUser->save()) {
-            $this->setMessage('error', _('Erros de validação! Verifique os campos.'))
-                ->setErrors($dbUser->getFirstErrors())->APIResponse([], 422);
+            $this->setMessage('error', ErrorMessages::form())->setErrors($dbUser->getFirstErrors())->APIResponse([], 422);
             return;
         }
 

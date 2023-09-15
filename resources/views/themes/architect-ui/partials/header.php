@@ -38,12 +38,12 @@
             <ul class="header-menu nav">
                 <?php 
                 if($menu):
-                    foreach($menu as $item):
+                    foreach($menu as $menuItem):
                     ?>
                     <li class="btn-group nav-item">
-                        <a href="<?= url($item['url']) ?>" class="nav-link">
-                            <i class="<?= $item['icon'] ?>"></i>
-                            <?= $item['desc'] ?>
+                        <a href="<?= $menuItem->getURL() ?>" class="nav-link">
+                            <i class="<?= $menuItem->getIcon() ?>"></i>
+                            <?= $menuItem->getText() ?>
                         </a>
                     </li>
                     <?php 
@@ -55,6 +55,43 @@
 
         <?php if($right["show"]): ?>
         <div class="app-header-right">
+            <?php if($right['bell']): ?>
+            <div class="header-btn-lg pr-2">
+                <div class="widget-content p-0">
+                    <div class="widget-content-wrapper">
+                        <div class="widget-content-left">
+                            <div class="btn-group">
+                                <a id="bell-notifications" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" 
+                                    class="p-0 btn">
+                                    <?php if($right['bell']['notifications_count']): ?>
+                                    <div class="badge badge-pill badge-danger position-absolute p-1 ml-0">
+                                        <?= $right['bell']['notifications_count'] ?>
+                                    </div>
+                                    <?php endif; ?>
+                                    <i class="icofont-alarm" style="font-size: 2.4rem;"></i>
+                                </a>
+                                <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
+                                    <h6 tabindex="-1" class="dropdown-header"><?= $right['bell']['title'] ?></h6>
+                                    <?php 
+                                    if($right["bell"]['notifications']):
+                                        foreach($right["bell"]['notifications'] as $notification):
+                                        ?>
+                                        <div tabindex="-1" class="dropdown-divider my-0 <?= $notification->wasRead() ? 'bg-light' : '' ?>"></div>
+                                        <p class="px-3 py-2 mb-0 <?= $notification->wasRead() ? 'bg-light' : '' ?>">
+                                            <?= $notification->getContent() ?>
+                                        </p>
+                                        <?php 
+                                        endforeach;
+                                    endif;
+                                    ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <?php endif; ?>
+
             <?php if($right['languages']): ?>
             <div class="header-btn-lg pr-2">
                 <div class="widget-content p-0">
@@ -99,11 +136,11 @@
                                 <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
                                     <?php 
                                     if($right["items"]):
-                                        foreach($right["items"] as $item):
-                                            if(!isset($item["divider"])): 
+                                        foreach($right["items"] as $menuItem):
+                                            if(!isset($menuItem->getMetadata()['divider'])): 
                                             ?>
-                                            <a href="<?= $item["url"] ?>" tabindex="0" class="dropdown-item">
-                                                <?= $item["desc"] ?>
+                                            <a href="<?= $menuItem->getURL() ?>" tabindex="0" class="dropdown-item">
+                                                <?= $menuItem->getText() ?>
                                             </a>
                                             <?php else: ?>
                                             <div tabindex="-1" class="dropdown-divider"></div>

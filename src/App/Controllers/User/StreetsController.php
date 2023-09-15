@@ -5,6 +5,7 @@ namespace Src\App\Controllers\User;
 use GTG\MVC\Components\ExcelGenerator;
 use Src\App\Controllers\User\TemplateController;
 use Src\Models\Street;
+use Src\Utils\ErrorMessages;
 
 class StreetsController extends TemplateController 
 {
@@ -34,8 +35,7 @@ class StreetsController extends TemplateController
     {
         $dbStreet = new Street();
         if(!$dbStreet->loadData(['usu_id' => $this->session->getAuth()->id] + $data)->save()) {
-            $this->setMessage('error', _('Erros de validação! Verifique os campos.'))
-                ->setErrors($dbStreet->getFirstErrors())->APIResponse([], 422);
+            $this->setMessage('error', ErrorMessages::form())->setErrors($dbStreet->getFirstErrors())->APIResponse([], 422);
             return;
         }
 
@@ -51,8 +51,7 @@ class StreetsController extends TemplateController
         }
 
         if(!$dbStreet->loadData($data)->save()) {
-            $this->setMessage('error', _('Erros de validação! Verifique os campos.'))
-                ->setErrors($dbStreet->getFirstErrors())->APIResponse([], 422);
+            $this->setMessage('error', ErrorMessages::form())->setErrors($dbStreet->getFirstErrors())->APIResponse([], 422);
             return;
         }
 
@@ -188,9 +187,9 @@ class StreetsController extends TemplateController
             }
         }
 
-        $excel = (new ExcelGenerator($excelData, _('ruas')));
+        $excel = (new ExcelGenerator($excelData, _('Ruas')));
         if(!$excel->render()) {
-            $this->session->setFlash('error', _('Lamentamos, mas o excel não pôde ser gerado!'));
+            $this->session->setFlash('error', ErrorMessages::excel());
             $this->redirect('user.streets.index');
         }
 

@@ -7,8 +7,8 @@ use Src\Models\User;
 
 class LoginForm extends Model 
 {
-    public $email = '';
-    public $password = '';
+    public ?string $email = null;
+    public ?string $password = null;
 
     public function rules(): array 
     {

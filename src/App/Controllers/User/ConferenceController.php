@@ -2,8 +2,6 @@
 
 namespace Src\App\Controllers\User;
 
-use GTG\MVC\Components\ExcelGenerator;
-use GTG\MVC\Components\PDFRender;
 use Src\App\Controllers\User\TemplateController;
 use Src\Models\Conference;
 use Src\Models\ConferenceInput;
@@ -15,13 +13,16 @@ use Src\Models\Config;
 use Src\Models\Operation;
 use Src\Models\Pallet;
 use Src\Models\Provider;
+use Src\Utils\ErrorMessages;
 
 class ConferenceController extends TemplateController 
 {
     public function index(array $data): void 
     {
         $this->addData();
-        $this->render('user/conference/index');
+        $this->render('user/conference/index', [
+            'message' => $this->getFeedbackMessage()
+        ]);
     }
 
     public function input(array $data): void 
@@ -41,13 +42,15 @@ class ConferenceController extends TemplateController
         ], "{$tnConference}.*, t2.plate AS plate, t3.name AS provider_name")->fetch(true);
 
         if($dbConferences) {
+            $dbConferences = Conference::withOperation($dbConferences);
             foreach($dbConferences as $dbConference) {
                 $dbConference->created_at = $this->getDateTime($dbConference->created_at)->format('d/m/Y');
             }
         }
 
         $this->render('user/conference/input', [
-            'dbConferences' => $dbConferences
+            'dbConferences' => $dbConferences,
+            'message' => $this->getFeedbackMessage()
         ]);
     }
 
@@ -87,15 +90,23 @@ class ConferenceController extends TemplateController
         if(!isset($data['finish_conference'])) {
             if(isset($data['search_product']) || $this->request->isPost()) {
                 if(!$dbProduct = $conferenceInputForm->loadData(['barcode' => $data['barcode']])->getProduct()) {
-                    $this->session->setFlash('error', _('Erros de validação! Verifique os campos.'));
+                    $this->session->setFlash('error', ErrorMessages::form());
                 }
             }
         }
 
         if($this->request->isPost()) {
             if(!isset($data['finish_conference'])) {
-                if(!$conferenceInputForm->loadData(['package' => $dbProduct->emb_fb] + $data)->complete()) {
-                    $this->session->setFlash('error', _('Erros de validação! Verifique os campos.'));
+                $conferenceInputForm->loadData([
+                    'package' => $dbProduct->emb_fb,
+                    'barcode' => $data['barcode'] ? $data['barcode'] : null,
+                    'physic_boxes_amount' => $data['physic_boxes_amount'] ? $data['physic_boxes_amount'] : null,
+                    'closed_plts_amount' => $data['closed_plts_amount'] ? $data['closed_plts_amount'] : null,
+                    'service_type' => $data['service_type'] ? $data['service_type'] : null,
+                    'pallet_height' => $data['pallet_height'] ? floatval($data['pallet_height']) : null
+                ]);
+                if(!$conferenceInputForm->complete()) {
+                    $this->session->setFlash('error', ErrorMessages::form());
                 }
     
                 if(isset($data['is_completed'])) {
@@ -113,7 +124,7 @@ class ConferenceController extends TemplateController
                     ]);
     
                     if(!$dbConferenceInput->save()) {
-                        $this->session->setFlash('error', _('Lamentamos, mas ocorreu um erro na requisição!'));
+                        $this->session->setFlash('error', ErrorMessages::requisition());
                         $this->redirect('user.conference.singleInput', ['conference_id' => $dbConference->id]);
                     } else {
                         $this->session->setFlash(
@@ -138,7 +149,7 @@ class ConferenceController extends TemplateController
                 }
 
                 if(!Pallet::allocateMany($dbPallets) || !$dbConference->setAsFinished()->save()) {
-                    $this->session->setFlash('error', _('Lamentamos, mas ocorreu um erro na requisição!'));
+                    $this->session->setFlash('error', ErrorMessages::requisition());
                     $this->redirect('user.conference.singleInput', ['conference_id' => $dbConference->id]);
                 } else {
                     $this->session->setFlash('success', sprintf(_('A conferência de ID %s foi finalizada com sucesso!'), $dbConference->id));
@@ -173,7 +184,8 @@ class ConferenceController extends TemplateController
             'dbConferenceInputs' => $dbConferenceInputs,
             'conferenceInputForm' => $conferenceInputForm,
             'serviceTypes' => ConferenceInput::getServiceTypes(),
-            'return' => $return
+            'return' => $return,
+            'message' => $this->getFeedbackMessage()
         ]);
     }
 
@@ -203,7 +215,8 @@ class ConferenceController extends TemplateController
         $this->render('user/conference/input-products', [
             'dbConference' => $dbConference,
             'dbOperation' => $dbOperation,
-            'dbConferenceInputs' => $dbConferenceInputs
+            'dbConferenceInputs' => $dbConferenceInputs,
+            'message' => $this->getFeedbackMessage()
         ]);
     }
 
@@ -215,11 +228,20 @@ class ConferenceController extends TemplateController
         $nextStep = ConferenceOutputForm::STEP_SERVICE_ORDER;
         $previousStep = 0;
 
-        $conferenceOutputForm = (new ConferenceOutputForm())->loadData($data);
+        $conferenceOutputForm = (new ConferenceOutputForm())->loadData([
+            'service_order' => $data['service_order'] ? $data['service_order'] : null,
+            'pallet_number' => $data['pallet_number'] ? $data['pallet_number'] : null,
+            'load_plate' => $data['load_plate'] ? $data['load_plate'] : null,
+            'dock' => $data['dock'] ? $data['dock'] : null,
+            'step' => intval($data['step']),
+            'has_service_order' => $data['has_service_order'] ? true : false,
+            'has_pallet' => $data['has_pallet'] ? true : false,
+            'has_completion' => $data['has_completion'] ? true : false
+        ]);
         if($conferenceOutputForm->isOnServiceOrder() || $conferenceOutputForm->isOnPallet() 
             || $conferenceOutputForm->isOnCompletion() || $conferenceOutputForm->isOnExpedition()) {
             if(!$dbOperation = $conferenceOutputForm->getOperation()) {
-                $this->session->setFlash('error', _('Erros de validação! Verifique os campos.'));
+                $this->session->setFlash('error', ErrorMessages::form());
                 $nextStep = ConferenceOutputForm::STEP_SERVICE_ORDER;
                 $previousStep = 0;
             } else {
@@ -231,7 +253,7 @@ class ConferenceController extends TemplateController
         if($conferenceOutputForm->isOnPallet() || $conferenceOutputForm->isOnCompletion() 
             || $conferenceOutputForm->isOnExpedition()) {
             if(!$dbPallet = $conferenceOutputForm->getPallet()) {
-                $this->session->setFlash('error', _('Erros de validação! Verifique os campos.'));
+                $this->session->setFlash('error', ErrorMessages::form());
                 $nextStep = ConferenceOutputForm::STEP_PALLET;
                 $previousStep = ConferenceOutputForm::STEP_SERVICE_ORDER;
             } else {
@@ -242,7 +264,7 @@ class ConferenceController extends TemplateController
 
         if($conferenceOutputForm->isOnCompletion() || $conferenceOutputForm->isOnExpedition()) {
             if(!$conferenceOutputForm->validateCompletion()) {
-                $this->session->setFlash('error', _('Erros de validação! Verifique os campos.'));
+                $this->session->setFlash('error', ErrorMessages::form());
                 $nextStep = ConferenceOutputForm::STEP_COMPLETION;
                 $previousStep = ConferenceOutputForm::STEP_PALLET;
             } else {
@@ -259,7 +281,7 @@ class ConferenceController extends TemplateController
                 'dock' => $conferenceOutputForm->dock
             ]);
             if(!$dbPallet->setAsReleased()->save()) {
-                $this->session->setFlash('error', _('Lamentamos, mas ocorreu um erro na requisição!'));
+                $this->session->setFlash('error', ErrorMessages::requisition());
             } else {
                 $this->session->setFlash('success', _('O pallet foi expedido com sucesso!'));
                 $this->redirect('user.conference.output', [
@@ -275,7 +297,25 @@ class ConferenceController extends TemplateController
             'dbProduct' => $dbPallet ? $dbPallet->product() : null,
             'conferenceOutputForm' => $conferenceOutputForm,
             'nextStep' => $nextStep,
-            'previousStep' => $previousStep
+            'previousStep' => $previousStep,
+            'message' => $this->getFeedbackMessage()
         ]);
+    }
+
+    private function getFeedbackMessage(): ?array 
+    {
+        if($message = $this->session->getFlash('error')) {
+            return [
+                'type' => 'error',
+                'message' => $message
+            ];
+        } elseif($message = $this->session->getFlash('success')) {
+            return [
+                'type' => 'success',
+                'message' => $message
+            ];
+        }
+
+        return null;
     }
 }

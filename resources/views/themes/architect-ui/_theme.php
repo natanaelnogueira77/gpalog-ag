@@ -8,6 +8,20 @@
     <link rel="stylesheet" href="<?= url("public/assets/css/custom.css") ?>">
     <link rel="stylesheet" href="<?= url("public/assets/css/icofont.min.css") ?>">
     <link rel="stylesheet" href="<?= url("public/assets/css/toastr.min.css") ?>">
+    <?php if($fullBackground): ?>
+    <style>
+        .full-background {
+            background-image: url("<?= $fullBackground ?>");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+            position: fixed;
+            opacity: 0.7;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+    <?php endif; ?>
     <link rel="stylesheet" href="https//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <?= $this->section("css"); ?>
     <link rel="shortcut icon" href="<?= $shortcutIcon ?>" type="image/png">
@@ -38,6 +52,9 @@
                 }
             ?>
             <div class="app-main__outer">
+                <?php if($fullBackground): ?>
+                <div class="full-background"></div>
+                <?php endif; ?>
                 <div class="app-main__inner">
                     <?= $this->section("content"); ?>
                 </div>

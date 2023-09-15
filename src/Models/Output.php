@@ -10,9 +10,9 @@ use Src\Models\User;
 
 class Output extends DBModel 
 {
-    public $operation;
-    public $pallets = [];
-    public $user;
+    public ?Operation $operation = null;
+    public ?array $pallets = null;
+    public ?User $user = null;
 
     public static function tableName(): string 
     {
@@ -26,7 +26,10 @@ class Output extends DBModel
 
     public static function attributes(): array 
     {
-        return ['usu_id', 'ope_id'];
+        return [
+            'usu_id', 
+            'ope_id'
+        ];
     }
 
     public function rules(): array 

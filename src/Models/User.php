@@ -14,9 +14,9 @@ class User extends UserModel
     const UT_ADM = 2;
     const UT_OPERATOR = 3;
 
-    public $socialUser;
-    public $userMetas = [];
-    public $userType;
+    public ?SocialUser $socialUser = null;
+    public ?array $userMetas = [];
+    public ?UserType $userType = null;
     
     public static function tableName(): string 
     {
@@ -30,7 +30,14 @@ class User extends UserModel
 
     public static function attributes(): array 
     {
-        return ['utip_id', 'name', 'email', 'password', 'token', 'slug'];
+        return [
+            'utip_id', 
+            'name', 
+            'email', 
+            'password', 
+            'token', 
+            'slug'
+        ];
     }
 
     public static function metaTableData(): ?array 
@@ -67,16 +74,16 @@ class User extends UserModel
                 [self::RULE_MAX, 'max' => 100, 'message' => sprintf(_('O apelido deve conter no máximo %s caractéres!'), 100)]
             ],
             self::RULE_RAW => [
-                function ($object) {
-                    if(!$object->hasError('email')) {
-                        if((new self())->get(['email' => $object->email] + (isset($object->id) ? ['!=' => ['id' => $object->id]] : []))->count()) {
-                            $object->addError('email', _('O email informado já está em uso! Tente outro.'));
+                function ($model) {
+                    if(!$model->hasError('email')) {
+                        if((new self())->get(['email' => $model->email] + (isset($model->id) ? ['!=' => ['id' => $model->id]] : []))->count()) {
+                            $model->addError('email', _('O email informado já está em uso! Tente outro.'));
                         }
                     }
                     
-                    if(!$object->hasError('slug')) {
-                        if((new self())->get(['slug' => $object->slug] + (isset($object->id) ? ['!=' => ['id' => $object->id]] : []))->count()) {
-                            $object->addError('slug', _('O apelido informado já está em uso! Tente outro.'));
+                    if(!$model->hasError('slug')) {
+                        if((new self())->get(['slug' => $model->slug] + (isset($model->id) ? ['!=' => ['id' => $model->id]] : []))->count()) {
+                            $model->addError('slug', _('O apelido informado já está em uso! Tente outro.'));
                         }
                     }
                 }
@@ -183,7 +190,7 @@ class User extends UserModel
     public static function getByRegistrationNumber(string $registrationNumber, string $columns = '*'): ?self 
     {
         $userMeta = (new UserMeta())->get([
-            'meta' => 'registration_number',
+            'meta' => UserMeta::KEY_REGISTRATION_NUMBER,
             'value' => $registrationNumber
         ])->fetch(false);
         return $userMeta ? $userMeta->user() : null;

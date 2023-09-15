@@ -15,10 +15,10 @@
                                     <ul id="navigation">
                                         <?php 
                                         if($menu):
-                                            foreach($menu as $item): 
+                                            foreach($menu as $menuItem): 
                                             ?>                                                                                  
                                             <li>
-                                                <a href="<?= $item['url'] ?>"><?= $item['desc'] ?></a>
+                                                <a href="<?= $menuItem->getURL() ?>"><?= $menuItem->getText() ?></a>
                                             </li>
                                             <?php 
                                             endforeach; 
@@ -45,11 +45,11 @@
 
                                         <?php 
                                         if($right["items"]):
-                                            foreach($right["items"] as $item):
+                                            foreach($right["items"] as $menuItem):
                                             ?>
                                             <li class="button-header">
-                                                <a href="<?= $item["url"] ?>" class="btn btn3">
-                                                    <?= $item["desc"] ?>
+                                                <a href="<?= $menuItem->getURL() ?>" class="btn btn3">
+                                                    <?= $menuItem->getText() ?>
                                                 </a>
                                             </li>
                                             <?php 

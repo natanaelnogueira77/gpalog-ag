@@ -19,8 +19,21 @@ class Product extends DBModel
 
     public static function attributes(): array 
     {
-        return ['name', 'prov_id', 'prov_name', 'prod_id', 'emb_fb', 'ean', 'dun14', 'p_length', 'p_width', 'p_height', 'p_base', 
-            'p_weight', 'plu'];
+        return [
+            'name', 
+            'prov_id', 
+            'prov_name', 
+            'prod_id', 
+            'emb_fb', 
+            'ean', 
+            'dun14', 
+            'p_length', 
+            'p_width', 
+            'p_height', 
+            'p_base', 
+            'p_weight', 
+            'plu'
+        ];
     }
 
     public function rules(): array 

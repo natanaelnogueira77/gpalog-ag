@@ -4,10 +4,11 @@ namespace Src\Models;
 
 use GTG\MVC\Model;
 use Src\Models\User;
+use Src\Models\UserMeta;
 
 class ForgotPasswordForm extends Model 
 {
-    public $email = '';
+    public ?string $email = null;
 
     public function rules(): array 
     {
@@ -29,7 +30,7 @@ class ForgotPasswordForm extends Model
         if(!$user = User::getByEmail($this->email)) {
             $this->addError('email', _('O email não foi encontrado!'));
             return null;
-        } elseif($lastRequest = $user->getMeta('last_pass_request')) {
+        } elseif($lastRequest = $user->getMeta(UserMeta::KEY_LAST_PASS_REQUEST)) {
             if(strtotime($lastRequest) >= strtotime('-1 hour')) {
                 $this->addError('email', _('Uma requisição já foi enviada para este email! Espere 1 hora para poder enviar outra.'));
                 return null;

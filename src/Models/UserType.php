@@ -7,7 +7,7 @@ use Src\Models\User;
 
 class UserType extends DBModel 
 {
-    public $users = [];
+    public ?array $users = null;
 
     public static function tableName(): string 
     {
@@ -21,7 +21,10 @@ class UserType extends DBModel
 
     public static function attributes(): array 
     {
-        return ['name_sing', 'name_plur'];
+        return [
+            'name_sing', 
+            'name_plur'
+        ];
     }
 
     public function rules(): array 
@@ -38,10 +41,15 @@ class UserType extends DBModel
         ];
     }
 
-    public function users(array $filters = [], string $columns = '*'): ?array
+    public function users(array $filters = [], string $columns = '*'): ?array 
     {
         $this->users = $this->hasMany(User::class, 'utip_id', 'id', $filters, $columns)->fetch(true);
         return $this->users;
+    }
+
+    public static function withUsers(array $objects, array $filters = [], string $columns = '*'): array
+    {
+        return self::withHasMany($objects, User::class, 'utip_id', 'users', 'id', $filters, $columns);
     }
 
     public function destroy(): bool 

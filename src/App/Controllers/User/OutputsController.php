@@ -13,6 +13,7 @@ use Src\Models\Pallet;
 use Src\Models\Product;
 use Src\Models\Provider;
 use Src\Models\User;
+use Src\Utils\ErrorMessages;
 
 class OutputsController extends TemplateController 
 {
@@ -24,7 +25,7 @@ class OutputsController extends TemplateController
         $outputForm = new OutputForm();
         if(isset($data['order_number'])) {
             if(!$dbOperation = $outputForm->loadData(['order_number' => $data['order_number']])->getOperation()) {
-                $this->session->setFlash('error', _('Erros de validação! Verifique os campos.'));
+                $this->session->setFlash('error', ErrorMessages::form());
             } elseif(!$dbConference = $dbOperation->conference()) {
                 $this->session->setFlash('error', _('A operação desta ordem de serviço não foi conferida ainda!'));
             } elseif(!$dbConference->isFinished()) {
@@ -58,8 +59,7 @@ class OutputsController extends TemplateController
 
         $dbOutput = new Output();
         if(!$dbOutput->loadData(['usu_id' => $this->session->getAuth()->id, 'ope_id' => $dbOperation->id])->save()) {
-            $this->setMessage('error', _('Erros de validação! Verifique os campos.'))
-                ->setErrors($dbOutput->getFirstErrors())->APIResponse([], 422);
+            $this->setMessage('error', ErrorMessages::form())->setErrors($dbOutput->getFirstErrors())->APIResponse([], 422);
             return;
         }
 
@@ -70,7 +70,7 @@ class OutputsController extends TemplateController
             }
 
             if(!Pallet::saveMany($dbPallets)) {
-                $this->setMessage('error', _('Lamentamos, mas ocorreu algum erro na requisição!'))->APIResponse([], 422);
+                $this->setMessage('error', ErrorMessages::requisition())->APIResponse([], 422);
                 return;
             }
         }
@@ -101,7 +101,7 @@ class OutputsController extends TemplateController
             $dbPallets = Pallet::withProduct($dbPallets);
         }
 
-        $filename = sprintf(_('saida-de-pallets-%s'), $dbOutput->id) . '.pdf';
+        $filename = sprintf(_('Saída de Pallets - ID %s'), $dbOutput->id) . '.pdf';
 
         header('Access-Control-Allow-Origin: *');
         header('Content-Type: application/pdf');
@@ -112,12 +112,12 @@ class OutputsController extends TemplateController
             'dbOperation' => $dbOperation,
             'dbOutput' => $dbOutput,
             'dbPallets' => $dbPallets,
-            'logo' => url((new Config())->getMeta('logo'))
+            'logo' => url((new Config())->getMeta(Config::KEY_LOGO))
         ]);
 
         $PDFRender = new PDFRender();
         if(!$PDFRender->loadHtml($html)->setPaper('A4', 'portrait')->render()) {
-            $this->session->setFlash('error', _('Lamentamos, mas o PDF não pôde ser gerado!'));
+            $this->session->setFlash('error', ErrorMessages::pdf());
             $this->redirect('user.outputs.index');
         }
 
@@ -207,16 +207,16 @@ class OutputsController extends TemplateController
                     _('Hora de Saída') => $dbOutput->p_release_date 
                         ? $this->getDateTime($dbOutput->p_release_date)->format('H:i:s') 
                         : '--:--:--',
-                    _('Placa de Carregamento') => $dbOutput->load_plate ?? '---',
-                    _('Doca') => $dbOutput->dock ?? '---',
+                    _('Placa de Carregamento') => $dbOutput->p_load_plate ?? '---',
+                    _('Doca') => $dbOutput->p_dock ?? '---',
                     _('Status') => Pallet::getStates()[$dbOutput->p_p_status]
                 ];
             }
         }
 
-        $excel = (new ExcelGenerator($excelData, _('saidas')));
+        $excel = (new ExcelGenerator($excelData, _('Saídas')));
         if(!$excel->render()) {
-            $this->session->setFlash('error', _('Lamentamos, mas o excel não pôde ser gerado!'));
+            $this->session->setFlash('error', ErrorMessages::excel());
             $this->redirect('user.outputs.index');
         }
 

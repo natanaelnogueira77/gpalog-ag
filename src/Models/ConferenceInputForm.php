@@ -7,15 +7,15 @@ use Src\Models\Product;
 
 class ConferenceInputForm extends Model 
 {
-    public $package = null;
-    public $barcode = null;
-    public $has_started = false;
-    public $has_product = false;
-    public $is_completed = false;
-    public $physic_boxes_amount = null;
-    public $closed_plts_amount = null;
-    public $service_type = null;
-    public $pallet_height = null;
+    public ?string $package = null;
+    public ?string $barcode = null;
+    public bool $has_started = false;
+    public bool $has_product = false;
+    public bool $is_completed = false;
+    public ?int $physic_boxes_amount = null;
+    public ?int $closed_plts_amount = null;
+    public ?int $service_type = null;
+    public ?float $pallet_height = null;
 
     public function rules(): array 
     {

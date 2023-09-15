@@ -37,31 +37,31 @@
         <div class="app-sidebar__inner">
             <ul class="vertical-nav-menu">
                 <?php $nextItem = 0; ?>
-                <?php foreach($menu as $item): ?>
+                <?php foreach($menu as $menuItem): ?>
                 <?php $nextItem++; ?>
-                <?php if($item['type'] == 'heading'): ?>
-                <li class="app-sidebar__heading"><?= $item['desc'] ?></li>
-                <?php if($item['level'] > $menu[$nextItem]['level'] && $item['level'] != 1): ?>
-                <?php for($i = 0; $i < $item['level'] - $menu[$nextItem]['level']; $i++): ?>
+                <?php if($menuItem->isHeading()): ?>
+                <li class="app-sidebar__heading"><?= $menuItem->getText() ?></li>
+                <?php if($menuItem->getLevel() > $menu[$nextItem]->getLevel() && $menuItem->getLevel() != 1): ?>
+                <?php for($i = 0; $i < $menuItem->getLevel() - $menu[$nextItem]->getLevel(); $i++): ?>
                 </ul>
                 </li>
                 <?php endfor ?>
                 <?php endif ?>
-                <?php elseif($item['type'] == 'item'): ?>
+                <?php elseif($menuItem->isItem()): ?>
                 <li>
-                    <a href="<?= strpos($item['url'], "http") !== false ? $item['url'] : url($item['url']) ?>" 
-                        class="<?= $active == url($item['url']) ? 'mm-active' : '' ?>">
-                        <i class="<?= $item['icon'] ?>"></i>
-                        <?= $item['desc'] ?>
-                        <?php if(isset($menu[$nextItem]['level']) && $item['level'] < $menu[$nextItem]['level']): ?>
+                    <a href="<?= strpos($menuItem->getURL(), "http") !== false ? $menuItem->getURL() : url($menuItem->getURL()) ?>" 
+                        class="<?= $active == url($menuItem->getURL()) ? 'mm-active' : '' ?>">
+                        <i class="<?= $menuItem->getIcon() ?>"></i>
+                        <?= $menuItem->getText() ?>
+                        <?php if(isset($menu[$nextItem]) && $menuItem->getLevel() < $menu[$nextItem]->getLevel()): ?>
                         <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                         <?php endif ?>
                     </a>
-                    <?php if(isset($menu[$nextItem]['level']) && $item['level'] < $menu[$nextItem]['level']): ?>
+                    <?php if(isset($menu[$nextItem]) && $menuItem->getLevel() < $menu[$nextItem]->getLevel()): ?>
                     <ul>
-                    <?php elseif(isset($menu[$nextItem]['level']) && $item['level'] > $menu[$nextItem]['level'] && $item['level'] != 1): ?>
+                    <?php elseif(isset($menu[$nextItem]) && $menuItem->getLevel() > $menu[$nextItem]->getLevel() && $menuItem->getLevel() != 1): ?>
                     </li>
-                    <?php for($i = 0; $i < $item['level'] - $menu[$nextItem]['level']; $i++): ?>
+                    <?php for($i = 0; $i < $menuItem->getLevel() - $menu[$nextItem]->getLevel(); $i++): ?>
                     </ul>
                     </li>
                     <?php endfor ?>

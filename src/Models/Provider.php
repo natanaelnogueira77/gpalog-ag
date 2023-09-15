@@ -7,7 +7,7 @@ use Src\Models\User;
 
 class Provider extends DBModel 
 {
-    public $user;
+    public ?User $user = null;
     
     public static function tableName(): string 
     {
@@ -21,7 +21,10 @@ class Provider extends DBModel
 
     public static function attributes(): array 
     {
-        return ['usu_id', 'name'];
+        return [
+            'usu_id', 
+            'name'
+        ];
     }
 
     public function rules(): array 

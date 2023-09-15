@@ -7,8 +7,8 @@ use Src\Models\User;
 
 class OperatorLoginForm extends Model 
 {
-    public $registration_number = '';
-    public $password = '';
+    public ?int $registration_number = null;
+    public ?string $password = null;
 
     public function rules(): array 
     {

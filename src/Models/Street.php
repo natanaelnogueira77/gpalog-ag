@@ -8,9 +8,8 @@ use Src\Models\User;
 
 class Street extends DBModel 
 {
-    public $allocateds;
-    public $provider;
-    public $user;
+    public ?int $allocateds = null;
+    public ?User $user = null;
 
     public static function tableName(): string 
     {
@@ -24,7 +23,17 @@ class Street extends DBModel
 
     public static function attributes(): array 
     {
-        return ['usu_id', 'street_number', 'start_position', 'end_position', 'max_height', 'profile', 'max_plts', 'obs', 'is_limitless'];
+        return [
+            'usu_id', 
+            'street_number', 
+            'start_position', 
+            'end_position', 
+            'max_height', 
+            'profile', 
+            'max_plts', 
+            'obs', 
+            'is_limitless'
+        ];
     }
 
     public function rules(): array 

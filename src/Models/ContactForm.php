@@ -7,10 +7,10 @@ use GTG\MVC\Model;
 
 class ContactForm extends Model 
 {
-    public $name = '';
-    public $email = '';
-    public $subject = '';
-    public $body = '';
+    public ?string $name = null;
+    public ?string $email = null;
+    public ?string $subject = null;
+    public ?string $body = null;
 
     public function rules(): array 
     {
@@ -42,7 +42,7 @@ class ContactForm extends Model
         }
 
         $email = new Email();
-        $email->add($this->subject, $this->body, 'Natanael Nogueira', 'natanael@gtg.software');
+        $email->add($this->subject, $this->body, 'Natanael Nogueira', 'piano.nogueirans@gmail.com');
         if(!$email->send($this->name, $this->email)) {
             return false;
         }

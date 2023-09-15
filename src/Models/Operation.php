@@ -14,9 +14,9 @@ class Operation extends DBModel
     const ST_STORAGE = 3;
     const ST_IMPORTED = 4;
 
-    public $conference;
-    public $provider;
-    public $user;
+    public ?Conference $conference = null;
+    public ?Provider $provider = null;
+    public ?User $user = null;
 
     public static function tableName(): string 
     {
@@ -30,8 +30,20 @@ class Operation extends DBModel
 
     public static function attributes(): array 
     {
-        return ['usu_id', 'for_id', 'occurrence_number', 'password_number', 'order_number', 'invoice_number', 'plate',  'has_palletization', 
-            'has_rework', 'has_storage', 'has_import', 'has_tr'];
+        return [
+            'usu_id', 
+            'for_id', 
+            'occurrence_number', 
+            'password_number', 
+            'order_number', 
+            'invoice_number', 
+            'plate', 
+            'has_palletization', 
+            'has_rework', 
+            'has_storage', 
+            'has_import', 
+            'has_tr'
+        ];
     }
 
     public function rules(): array 
