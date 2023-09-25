@@ -2,6 +2,7 @@
 
 namespace Src\Models;
 
+use DateTime;
 use GTG\MVC\DB\DBModel;
 use Src\Models\User;
 
@@ -70,7 +71,15 @@ class SocialUser extends DBModel
 
     public static function withUser(array $objects, array $filters = [], string $columns = '*'): array
     {
-        return self::withBelongsTo($objects, User::class, 'usu_id', 'user', 'id', $filters, $columns);
+        return self::withBelongsTo(
+            $objects, 
+            User::class, 
+            'usu_id', 
+            'user', 
+            'id', 
+            $filters, 
+            $columns
+        );
     }
 
     public static function getByUserId(int $userId, string $columns = '*'): ?array 
@@ -97,5 +106,15 @@ class SocialUser extends DBModel
     public static function getSocialNames(): array 
     {
         return ['facebook', 'google'];
+    }
+
+    public function getCreatedAtDateTime(): DateTime 
+    {
+        return new DateTime($this->created_at);
+    }
+
+    public function getUpdatedAtDateTime(): DateTime 
+    {
+        return new DateTime($this->updated_at);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Src\Models;
 
+use DateTime;
 use GTG\MVC\DB\DBModel;
 use Src\Models\Pallet;
 use Src\Models\User;
@@ -109,12 +110,30 @@ class Street extends DBModel
 
     public static function withUser(array $objects, array $filters = [], string $columns = '*'): array
     {
-        return self::withBelongsTo($objects, User::class, 'usu_id', 'user', 'id', $filters, $columns);
+        return self::withBelongsTo(
+            $objects, 
+            User::class, 
+            'usu_id', 
+            'user', 
+            'id', 
+            $filters, 
+            $columns
+        );
     }
 
     public static function getByUserId(int $userId, string $columns = '*'): ?array 
     {
         return (new self())->get(['usu_id' => $userId], $columns)->fetch(true);
+    }
+
+    public function getCreatedAtDateTime(): DateTime 
+    {
+        return new DateTime($this->created_at);
+    }
+
+    public function getUpdatedAtDateTime(): DateTime 
+    {
+        return new DateTime($this->updated_at);
     }
 
     public static function getAvailablePlacesByHeight(float $height, ?int $limit = null): ?array 

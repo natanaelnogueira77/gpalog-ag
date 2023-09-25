@@ -2,6 +2,7 @@
 
 namespace Src\Models;
 
+use DateTime;
 use GTG\MVC\DB\DBModel;
 use Src\Models\Conference;
 use Src\Models\Product;
@@ -103,17 +104,41 @@ class ConferenceInput extends DBModel
 
     public static function withConference(array $objects, array $filters = [], string $columns = '*'): array
     {
-        return self::withBelongsTo($objects, Conference::class, 'con_id', 'conference', 'id', $filters, $columns);
+        return self::withBelongsTo(
+            $objects, 
+            Conference::class, 
+            'con_id', 
+            'conference', 
+            'id', 
+            $filters, 
+            $columns
+        );
     }
 
     public static function withProduct(array $objects, array $filters = [], string $columns = '*'): array
     {
-        return self::withBelongsTo($objects, Product::class, 'pro_id', 'product', 'id', $filters, $columns);
+        return self::withBelongsTo(
+            $objects, 
+            Product::class, 
+            'pro_id', 
+            'product', 
+            'id', 
+            $filters, 
+            $columns
+        );
     }
 
     public static function withUser(array $objects, array $filters = [], string $columns = '*'): array
     {
-        return self::withBelongsTo($objects, User::class, 'usu_id', 'user', 'id', $filters, $columns);
+        return self::withBelongsTo(
+            $objects, 
+            User::class, 
+            'usu_id', 
+            'user', 
+            'id', 
+            $filters, 
+            $columns
+        );
     }
 
     public static function getByConferenceId(int $conferenceId, string $columns = '*'): ?array 
@@ -144,6 +169,16 @@ class ConferenceInput extends DBModel
     public function getServiceType(): ?string 
     {
         return isset(self::getServiceTypes()[$this->service_type]) ? self::getServiceTypes()[$this->service_type] : null;
+    }
+
+    public function getCreatedAtDateTime(): DateTime 
+    {
+        return new DateTime($this->created_at);
+    }
+
+    public function getUpdatedAtDateTime(): DateTime 
+    {
+        return new DateTime($this->updated_at);
     }
 
     public function isPalletization(): bool 

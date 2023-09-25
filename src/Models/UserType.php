@@ -2,6 +2,7 @@
 
 namespace Src\Models;
 
+use DateTime;
 use GTG\MVC\DB\DBModel;
 use Src\Models\User;
 
@@ -49,7 +50,15 @@ class UserType extends DBModel
 
     public static function withUsers(array $objects, array $filters = [], string $columns = '*'): array
     {
-        return self::withHasMany($objects, User::class, 'utip_id', 'users', 'id', $filters, $columns);
+        return self::withHasMany(
+            $objects, 
+            User::class, 
+            'utip_id', 
+            'users', 
+            'id', 
+            $filters, 
+            $columns
+        );
     }
 
     public function destroy(): bool 
@@ -59,5 +68,15 @@ class UserType extends DBModel
             return false;
         }
         return parent::destroy();
+    }
+
+    public function getCreatedAtDateTime(): DateTime 
+    {
+        return new DateTime($this->created_at);
+    }
+
+    public function getUpdatedAtDateTime(): DateTime 
+    {
+        return new DateTime($this->updated_at);
     }
 }

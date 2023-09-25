@@ -2,6 +2,7 @@
 
 namespace Src\Models;
 
+use DateTime;
 use GTG\MVC\DB\DBModel;
 use Src\Models\Conference;
 use Src\Models\Provider;
@@ -138,17 +139,41 @@ class Operation extends DBModel
 
     public static function withConference(array $objects, array $filters = [], string $columns = '*'): array
     {
-        return self::withHasOne($objects, Conference::class, 'ope_id', 'conference', 'id', $filters, $columns);
+        return self::withHasOne(
+            $objects, 
+            Conference::class, 
+            'ope_id', 
+            'conference', 
+            'id', 
+            $filters, 
+            $columns
+        );
     }
 
     public static function withProvider(array $objects, array $filters = [], string $columns = '*'): array
     {
-        return self::withBelongsTo($objects, Provider::class, 'for_id', 'provider', 'id', $filters, $columns);
+        return self::withBelongsTo(
+            $objects, 
+            Provider::class, 
+            'for_id', 
+            'provider', 
+            'id', 
+            $filters, 
+            $columns
+        );
     }
 
     public static function withUser(array $objects, array $filters = [], string $columns = '*'): array
     {
-        return self::withBelongsTo($objects, User::class, 'usu_id', 'user', 'id', $filters, $columns);
+        return self::withBelongsTo(
+            $objects, 
+            User::class, 
+            'usu_id', 
+            'user', 
+            'id', 
+            $filters, 
+            $columns
+        );
     }
 
     public static function getByProviderId(int $providerId, string $columns = '*'): ?array 
@@ -174,6 +199,16 @@ class Operation extends DBModel
             self::ST_STORAGE => _('Armazenagem'),
             self::ST_IMPORTED => _('Importado')
         ];
+    }
+
+    public function getCreatedAtDateTime(): DateTime 
+    {
+        return new DateTime($this->created_at);
+    }
+
+    public function getUpdatedAtDateTime(): DateTime 
+    {
+        return new DateTime($this->updated_at);
     }
 
     public function hasPalletization(): bool 

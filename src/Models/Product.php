@@ -119,4 +119,14 @@ class Product extends DBModel
 
         return $objects;
     }
+
+    public function getCreatedAtDateTime(): DateTime 
+    {
+        return new DateTime($this->created_at);
+    }
+
+    public function getUpdatedAtDateTime(): DateTime 
+    {
+        return new DateTime($this->updated_at);
+    }
 }

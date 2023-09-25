@@ -182,27 +182,67 @@ class Pallet extends DBModel
 
     public static function withConference(array $objects, array $filters = [], string $columns = '*'): array
     {
-        return self::withBelongsTo($objects, Conference::class, 'con_id', 'conference', 'id', $filters, $columns);
+        return self::withBelongsTo(
+            $objects, 
+            Conference::class, 
+            'con_id', 
+            'conference', 
+            'id', 
+            $filters, 
+            $columns
+        );
     }
 
     public static function withOutput(array $objects, array $filters = [], string $columns = '*'): array
     {
-        return self::withBelongsTo($objects, Output::class, 'sai_id', 'output', 'id', $filters, $columns);
+        return self::withBelongsTo(
+            $objects, 
+            Output::class, 
+            'sai_id', 
+            'output', 
+            'id', 
+            $filters, 
+            $columns
+        );
     }
 
     public static function withProduct(array $objects, array $filters = [], string $columns = '*'): array
     {
-        return self::withBelongsTo($objects, Product::class, 'pro_id', 'product', 'id', $filters, $columns);
+        return self::withBelongsTo(
+            $objects, 
+            Product::class, 
+            'pro_id', 
+            'product', 
+            'id', 
+            $filters, 
+            $columns
+        );
     }
 
     public static function withReleaseUser(array $objects, array $filters = [], string $columns = '*'): array
     {
-        return self::withBelongsTo($objects, User::class, 'release_usu_id', 'releaseUser', 'id', $filters, $columns);
+        return self::withBelongsTo(
+            $objects, 
+            User::class, 
+            'release_usu_id', 
+            'releaseUser', 
+            'id', 
+            $filters, 
+            $columns
+        );
     }
 
     public static function withStoreUser(array $objects, array $filters = [], string $columns = '*'): array
     {
-        return self::withBelongsTo($objects, User::class, 'store_usu_id', 'storeUser', 'id', $filters, $columns);
+        return self::withBelongsTo(
+            $objects, 
+            User::class, 
+            'store_usu_id', 
+            'storeUser', 
+            'id', 
+            $filters, 
+            $columns
+        );
     }
 
     public static function getByConferenceId(int $conferenceId, string $columns = '*'): ?array 
@@ -270,6 +310,16 @@ class Pallet extends DBModel
     public function getStatus(): ?string 
     {
         return isset(self::getStates()[$this->p_status]) ? self::getStates()[$this->p_status] : null;
+    }
+
+    public function getCreatedAtDateTime(): DateTime 
+    {
+        return new DateTime($this->created_at);
+    }
+
+    public function getUpdatedAtDateTime(): DateTime 
+    {
+        return new DateTime($this->updated_at);
     }
 
     public function getBarcodePNG(): string 

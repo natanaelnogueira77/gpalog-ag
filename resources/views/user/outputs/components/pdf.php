@@ -73,11 +73,11 @@
                 </tr>
                 <tr>
                     <td colspan="4"><?= _('Data de Separação') ?></td>
-                    <td colspan="4"><?= $dbOutput->getCreationDateTime()->format('d/m/Y') ?></td>
+                    <td colspan="4"><?= $dbOutput->getCreatedAtDateTime()->format('d/m/Y') ?></td>
                 </tr>
                 <tr>
                     <td colspan="4"><?= _('Horário de Separação') ?></td>
-                    <td colspan="4"><?= $dbOutput->getCreationDateTime()->format('H:i:s') ?></td>
+                    <td colspan="4"><?= $dbOutput->getCreatedAtDateTime()->format('H:i:s') ?></td>
                 </tr>
             </tbody>
 

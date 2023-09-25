@@ -73,17 +73,41 @@ class Output extends DBModel
 
     public static function withOperation(array $objects, array $filters = [], string $columns = '*'): array
     {
-        return self::withBelongsTo($objects, Operation::class, 'ope_id', 'operation', 'id', $filters, $columns);
+        return self::withBelongsTo(
+            $objects, 
+            Operation::class, 
+            'ope_id', 
+            'operation', 
+            'id', 
+            $filters, 
+            $columns
+        );
     }
 
     public static function withPallets(array $objects, array $filters = [], string $columns = '*'): array
     {
-        return self::withHasMany($objects, Pallet::class, 'sai_id', 'pallets', 'id', $filters, $columns);
+        return self::withHasMany(
+            $objects, 
+            Pallet::class, 
+            'sai_id', 
+            'pallets', 
+            'id', 
+            $filters, 
+            $columns
+        );
     }
 
     public static function withUser(array $objects, array $filters = [], string $columns = '*'): array
     {
-        return self::withBelongsTo($objects, User::class, 'usu_id', 'user', 'id', $filters, $columns);
+        return self::withBelongsTo(
+            $objects, 
+            User::class, 
+            'usu_id', 
+            'user', 
+            'id', 
+            $filters, 
+            $columns
+        );
     }
 
     public static function getByOperationId(int $operationId, string $columns = '*'): ?array 
@@ -96,8 +120,13 @@ class Output extends DBModel
         return (new self())->get(['usu_id' => $userId], $columns)->fetch(true);
     }
 
-    public function getCreationDateTime(): DateTime 
+    public function getCreatedAtDateTime(): DateTime 
     {
         return new DateTime($this->created_at);
+    }
+
+    public function getUpdatedAtDateTime(): DateTime 
+    {
+        return new DateTime($this->updated_at);
     }
 }

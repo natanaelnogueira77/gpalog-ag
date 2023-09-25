@@ -144,27 +144,67 @@ class Conference extends DBModel
 
     public static function withADMUser(array $objects, array $filters = [], string $columns = '*'): array
     {
-        return self::withBelongsTo($objects, User::class, 'adm_usu_id', 'ADMUser', 'id', $filters, $columns);
+        return self::withBelongsTo(
+            $objects, 
+            User::class, 
+            'adm_usu_id', 
+            'ADMUser', 
+            'id', 
+            $filters, 
+            $columns
+        );
     }
 
     public static function withEndUser(array $objects, array $filters = [], string $columns = '*'): array
     {
-        return self::withBelongsTo($objects, User::class, 'end_usu_id', 'endUser', 'id', $filters, $columns);
+        return self::withBelongsTo(
+            $objects, 
+            User::class, 
+            'end_usu_id', 
+            'endUser', 
+            'id', 
+            $filters, 
+            $columns
+        );
     }
 
     public static function withOperation(array $objects, array $filters = [], string $columns = '*'): array
     {
-        return self::withBelongsTo($objects, Operation::class, 'ope_id', 'operation', 'id', $filters, $columns);
+        return self::withBelongsTo(
+            $objects, 
+            Operation::class, 
+            'ope_id', 
+            'operation', 
+            'id', 
+            $filters, 
+            $columns
+        );
     }
 
     public static function withPallets(array $objects, array $filters = [], string $columns = '*'): array
     {
-        return self::withHasMany($objects, Pallet::class, 'con_id', 'pallets', 'id', $filters, $columns);
+        return self::withHasMany(
+            $objects, 
+            Pallet::class, 
+            'con_id', 
+            'pallets', 
+            'id', 
+            $filters, 
+            $columns
+        );
     }
 
     public static function withStartUser(array $objects, array $filters = [], string $columns = '*'): array
     {
-        return self::withBelongsTo($objects, User::class, 'start_usu_id', 'startUser', 'id', $filters, $columns);
+        return self::withBelongsTo(
+            $objects, 
+            User::class, 
+            'start_usu_id', 
+            'startUser', 
+            'id', 
+            $filters, 
+            $columns
+        );
     }
 
     public static function getByADMUserId(int $userId, string $columns = '*'): ?array 
@@ -239,6 +279,16 @@ class Conference extends DBModel
     public function getEndDateTime(): ?DateTime 
     {
         return $this->date_end ? new DateTime($this->date_end) : null;
+    }
+
+    public function getCreatedAtDateTime(): DateTime 
+    {
+        return new DateTime($this->created_at);
+    }
+
+    public function getUpdatedAtDateTime(): DateTime 
+    {
+        return new DateTime($this->updated_at);
     }
 
     public function setAsWaiting(): self 

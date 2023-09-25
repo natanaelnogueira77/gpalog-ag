@@ -144,12 +144,28 @@ class User extends UserModel
 
     public static function withSocialUser(array $objects, array $filters = [], string $columns = '*'): array
     {
-        return self::withHasOne($objects, UserType::class, 'usu_id', 'socialUser', 'id', $filters, $columns);
+        return self::withHasOne(
+            $objects, 
+            SocialUser::class, 
+            'usu_id', 
+            'socialUser', 
+            'id', 
+            $filters, 
+            $columns
+        );
     }
 
     public static function withUserType(array $objects, array $filters = [], string $columns = '*'): array
     {
-        return self::withBelongsTo($objects, UserType::class, 'utip_id', 'userType', 'id', $filters, $columns);
+        return self::withBelongsTo(
+            $objects, 
+            UserType::class, 
+            'utip_id', 
+            'userType', 
+            'id', 
+            $filters, 
+            $columns
+        );
     }
 
     public function isAdmin(): bool
@@ -199,5 +215,15 @@ class User extends UserModel
     public function getSlugByName(): ?string 
     {
         return is_string($this->name) ? slugify($this->name . (new DateTime())->getTimestamp()) : null;
+    }
+
+    public function getCreatedAtDateTime(): DateTime 
+    {
+        return new DateTime($this->created_at);
+    }
+
+    public function getUpdatedAtDateTime(): DateTime 
+    {
+        return new DateTime($this->updated_at);
     }
 }

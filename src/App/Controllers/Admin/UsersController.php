@@ -192,7 +192,7 @@ class UsersController extends TemplateController
                         </div>
                     ",
                     'email' => $user->email,
-                    'created_at' => $this->getDateTime($user->created_at)->format('d/m/Y'),
+                    'created_at' => $user->getCreatedAtDateTime()->format('d/m/Y'),
                     'actions' => "
                         <div class=\"dropup d-inline-block\">
                             <button type=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\" 

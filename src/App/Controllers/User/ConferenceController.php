@@ -44,7 +44,7 @@ class ConferenceController extends TemplateController
         if($dbConferences) {
             $dbConferences = Conference::withOperation($dbConferences);
             foreach($dbConferences as $dbConference) {
-                $dbConference->created_at = $this->getDateTime($dbConference->created_at)->format('d/m/Y');
+                $dbConference->created_at = $dbConference->getCreatedAtDateTime()->format('d/m/Y');
             }
         }
 
@@ -175,7 +175,7 @@ class ConferenceController extends TemplateController
             ]);
         }
 
-        $dbConference->created_at = $this->getDateTime($dbConference->created_at)->format('d/m/Y');
+        $dbConference->created_at = $dbConference->getCreatedAtDateTime()->format('d/m/Y');
 
         $this->render('user/conference/single-input', [
             'dbConference' => $dbConference,
@@ -210,7 +210,7 @@ class ConferenceController extends TemplateController
             $dbConferenceInputs = ConferenceInput::withProduct($dbConferenceInputs);
         }
 
-        $dbConference->created_at = $this->getDateTime($dbConference->created_at)->format('d/m/Y');
+        $dbConference->created_at = $dbConference->getCreatedAtDateTime()->format('d/m/Y');
 
         $this->render('user/conference/input-products', [
             'dbConference' => $dbConference,
