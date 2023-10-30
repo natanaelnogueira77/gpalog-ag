@@ -68,12 +68,6 @@ $app->router->delete('/{user_id}', 'UsersController:delete', 'admin.users.delete
 $app->router->get('/criar', 'UsersController:create', 'admin.users.create');
 $app->router->get('/list', 'UsersController:list', 'admin.users.list');
 
-$app->router->namespace('Src\App\Controllers\Web');
-
-$app->router->group('contato');
-$app->router->get('/', 'ContactController:index', 'contact.index');
-$app->router->post('/', 'ContactController:index', 'contact.index');
-
 $app->router->namespace('Src\App\Controllers\User');
 
 $app->router->group('u', \Src\App\Middlewares\ADMUserMiddleware::class);
@@ -124,6 +118,7 @@ $app->router->get('/export', 'ProvidersController:export', 'user.providers.expor
 
 $app->router->group('u/armazenagem', \Src\App\Middlewares\ADMUserMiddleware::class);
 $app->router->get('/', 'StorageController:index', 'user.storage.index');
+$app->router->get('/{street_id}/pallets', 'StorageController:getStreetPallets', 'user.storage.getStreetPallets');
 $app->router->get('/export', 'StorageController:export', 'user.storage.export');
 
 $app->router->group('u/saidas', \Src\App\Middlewares\ADMUserMiddleware::class);

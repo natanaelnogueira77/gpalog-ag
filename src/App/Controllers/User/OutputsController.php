@@ -108,7 +108,7 @@ class OutputsController extends TemplateController
         header('Content-Disposition: attachment');
         header("filename: {$filename}");
 
-        $html = $this->getView('user/outputs/components/pdf', [
+        $html = $this->getView('user/outputs/_components/pdf', [
             'dbOperation' => $dbOperation,
             'dbOutput' => $dbOutput,
             'dbPallets' => $dbPallets,

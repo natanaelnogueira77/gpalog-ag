@@ -34,6 +34,29 @@ class StorageController extends TemplateController
         ]);
     }
 
+    public function getStreetPallets(array $data): void 
+    {
+        $data = array_merge($data, filter_input_array(INPUT_GET, FILTER_DEFAULT));
+        if(!$dbStreet = (new Street())->findById(intval($data['street_id']))) {
+            $this->setMessage('error', _('Nenhuma rua foi encontrada!'))->APIResponse([], 200);
+            return;
+        }
+
+        $dbPallets = (new Pallet())->get([
+            'street_number' => $dbStreet->street_number,
+            'p_status' => Pallet::PS_STORED
+        ])->order('position, height')->fetch(true);
+        if($dbPallets) {
+            $dbPallets = Pallet::withProduct($dbPallets);
+        }
+
+        $this->APIResponse([
+            'content' => $this->getView('user/storage/_components/pallets-list-table', [
+                'pallets' => $dbPallets
+            ])
+        ], 200);
+    }
+
     public function export(array $data): void 
     {
         $data = array_merge($data, filter_input_array(INPUT_GET, FILTER_DEFAULT));

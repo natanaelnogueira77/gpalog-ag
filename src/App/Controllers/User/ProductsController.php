@@ -11,8 +11,11 @@ class ProductsController extends TemplateController
 {
     public function index(array $data): void 
     {
+        $data = array_merge($data, filter_input_array(INPUT_GET, FILTER_DEFAULT));
         $this->addData();
-        $this->render('user/products/index');
+        $this->render('user/products/index', [
+            'importErrors' => $data['import_errors']
+        ]);
     }
 
     public function show(array $data): void 
@@ -141,7 +144,7 @@ class ProductsController extends TemplateController
 
         $this->APIResponse([
             'content' => [
-                'table' => $this->getView('components/data-table', [
+                'table' => $this->getView('_components/data-table', [
                     'headers' => [
                         'actions' => ['text' => _('Ações')],
                         'prov_name' => ['text' => _('Fornecedor'), 'sort' => true],
@@ -158,7 +161,7 @@ class ProductsController extends TemplateController
                     ],
                     'data' => $content
                 ]),
-                'pagination' => $this->getView('components/pagination', [
+                'pagination' => $this->getView('_components/pagination', [
                     'pages' => $pages,
                     'currPage' => $page,
                     'results' => $count,
@@ -228,12 +231,8 @@ class ProductsController extends TemplateController
                     $this->session->setFlash('error', ErrorMessages::requisition());
                     $this->redirect('user.products.index');
                 } elseif($errors = Product::getErrorsFromMany($objects)) {
-                    $message = '';
-                    foreach($errors as $rowNumber => $error) {
-                        $message .= sprintf(_('Linha %s: '), $rowNumber);
-                    }
-                    $this->session->setFlash('error', sprintf(_('Houveram erros no excel! %s'), $message));
-                    $this->redirect('user.products.index');
+                    $this->session->setFlash('error', ErrorMessages::csvImport());
+                    $this->redirect('user.products.index', ['import_errors' => $errors]);
                 }
 
                 $this->session->setFlash(

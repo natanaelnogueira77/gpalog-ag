@@ -68,11 +68,6 @@ class InputOutputHistoryController extends TemplateController
         $pages = ceil($count / $limit);
 
         if($objects = $conferences->fetch(true)) {
-            $stColors = [
-                Conference::CS_WAITING => 'warning',
-                Conference::CS_STARTED => 'primary',
-                Conference::CS_FINISHED => 'success'
-            ];
             foreach($objects as $conference) {
                 $params = ['conference_id' => $conference->id];
                 $content[] = [
@@ -80,7 +75,7 @@ class InputOutputHistoryController extends TemplateController
                     'provider_name' => $conference->provider_name,
                     'occurrence_number' => $conference->occurrence_number,
                     'order_number' => $conference->order_number,
-                    'c_status' => "<div class=\"badge badge-{$stColors[$conference->c_status]}\">" . $conference->getStatus() . "</div>",
+                    'c_status' => "<div class=\"badge badge-{$conference->getStatusColor()}\">{$conference->getStatus()}</div>",
                     'actions' => "
                         <div class=\"dropup d-inline-block\">
                             <button type=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\" 
@@ -112,7 +107,7 @@ class InputOutputHistoryController extends TemplateController
 
         $this->APIResponse([
             'content' => [
-                'table' => $this->getView('components/data-table', [
+                'table' => $this->getView('_components/data-table', [
                     'headers' => [
                         'actions' => ['text' => _('Ações')],
                         'plate' => ['text' => _('Placa'), 'sort' => true],
@@ -127,7 +122,7 @@ class InputOutputHistoryController extends TemplateController
                     ],
                     'data' => $content
                 ]),
-                'pagination' => $this->getView('components/pagination', [
+                'pagination' => $this->getView('_components/pagination', [
                     'pages' => $pages,
                     'currPage' => $page,
                     'results' => $count,
@@ -163,7 +158,7 @@ class InputOutputHistoryController extends TemplateController
         header('Content-Disposition: attachment');
         header("filename: {$filename}");
 
-        $html = $this->getView('user/input-output-history/components/input-pdf', [
+        $html = $this->getView('user/input-output-history/_components/input-pdf', [
             'dbPallets' => $dbPallets,
             'dbOperation' => $dbConference->operation(),
             'logo' => url((new Config())->getMeta(Config::KEY_LOGO))
@@ -205,7 +200,7 @@ class InputOutputHistoryController extends TemplateController
         header('Content-Disposition: attachment');
         header("filename: {$filename}");
 
-        $html = $this->getView('user/input-output-history/components/output-pdf', [
+        $html = $this->getView('user/input-output-history/_components/output-pdf', [
             'dbPallets' => $dbPallets,
             'dbOperation' => $dbConference->operation(),
             'logo' => url((new Config())->getMeta(Config::KEY_LOGO))

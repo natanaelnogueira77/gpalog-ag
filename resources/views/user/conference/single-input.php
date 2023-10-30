@@ -1,6 +1,7 @@
 <?php 
+    $theme->title = sprintf(_('Entrada | %s'), $appData['app_name']);
     $this->layout("themes/black-screen/_theme", [
-        'title' => sprintf(_('Entrada | %s'), $appData['app_name']),
+        'theme' => $theme,
         'message' => $message
     ]);
 ?>
@@ -33,12 +34,16 @@
     method="post">
     <input type="button" value="<?= _('Incluir Produto') ?>" 
         onclick="window.location.href='<?= $router->route('user.conference.singleInput', ['conference_id' => $dbConference->id, 'include_product' => true]) ?>'">
+    <br>
     <input type="button" value="<?= _('Ver Produtos') ?>" 
         onclick="window.location.href='<?= $router->route('user.conference.inputProducts', ['conference_id' => $dbConference->id]) ?>'">
-<?php if($dbConferenceInputs): ?>
+    <br>
+    <?php if($dbConferenceInputs): ?>
     <input type="hidden" name="finish_conference">
     <input type="submit" value="<?= _('Finalizar Conferência') ?>">
+    <br>
     <?php endif; ?>
+    <input type="button" value="<?= _('Voltar') ?>" onclick="window.location.href='<?= $return ?>'">
 </form>
 <?php else: ?>
 <form method="<?= $conferenceInputForm->hasProduct() ? 'post' : 'get' ?>" 

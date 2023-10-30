@@ -1,11 +1,8 @@
 <?php 
-    $this->layout("themes/architect-ui/_theme", [
-        'title' => sprintf(_('Saídas | %s'), $appData['app_name'])
-    ]);
-?>
+    $theme->title = sprintf(_('Saídas | %s'), $appData['app_name']);
+    $this->layout("themes/architect-ui/_theme", ['theme' => $theme]);
 
-<?php 
-    $this->insert('themes/architect-ui/components/title', [
+    $this->insert('themes/architect-ui/_components/title', [
         'title' => _('Saídas de Pallet'),
         'subtitle' => _('Selecione uma ordem de serviço para fazer separação de pallets para saída'),
         'icon' => 'pe-7s-next-2',
@@ -100,28 +97,8 @@
     <?php endif; ?>
 </div>
 
-<?php $this->start('scripts'); ?>
-<script>
-    $(function () {
-        const app = new App();
-
-        <?php if($dbPallets): ?>
-        const pallets_list = $("#pallets-list");
-        const include_all = $("#include-all");
-
-        include_all.change(function () {
-            if($(this).is(":checked")) {
-                $("[name='pallets[]']").prop('checked', true);
-            } else {
-                $("[name='pallets[]']").prop('checked', false);
-            }
-        });
-
-        app.form(pallets_list, function (response) {
-            if(response.pdf) window.open(response.pdf, '_blank').focus();
-            window.location.reload();
-        });
-        <?php endif; ?>
-    });
-</script>
-<?php $this->end(); ?>
+<?php 
+    $this->start('scripts'); 
+    $this->insert('user/outputs/_scripts/index.js');
+    $this->end(); 
+?>

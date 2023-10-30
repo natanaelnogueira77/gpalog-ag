@@ -1,11 +1,8 @@
 <?php 
-    $this->layout("themes/architect-ui/_theme", [
-        'title' => sprintf(_('Armazenagem | %s'), $appData['app_name'])
-    ]);
-?>
+    $theme->title = sprintf(_('Armazenagem | %s'), $appData['app_name']);
+    $this->layout("themes/architect-ui/_theme", ['theme' => $theme]);
 
-<?php 
-    $this->insert('themes/architect-ui/components/title', [
+    $this->insert('themes/architect-ui/_components/title', [
         'title' => _('Armazenagem'),
         'subtitle' => _('Veja abaixo como está o armazenamento atualmente'),
         'icon' => 'pe-7s-server',
@@ -35,6 +32,7 @@
         <div class="table-responsive-lg">
             <table class="align-middle mb-0 table table-bordered">
                 <thead class="bg-info text-white">
+                    <th class="text-center align-middle"><?= _('Ver') ?></th>
                     <th class="text-center align-middle"><?= _('Ruas') ?></th>
                     <th class="text-center align-middle" colspan="25"><?= _('Armazenamento') ?></th>
                     <th class="text-center align-middle"><?= _('Livre') ?></th>
@@ -44,6 +42,13 @@
                 <tbody>
                     <?php foreach($dbStreets as $dbStreet): ?>
                     <tr>
+                        <td class="text-center align-middle" rowspan="3">
+                            <button type="button" class="btn btn-sm btn-primary" 
+                                data-action="<?= $router->route('user.storage.getStreetPallets', ['street_id' => $dbStreet->id]) ?>" 
+                                data-method="get" data-act="check-pallets" data-street-number="<?= $dbStreet->street_number ?>">
+                                <i class="icofont-eye"></i>
+                            </button>
+                        </td>
                         <td class="text-center align-middle" rowspan="3">
                             <strong><?= sprintf(_('Rua %s'), $dbStreet->street_number) ?></strong>
                         </td>
@@ -76,6 +81,7 @@
                 </tbody>
                 <tfoot class="bg-secondary text-white">
                     <tr>
+                        <td class="text-center align-middle"></td>
                         <td class="text-center align-middle"><?= _('Totais') ?></td>
                         <td class="text-center align-middle" colspan="25">
                             <h3><strong><?= sprintf(_('Total Para Armazenagem: %s'), $storageCapacity) ?></strong></h3>
@@ -89,3 +95,13 @@
         </div>
     </div>
 </div>
+
+<?php 
+    $this->start('scripts');
+    $this->insert('user/storage/_scripts/index.js');
+    $this->end();
+    
+    $this->start('modals');
+    $this->insert('user/storage/_components/pallets-list-modal');
+    $this->end();
+?>
