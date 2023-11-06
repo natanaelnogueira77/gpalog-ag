@@ -238,7 +238,7 @@ class OperationsController extends TemplateController
         $excel = (new ExcelGenerator($excelData, _('Operações')));
         if(!$excel->render()) {
             $this->session->setFlash('error', ErrorMessages::excel());
-            $this->redirect('user.visits.index');
+            $this->redirect('user.operations.index');
         }
 
         $excel->stream();
